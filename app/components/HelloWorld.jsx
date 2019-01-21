@@ -1,7 +1,7 @@
 const React = require('react');
 const UnorderedList = require('./UnorderedList');
 
-const dependenciesArray = [
+/*const dependenciesArray = [
   'express - middleware for the node server',
   'react - for generating the views of the app',
   'react-dom - powers the rendering of elements to the DOM, typically paired with React',
@@ -12,7 +12,7 @@ const dependenciesArray = [
 const componentsMade = [
   'HelloWorld - which is the view you are seeing now!',
   'UnorderedList - which takes an array of "items" and returns a <ul> element with <li>, elements of each of those items within it',
-];
+];*/
 
 
 /* the main page for the index route of this app */

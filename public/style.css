@@ -20,6 +20,9 @@ body{
   z-index: -1;
   position: fixed;
 }
+.hidden{
+  display:none;
+}
 form{
   background-color: white;
   width:100%;
