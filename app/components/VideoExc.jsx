@@ -32,7 +32,12 @@ class VideoList extends React.Component{
                 
                   return (<div className="singleExcerpt">
                     <a href={'https://youtu.be/'+ vid +'?t='+e.time} target="_blank">{secondsToHumanTime(e.time)}</a>
-                    <p className="excerpt_text">{e.text}</p>
+                    <p className="excerpt_text">{
+                        e.text.split(' ').map(w=>{
+                          return w
+                        })
+                        // highlight words from query
+                    }</p>
                   </div>)
                  })
                 }

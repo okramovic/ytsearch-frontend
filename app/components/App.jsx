@@ -1,24 +1,11 @@
 const React = require('react');
 const UnorderedList = require('./UnorderedList');
 
-/*const dependenciesArray = [
-  'express - middleware for the node server',
-  'react - for generating the views of the app',
-  'react-dom - powers the rendering of elements to the DOM, typically paired with React',
-  'webpack - for bundling all the javascript',
-  'webpack-cli - command line support for webpack',
-  'jsx-loader - allows webpack to load jsx files'
-];
-const componentsMade = [
-  'HelloWorld - which is the view you are seeing now!',
-  'UnorderedList - which takes an array of "items" and returns a <ul> element with <li>, elements of each of those items within it',
-];*/
 
-
-/* the main page for the index route of this app */
 class HelloWorld extends React.Component {
   constructor(props){
     super(props)
+    
     this.submitHandler = this.submitHandler.bind(this)
     this.inputChangeHandler = this.inputChangeHandler.bind(this)
     
@@ -38,8 +25,10 @@ class HelloWorld extends React.Component {
     const query = this.state.input
     console.log('submitted', query)
 
-    if (!query || typeof query != 'string') return;
+    if (!query || typeof query != 'string' || query.trim()=='') return;
 
+    document.querySelector('form input').blur()
+    
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "/searchtext", true);
     xhr.setRequestHeader("Content-type", "application/json");
@@ -57,32 +46,17 @@ class HelloWorld extends React.Component {
           return;
 
           res.map(oneChannel=>{
-              //const keys = Object.keys(oneChannel)
-              
               // sort them alphabetically
-              oneChannel.expt = oneChannel.expt.sort((a,b)=>{
+              /*oneChannel.expt = oneChannel.expt.sort((a,b)=>{
                   const x = b.title.toLowerCase() > a.title.toLowerCase()
                   return x ? -1 : 1
-              })
-              
-              // append only if there are exceprts
-              if(oneChannel.expt.length)
-                appendResultChannel(oneChannel.channel)
-
-              for (let i=0; i<oneChannel.expt.length; i++) {
-                const x = oneChannel.expt[i]  //[keys[i]] //oneChannel[keys[i]]
-                
-                if (!x.excerpts.length) continue;
-                
-                appendResultTitle(x.title)
-                for (const ex of x.excerpts) appendResult(x.id, ex, query)
-              }
+              })*/
           })
       }
     }
     xhr.send( JSON.stringify( {query} ) );
 
-    //getS('form input').blur()
+    
 
 }
   render(){
@@ -100,7 +74,7 @@ class HelloWorld extends React.Component {
       <h1 id="searchTermHeader" className={this.state.excCount? "":'hidden' }
         >found {this.state.excCount} excerpts in {this.state.vidCount} videos for "{this.state.prevInput}"</h1>
       
-      <UnorderedList channels={this.state.channels} />
+      <UnorderedList channels={this.state.channels} query={this.state.prevInput}/>
 
       
       <div id='mycredit'>

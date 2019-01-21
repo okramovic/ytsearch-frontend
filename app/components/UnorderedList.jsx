@@ -5,7 +5,7 @@ const UnorderedList = function({ channels }) {
   return (
     <ul>
       {channels.map(function(item, i) {
-        return <ChannelList key={i} itemData={item}/>
+        return <ChannelList key={i} itemData={item} query={this.props.query}/>
       })}
     </ul>
   );
