@@ -151,10 +151,12 @@ img.channel_thumb{
 }
 .channel_header{
   margin-top: 1.5em;
-  margin-bottom: .5em;
+  padding-bottom: .5em;
+  margin-bottom: 0em;
   /*padding-left: 1em;*/
   font-size: 2em;
   color: palevioletred;
+  cursor: pointer;
 }
 .channel_header:first-of-type{
   margin-top: .5em;

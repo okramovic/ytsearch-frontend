@@ -102,7 +102,7 @@ class HelloWorld extends React.Component {
 
       <form onSubmit={this.submitHandler}>
         <input id="main" type="text" placeholder="search" 
-               onChange={this.inputChangeHandler} value={this.state.input} autocomplete="false" />
+               onChange={this.inputChangeHandler} value={this.state.input} autocomplete="off" />
         <p>fulltext search in your favorite YT channels</p>
       </form>
 
