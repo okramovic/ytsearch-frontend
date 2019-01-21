@@ -4,20 +4,27 @@ class VideoList extends React.Component{
   constructor(props){
     super(props)
     
-    //this.submitHandler = this.submitHandler.bind(this)
+    this.clickHandler = this.clickHandler.bind(this)
     //this.inputChangeHandler = this.inputChangeHandler.bind(this)
     
     this.state = {
+      show: true
     }
+  }
+  clickHandler(ev){
+    this.setState((prev)=>{
+        //return {shown: !prevState.shown}
+        return {show: !prev.show }
+       })
   }
   render(){
 
       
       return (
-        this.props.expt.map((x,i)=>{
+        this.props.videos.map((x,i)=>{
           return (
-              <div key={i} className={this.props.shown}> 
-                  <h2 className="channel_header">{x.title}</h2>
+              <div key={i} className={this.state.show ? 'ooo':'lll'}> 
+                  <h2 className="channel_header" onClick={this.clickHandler}>{x.title}</h2>
   
                
                 {x.excerpts.map((e,i)=>{

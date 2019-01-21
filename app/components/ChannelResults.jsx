@@ -23,7 +23,8 @@ class ChannelRes extends React.Component{
     const iconUrl = getIconURL(item.channel)
     
     // channel
-    //  |- video
+    //  |- video - exc
+    //  |        - exc
     //  |- video
     
     return (
@@ -35,7 +36,10 @@ class ChannelRes extends React.Component{
           </div>
           <button className="collapse_button" onClick={this.clickHandler}>hide</button>
         </div>
-        <VideoList expt={item.expt} shown={this.state.shown ? '':'hidden'}/>
+        <div className={this.state.shown ? '':'hidden'}>
+          <VideoList videos={item.expt} />
+        </div>
+        
       </li>
     )
   }
