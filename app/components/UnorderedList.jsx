@@ -12,7 +12,7 @@ const UnorderedList = function({ channels }) {
         return (
           <div>
             <h3>{item.channel}</h3>
-            <ChannelList key={i} expt={item.expt} />
+            <ChannelList key={i} expt={item.expt} channelname={item.channel}/>
           </div>
           
         )
