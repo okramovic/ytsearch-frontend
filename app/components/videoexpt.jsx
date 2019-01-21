@@ -16,13 +16,13 @@ class VideoList extends React.Component{
       return (
         this.props.expt.map((x,i)=>{
           return (
-              <div key={i} classname="">                
+              <div key={i} > 
                   <h2 className="channel_header">{x.title}</h2>
   
                
                 {x.excerpts.map((e,i)=>{
                   return (<div>
-                    <a href={x.id} target="_blank">{secondsToHumanTime(e.time)}</a>
+                    <a href={'https://youtu.be/'+x.id+'?t='+e.time} target="_blank">{secondsToHumanTime(e.time)}</a>
                     <p className="excerpt_text">{e.text}</p>
                   </div>)
                  })

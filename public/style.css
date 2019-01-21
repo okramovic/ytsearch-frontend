@@ -78,10 +78,10 @@ h3.stats{
 }
 ul{
   list-style-type: none;
-  margin-inline-start: 40px;
+  /*margin-inline-start: 40px;*/
   margin-inline-end: 40px;
   padding-inline-start: 40px;
-  background-color: white;
+  
 }
 .channel_outer{
   padding-top: 1em;
@@ -99,6 +99,14 @@ ul{
 }
 .channel_name:first-of-type{
   margin-top: 0.33em;
+}
+.channel_results{
+  background-color: white;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.channel_results:last-of-type{
+  padding-bottom: 120px;
 }
 img.channel_thumb{
   width: 50px;
@@ -123,7 +131,7 @@ img.channel_thumb{
 .channel_header{
   margin-top: 1.5em;
   margin-bottom: 1.5em;
-  padding-left: 1em;
+  /*padding-left: 1em;*/
   font-size: 2em;
   color: palevioletred;
 }
