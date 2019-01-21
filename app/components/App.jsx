@@ -25,7 +25,9 @@ class HelloWorld extends React.Component {
     
     this.state = {
       input: '',
-      channels:[]
+      channels:[],
+      vidCount: 0,
+      excCount: 0
     }
   }
   inputChangeHandler(ev){
@@ -47,21 +49,19 @@ class HelloWorld extends React.Component {
           const res = JSON.parse(xhr.responseText)
           console.log('xhr response: ', res);
         
-          this.setState({channels: res},()=>{
+          const vidCount = res.reduce((tot, ch)=>tot+ch.expt.length, 0)
+          const exc_count = res.reduce((tot, ch)=>tot+ch.expt.reduce((t,curr)=>t+curr.excerpts.length,0), 0)
+          console.log(vid_count, exc_count)
+          
+          this.setState({channels: res, vidCount, excCount: exc_count },()=>{
             console.log('chans', this.state.channels)
           })
         
           return;
-        
-          getS('body').classList = []
-          getS('#results').innerHTML = ''
-          getS('#results').style.display = 'block'
-          getS('#searchTermHeader').style.display = 'block'
-          getS('#searchTermHeader').innerHTML = `Results for: ${query}`
+
           
           // add stats
-          const vid_count = res.reduce((tot, ch)=>tot+ch.expt.length, 0)
-          const exc_count = res.reduce((tot, ch)=>tot+ch.expt.reduce((t,curr)=>t+curr.excerpts.length,0), 0)
+          
           const stats = document.createElement('h3')
           stats.classList = ['stats']
           stats.innerText = `found ${exc_count} excerpts in ${vid_count} videos`
@@ -106,7 +106,7 @@ class HelloWorld extends React.Component {
         <p>fulltext search in your</p>
       </form>
 
-      <h1 id="searchTermHeader">header</h1>
+      <h1 id="searchTermHeader" className={this.state.excCount? "":'hidden' }>found {this.state.excCount} excerpts in ${this.state.vidCount} videos</h1>
       
       <UnorderedList channels={this.state.channels} />
 
