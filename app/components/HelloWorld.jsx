@@ -9,28 +9,40 @@ const dependenciesArray = [
   'webpack-cli - command line support for webpack',
   'jsx-loader - allows webpack to load jsx files'
 ];
-
 const componentsMade = [
   'HelloWorld - which is the view you are seeing now!',
   'UnorderedList - which takes an array of "items" and returns a <ul> element with <li>, elements of each of those items within it',
 ];
 
+
 /* the main page for the index route of this app */
-const HelloWorld = function() {
+class HelloWorld extends React.Component {
+  constructor(props){
+    super(props)
+  }
+  submitHandler
+  render(){
   return (
     <div>
-      <h1>Hello World!</h1>
 
-      <p>This is a starter <a href="http://glitch.com">Glitch</a> app for React! It uses 
-        only a few dependencies to get you started on working with React:</p>
+      <form>
+        <input id="main" type="text" placeholder="search"/>
+        <p>fulltext search in your favorite YT channels</p>
+      </form>
 
-      <UnorderedList items={dependenciesArray} />
+      <h1 id="searchTermHeader">header</h1>
+      
+      <UnorderedList items={[]} />
 
-      <p>Look in <code>app/components/</code> for two example components:</p>
-
-      <UnorderedList items={componentsMade} />
+      
+      <div id='mycredit'>
+        
+      </div>
+      
     </div>
   );
+  } 
 }
+// <p>made with love in Vienna by me</p>
 
 module.exports = HelloWorld;
