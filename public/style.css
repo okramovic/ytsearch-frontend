@@ -2,14 +2,14 @@ body{
   background-color: #f2f2f2;
   margin: 0;
 }
-body.initial{
+.initial{
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-body.with_results{
+.with_results{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,6 +88,7 @@ ul{
   align-items: center;
 }
 .channel_inner{
+  background-color: blue;
   display: flex;
   align-items: center;
   height: 50px; 

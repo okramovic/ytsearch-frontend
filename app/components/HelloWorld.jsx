@@ -98,7 +98,7 @@ class HelloWorld extends React.Component {
 }
   render(){
   return (
-    <div>
+    <div class={this.state.channels.length==0? "initial" : 'with_results'}>
 
       <form onSubmit={this.submitHandler}>
         <input id="main" type="text" placeholder="search" onChange={this.inputChangeHandler} value={this.state.input}/>
