@@ -25,7 +25,6 @@ class VideoList extends React.Component{
               <div > 
                   <h2 className="channel_header" videoname={this.props.title} onClick={this.clickHandler}>{this.props.title}</h2>
   
-               
                 {this.props.videos.map((e,i)=>{
                   if (!this.state.show) return null;
                 
@@ -36,10 +35,10 @@ class VideoList extends React.Component{
                         //e.text
                         e.text.split(' ').map(w=>{
                           if (!w) return w;
-                          const rr = new RegExp(w,'')
+                          const rr = new RegExp('^'+w+'$','')
                           //console.log(rr)
                           if (this.props.query.match(rr)) 
-                            return <span className="highlighted">{w + ' '}</span>
+                            return <span className="highlighted">{w}</span>
                           
                           return w + ' '
                         }) //.join(' ')
@@ -49,9 +48,6 @@ class VideoList extends React.Component{
                  })
                 }
               </div>
-                           
-      //    )
-      //  })
       )
   }
 }

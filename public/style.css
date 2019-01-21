@@ -35,7 +35,7 @@ body{
   border-radius: 50%;
   background-color: white;
     
-  position: fixed;
+  position: absolute;
   top:1em;
   right: 1em;
   z-index: 1;
@@ -201,7 +201,9 @@ img.channel_thumb{
 }
 /* .excerpt_text{} */
 .highlighted{
-  background-color: yellow;
+  background-color: pink;
+  /*padding-left: 0.5em;*/
+  margin-right: 0.21em;
 }
 #bottomBuffer{
   height: 120px;
