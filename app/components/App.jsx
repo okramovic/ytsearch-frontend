@@ -19,7 +19,6 @@ const componentsMade = [
 class HelloWorld extends React.Component {
   constructor(props){
     super(props)
-    console.log('construct')
     this.submitHandler = this.submitHandler.bind(this)
     this.inputChangeHandler = this.inputChangeHandler.bind(this)
     
@@ -52,11 +51,8 @@ class HelloWorld extends React.Component {
         
           const vidCount = res.reduce((tot, ch)=>tot+ch.expt.length, 0)
           const excCount = res.reduce((tot, ch)=>tot+ch.expt.reduce((t,curr)=>t+curr.excerpts.length,0), 0)
-          console.log(vidCount, excCount)
           
-          this.setState({channels: res, vidCount, excCount, prevInput:query, input:'' },()=>{
-            console.log('chans', this.state.channels)
-          })
+          this.setState({channels: res, vidCount, excCount, prevInput:query, input:'' },()=>{})
         
           return;
 
@@ -93,6 +89,8 @@ class HelloWorld extends React.Component {
   return (
     <div class={this.state.channels.length==0? "initial" : 'with_results'}>
 
+      <button id="Q">?</button>
+      
       <form onSubmit={this.submitHandler}>
         <input id="main" type="text" placeholder="search" 
                onChange={this.inputChangeHandler} value={this.state.input} autocomplete="off" />
@@ -100,13 +98,13 @@ class HelloWorld extends React.Component {
       </form>
 
       <h1 id="searchTermHeader" className={this.state.excCount? "":'hidden' }
-        >found {this.state.excCount} excerpts in {this.state.vidCount} videos for "{this.state.input}"</h1>
+        >found {this.state.excCount} excerpts in {this.state.vidCount} videos for "{this.state.prevInput}"</h1>
       
       <UnorderedList channels={this.state.channels} />
 
       
       <div id='mycredit'>
-        <p>made</p>
+        <p>made by me</p>
       </div>
       
     </div>
@@ -118,67 +116,6 @@ class HelloWorld extends React.Component {
 module.exports = HelloWorld;
 
 
-
-function appendResultChannel(channel){
-
-    const CT = 'https://yt3.ggpht.com/a-/AAuE7mC56ctnjTBFVmFaDttL3sC26U2CRiICqBgJ-g=s288-mo-c-c0xffffffff-rj-k-no'
-    const Jeremy = 'https://yt3.ggpht.com/a-/AAuE7mBtvK6ioufwJFDGRT9WOvEykaDnAo0jGPOwvQ=s288-mo-c-c0xffffffff-rj-k-no'
-    const Siraj = 'https://yt3.ggpht.com/a-/AAuE7mAfNzuo-vOC8wdETbqIPU4UbnknsxCbCj3lLg=s176-c-k-c0x00ffffff-no-rj-mo'
-    const Twominute = 'https://yt3.ggpht.com/a-/AAuE7mBCBo51MwaRPnZWRH-BvZXhTCejRrbWhzYxuA=s48-mo-c-c0xffffffff-rj-k-no'
-
-    let iconUrl
-    if (channel == 'Coding train') iconUrl = CT
-    else if (channel.match(/fastai/))  iconUrl = Jeremy
-    else if (channel.match(/siraj raval/i))  iconUrl = Siraj
-    else if (channel.match(/two minute papers/i))  iconUrl = Twominute
-    
-
-    const divOuter = document.createElement('div')
-    divOuter.classList = ['channel_outer']
-    
-    const collapse = document.createElement('button')
-    collapse.innerText = 'hide'
-    collapse.classList = ['collapse_button']
-
-    const divInner = document.createElement('div')
-    divInner.classList = ['channel_inner']
-
-        const img = document.createElement('img')
-        img.src = iconUrl
-        img.alt = 'channel icon'
-        img.classList = ['channel_thumb']
-        if (iconUrl) divInner.appendChild(img)
-
-        const h = document.createElement('h2')
-        h.innerText = channel
-        h.classList = ['channel_header']
-
-    divInner.appendChild(h)
-    divOuter.appendChild(divInner)
-    divOuter.appendChild(collapse)
-    getS('#results').appendChild(divOuter)
-}
-function appendResultTitle(title){
-    const h = document.createElement('h3')
-    h.innerText = title
-    getS('#results').appendChild(h)
-}
-function appendResult(id, exc, query){
-    // https://www.youtube.com/watch?v=myPWWrkq5t0
-    // https://youtu.be/myPWWrkq5t0?t=167
-
-    // to highlight query string in text = first make it a span
-    exc.text = exc.text.replace(new RegExp(query, 'gi'), `<span class='highlighted'>${query}</span>`)
-
-    // show time @ instead of id
-
-
-    const li = document.createElement('li')    
-    li.innerHTML = `<a href='https://youtu.be/${id}?t=${exc.time}' target='_blank'>${secondsToHumanTime(exc.time)}</a>
-                    <p class='excerpt_text'>${exc.text}</p>`
-
-    getS('#results').appendChild(li)
-}
 
 function secondsToHumanTime(num){
     const sec = num % 60
