@@ -11,10 +11,22 @@ class VideoList extends React.Component{
     }
   }
   render(){
-    return(
-      {expt.map(x=><p>video</p>)}
+    
+      return (
+        this.props.expt.map((x,i)=>{
+                           return (
+                             <div key={i}>{x.title}
+                               {x.excerpts.map((e,i)=>{
+                                 return <p>{e.text}</p>
+                               })
+                               }
+                             </div>
+                             
+                          )
+      })
+      )
       
-    )
+    
   }
 }
 
