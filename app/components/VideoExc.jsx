@@ -19,15 +19,17 @@ class VideoList extends React.Component{
   }
   render(){
 
-      
+      // className={this.state.show ? '':'hidden'}
       return (
-        this.props.videos.map((x,i)=>{
-          return (
-              <div key={i} className={this.state.show ? 'ooo':'lll'}> 
-                  <h2 className="channel_header" onClick={this.clickHandler}>{x.title}</h2>
+        //this.props.videos.map((x,i)=>{
+        //  return (
+              <div key={i} > 
+                  <h2 className="channel_header" videoname={x.title} onClick={this.clickHandler}>{x.title}</h2>
   
                
                 {x.excerpts.map((e,i)=>{
+                  if (!this.state.show) return null;
+                
                   return (<div className="singleExcerpt">
                     <a href={'https://youtu.be/'+x.id+'?t='+e.time} target="_blank">{secondsToHumanTime(e.time)}</a>
                     <p className="excerpt_text">{e.text}</p>
@@ -36,8 +38,8 @@ class VideoList extends React.Component{
                 }
               </div>
                            
-          )
-        })
+      //    )
+      //  })
       )
   }
 }

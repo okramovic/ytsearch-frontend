@@ -1,6 +1,6 @@
 const React = require('react');
 const UnorderedList = require('./UnorderedList');
-const VideoList = require('./VideoList');
+const VideoExc = require('./VideoExc');
 
 
 class ChannelRes extends React.Component{
@@ -36,14 +36,17 @@ class ChannelRes extends React.Component{
           </div>
           <button className="collapse_button" onClick={this.clickHandler}>hide</button>
         </div>
-        <div className={this.state.shown ? '':'hidden'}>
-          <VideoList videos={item.expt} />
+        <div className={this.state.shown ? '':'hidden'} chan={item.channel}>
+          {item.expt.map((video,i)=>{
+            return <VideoExc key={i} videos={video.excerpts} title={video.title}/>      
+          })}
+          
         </div>
         
       </li>
     )
   }
-}
+} //  <VideoList videos={item.expt} />
 
 module.exports = ChannelRes
 
