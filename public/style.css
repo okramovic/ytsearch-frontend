@@ -91,7 +91,7 @@ ul{
   
 }
 .channel_outer{
-  margin-top: 6.5em;
+  
   padding-top: 1em;
   padding-bottom: 1em;
   /*height: 50px;*/
@@ -109,12 +109,21 @@ ul{
   margin-top: 0.33em;
 }
 .channel_results{
+  
   background-color: white;
   padding-left: 40px;
   padding-right: 40px;
 }
 .channel_results:last-of-type{
   /*padding-bottom: 120px;*/
+}
+.margTB65{
+  margin-top:10px;
+  margin-bottom:65px;
+}
+.margTB10{
+  margin-top:10px;
+  margin-bottom:10px;
 }
 img.channel_thumb{
   width: 50px;
