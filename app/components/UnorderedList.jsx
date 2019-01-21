@@ -9,7 +9,7 @@ const UnorderedList = function({ channels }) {
     <ul>
       {channels.map(function(item, i) {
         
-        return <ChannelList key={i} expt={item.expt}/>
+        return <ChannelList key={i} itemData={item}/>
         
         //return <li key={i}>{item}</li>;
       })}
