@@ -32,8 +32,9 @@ class VideoList extends React.Component{
                     <a href={'https://youtu.be/'+ vid +'?t='+e.time} 
                        target="_blank">{secondsToHumanTime(e.time)}</a>
                     <p className="excerpt_text">{
-                        //e.text
-                        e.text.split(' ').map(w=>{
+                        e.text
+                        // highlight words from query
+                        /*e.text.split(' ').map(w=>{
                           if (!w) return w;
                           const rr = new RegExp('^'+w+'$','')
                           //console.log(rr)
@@ -41,8 +42,8 @@ class VideoList extends React.Component{
                             return <span className="highlighted">{w}</span>
                           
                           return w + ' '
-                        }) //.join(' ')
-                        // highlight words from query
+                        })*/ //this returs [object object]: .join(' ')
+                        
                     }</p>
                   </div>)
                  })
