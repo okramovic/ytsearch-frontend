@@ -80,20 +80,20 @@ ul{
   padding-inline-start: 40px;
   background-color: white;
 }
-div.channel_outer{
+.channel_outer{
   margin-top: 6.5em;
   height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-div.channel_inner{
+.channel_inner{
   display: flex;
   align-items: center;
   height: 50px; 
   
 }
-div.channel_name:first-of-type{
+.channel_name:first-of-type{
   margin-top: 0.33em;
 }
 img.channel_thumb{

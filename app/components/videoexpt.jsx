@@ -16,11 +16,9 @@ class VideoList extends React.Component{
       return (
         this.props.expt.map((x,i)=>{
           return (
-              <li key={i} classname="">
-                <div classname="channel_inner">
-                  
+              <li key={i} classname="">                
                   <h2 classname="channel_header">{x.title}</h2>
-                </div>
+  
                
                 {x.excerpts.map((e,i)=>{
                   return (<div>

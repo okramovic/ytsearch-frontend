@@ -24,8 +24,10 @@ const UnorderedList = function({ channels }) {
         console.log(item.channel, item.expt)
         return (
           <li classname="channel_outer">
-            <img src={channel} classname="channel_thumb"></img>
-            <h3 >{item.channel}</h3>
+            <div classname="channel_inner">
+              <img src={channel} classname="channel_thumb"></img>
+              <h3 >{item.channel}</h3>
+            </div>
             <ChannelList key={i} expt={item.expt} />
           </li>
           
