@@ -25,6 +25,7 @@ class HelloWorld extends React.Component {
     
     this.state = {
       input: '',
+      prevInput:'',
       channels:[],
       vidCount: 0,
       excCount: 0
@@ -53,7 +54,7 @@ class HelloWorld extends React.Component {
           const excCount = res.reduce((tot, ch)=>tot+ch.expt.reduce((t,curr)=>t+curr.excerpts.length,0), 0)
           console.log(vidCount, excCount)
           
-          this.setState({channels: res, vidCount, excCount },()=>{
+          this.setState({channels: res, vidCount, excCount, prevInput:query, input:'' },()=>{
             console.log('chans', this.state.channels)
           })
         
@@ -99,7 +100,7 @@ class HelloWorld extends React.Component {
       </form>
 
       <h1 id="searchTermHeader" className={this.state.excCount? "":'hidden' }
-        >found {this.state.excCount} excerpts in {this.state.vidCount} videos</h1>
+        >found {this.state.excCount} excerpts in {this.state.vidCount} videos for "{this.state.input}"</h1>
       
       <UnorderedList channels={this.state.channels} />
 

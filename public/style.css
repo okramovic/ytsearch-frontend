@@ -135,6 +135,7 @@ img.channel_thumb{
   height: 14px;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 .collapse_button:focus, .collapse_button:active{
   outline: none;
@@ -160,12 +161,11 @@ img.channel_thumb{
 .channel_header:first-of-type{
   margin-top: .5em;
 }
+.singleExcerpt:first-of-type{
+  padding-top: 1em;
+}
 .singleExcerpt{
   display: flex;
-  
-}
-.singleExcerpt:first-child{
-  padding-top: 1em;
 }
 .singleExcerpt:last-child{
   padding-bottom: 1.5em;
