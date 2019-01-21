@@ -19,12 +19,9 @@ class VideoList extends React.Component{
   }
   render(){
       const vid = this.props.vid
-      const re = new RegExp(this.props.query, '')
-      console.log('re', re)
+      
       // className={this.state.show ? '':'hidden'}
       return (
-        //this.props.videos.map((x,i)=>{
-        //  return (
               <div > 
                   <h2 className="channel_header" videoname={this.props.title} onClick={this.clickHandler}>{this.props.title}</h2>
   
@@ -33,17 +30,19 @@ class VideoList extends React.Component{
                   if (!this.state.show) return null;
                 
                   return (<div className="singleExcerpt">
-                    <a href={'https://youtu.be/'+ vid +'?t='+e.time} target="_blank">{secondsToHumanTime(e.time)}</a>
+                    <a href={'https://youtu.be/'+ vid +'?t='+e.time} 
+                       target="_blank">{secondsToHumanTime(e.time)}</a>
                     <p className="excerpt_text">{
                         //e.text
                         e.text.split(' ').map(w=>{
                           if (!w) return w;
+                          const rr = new RegExp(w,'')
+                          //console.log(rr)
+                          if (this.props.query.match(rr)) 
+                            return <span className="highlighted">{w + ' '}</span>
                           
-                          if (new RegExp(w,'').match(this.props.query)) 
-                            return <span className="highlighted">{w}</span>
-                          
-                          return w
-                        }).join(' ')
+                          return w + ' '
+                        }) //.join(' ')
                         // highlight words from query
                     }</p>
                   </div>)
