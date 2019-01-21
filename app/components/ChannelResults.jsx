@@ -22,9 +22,12 @@ class ChannelRes extends React.Component{
     const item = this.props.itemData
     const iconUrl = getIconURL(item.channel)
     
-        
+    // channel
+    //  |- video
+    //  |- video
+    
     return (
-      <li className="channel_results" className={this.state.shown ? 'margTB65':'margTB10'}>
+      <li className="channel_results" className={this.state.shown ? 'channel_results margTB65':'channel_results margTB10'}>
         <div className="channel_outer">
           <div className="channel_inner">
             <img src={iconUrl} className="channel_thumb"></img>

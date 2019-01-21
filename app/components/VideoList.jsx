@@ -21,7 +21,7 @@ class VideoList extends React.Component{
   
                
                 {x.excerpts.map((e,i)=>{
-                  return (<div>
+                  return (<div className="singleExcerpt">
                     <a href={'https://youtu.be/'+x.id+'?t='+e.time} target="_blank">{secondsToHumanTime(e.time)}</a>
                     <p className="excerpt_text">{e.text}</p>
                   </div>)
@@ -30,10 +30,8 @@ class VideoList extends React.Component{
               </div>
                            
           )
-      })
+        })
       )
-      
-    
   }
 }
 

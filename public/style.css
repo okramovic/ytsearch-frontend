@@ -113,6 +113,7 @@ ul{
   background-color: white;
   padding-left: 40px;
   padding-right: 40px;
+  border-radius: 3px;
 }
 .channel_results:last-of-type{
   /*padding-bottom: 120px;*/
@@ -150,13 +151,20 @@ img.channel_thumb{
 }
 .channel_header{
   margin-top: 1.5em;
-  margin-bottom: 1.5em;
+  margin-bottom: .5em;
   /*padding-left: 1em;*/
   font-size: 2em;
   color: palevioletred;
 }
 .channel_header:first-of-type{
-  margin-top: 1.5em;
+  margin-top: .5em;
+}
+.singleExcerpt{
+  
+}
+.singleExcerpt:last-child{
+  padding-bottom: 1.5em;
+  
 }
 /* .excerpt_text{} */
 .highlighted{
