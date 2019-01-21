@@ -14,7 +14,7 @@ app.get("/", function(request, response) {
 
 
 app.post('/searchtext', async (req,res)=>{
-
+    console.log('   request')
     let data = ''
     req.setEncoding('utf8')
     req.on('data', chunk=>{ data+=chunk })
