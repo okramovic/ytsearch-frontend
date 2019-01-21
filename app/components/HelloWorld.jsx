@@ -21,26 +21,35 @@ class HelloWorld extends React.Component {
     super(props)
     console.log('construct')
     this.submitHandler = this.submitHandler.bind(this)
+    this.inputChangeHandler = this.inputChangeHandler.bind(this)
+    
+    this.state = {
+      input: 'array',
+      channels:[]
+    }
+  }
+  inputChangeHandler(ev){
+      this.setState({input: ev.target.value })
   }
   submitHandler(ev){
     ev.preventDefault()
-    console.log('submitted', ev, ev.target.value)
+    const query = this.state.input
+    console.log('submitted', query)
 
-    //const query = getS('input#main').value
-
-    //if (!query || typeof query != 'string') return;
-
-    
-
+    if (!query || typeof query != 'string') return;
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "/searchtext", true);
     xhr.setRequestHeader("Content-type", "application/json");
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = () => {
       if (xhr.readyState == 4) {
         
           const res = JSON.parse(xhr.responseText)
           console.log('xhr response: ', res);
+        
+          this.setState({channels: res},()=>{
+            console.log('chans', this.state.channels)
+          })
         
           return;
         
@@ -84,7 +93,7 @@ class HelloWorld extends React.Component {
     }
     xhr.send( JSON.stringify( {query} ) );
 
-    getS('form input').blur()
+    //getS('form input').blur()
 
 }
   render(){
@@ -92,13 +101,13 @@ class HelloWorld extends React.Component {
     <div>
 
       <form onSubmit={this.submitHandler}>
-        <input id="main" type="text" placeholder="search"/>
+        <input id="main" type="text" placeholder="search" onChange={this.inputChangeHandler} value={this.state.input}/>
         <p>fulltext search in your favorite YT channels</p>
       </form>
 
       <h1 id="searchTermHeader">header</h1>
       
-      <UnorderedList items={[]} />
+      <UnorderedList channels={this.state.channels} />
 
       
       <div id='mycredit'>
