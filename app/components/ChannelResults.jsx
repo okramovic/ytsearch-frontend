@@ -32,7 +32,7 @@ class ChannelRes extends React.Component{
         const x = b.title.toLowerCase() > a.title.toLowerCase()
         return x ? -1 : 1
     })
-    //console.log('this.props.query',this.props.query)
+    console.log('this.props.query',this.props)
     
     return (
       <li className="channel_results" className={this.state.shown ? 'channel_results margTB65':'channel_results margTB10'}>
@@ -46,7 +46,7 @@ class ChannelRes extends React.Component{
         <div className={this.state.shown ? '':'hidden'} chan={item.channel}>
           {item.expt.map((video,i)=>{
             
-            return <VideoExc key={i} vid={video.id} videos={video.excerpts} title={video.title}/>      
+            return <VideoExc key={i} vid={video.id} videos={video.excerpts} title={video.title} query={this.props.query}/>      
           })}
         </div>
       </li>

@@ -19,6 +19,8 @@ class VideoList extends React.Component{
   }
   render(){
       const vid = this.props.vid
+      const re = new RegExp(this.props.query, '')
+      console.log('re', re)
       // className={this.state.show ? '':'hidden'}
       return (
         //this.props.videos.map((x,i)=>{
@@ -33,9 +35,15 @@ class VideoList extends React.Component{
                   return (<div className="singleExcerpt">
                     <a href={'https://youtu.be/'+ vid +'?t='+e.time} target="_blank">{secondsToHumanTime(e.time)}</a>
                     <p className="excerpt_text">{
+                        //e.text
                         e.text.split(' ').map(w=>{
+                          if (!w) return w;
+                          
+                          if (new RegExp(w,'').match(this.props.query)) 
+                            return <span className="highlighted">{w}</span>
+                          
                           return w
-                        })
+                        }).join(' ')
                         // highlight words from query
                     }</p>
                   </div>)
