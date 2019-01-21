@@ -1,6 +1,6 @@
 const React = require('react');
 const UnorderedList = require('./UnorderedList');
-const VideoList = require('./videoexpt');
+const VideoList = require('./VideoList');
 
 
 class ChannelRes extends React.Component{
@@ -12,23 +12,14 @@ class ChannelRes extends React.Component{
     }
   }
   clickHandler(ev){
-    this.setState((x,y)=>{
-      console.log(x,y)
-      
-      x.shown = !x.shown
-      
-      console.log('  ',x)
-      return x
+    this.setState((prevState)=>{
+      return {shown: !prevState.shown}
     })
   }
   render(){
-    
-    //console.log('props', this.props)
-    
     if (!this.props.itemData.expt.length) return null;
     
     const item = this.props.itemData
-    
     const iconUrl = getIconURL(item.channel)
     
         
@@ -41,9 +32,8 @@ class ChannelRes extends React.Component{
           </div>
           <button className="collapse_button" onClick={this.clickHandler}>hide</button>
         </div>
-        <VideoList expt={item.expt} className={this.props.shown ? 'visib':'hid'}/>
+        <VideoList expt={item.expt} shown={this.state.shown ? '':'hidden'}/>
       </li>
-
     )
   }
 }
