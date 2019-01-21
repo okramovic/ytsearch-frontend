@@ -8,6 +8,8 @@ const UnorderedList = function({ channels }) {
   return (
     <ul>
       {channels.map(function(item, i) {
+        
+        if (imte.)
         const CT = 'https://yt3.ggpht.com/a-/AAuE7mC56ctnjTBFVmFaDttL3sC26U2CRiICqBgJ-g=s288-mo-c-c0xffffffff-rj-k-no'
         const Jeremy = 'https://yt3.ggpht.com/a-/AAuE7mBtvK6ioufwJFDGRT9WOvEykaDnAo0jGPOwvQ=s288-mo-c-c0xffffffff-rj-k-no'
         const Siraj = 'https://yt3.ggpht.com/a-/AAuE7mAfNzuo-vOC8wdETbqIPU4UbnknsxCbCj3lLg=s176-c-k-c0x00ffffff-no-rj-mo'
@@ -23,10 +25,13 @@ const UnorderedList = function({ channels }) {
         
         console.log(item.channel, item.expt)
         return (
-          <li className="channel_outer">
-            <div className="channel_inner">
-              <img src={channel} className="channel_thumb"></img>
-              <h3 >{item.channel}</h3>
+          <li >
+            <div className="channel_outer">
+              <div className="channel_inner">
+                <img src={iconUrl} className="channel_thumb"></img>
+                <h3 >{item.channel}</h3>
+              </div>
+              <button className="collapse_button">hide</button>
             </div>
             <ChannelList key={i} expt={item.expt} />
           </li>

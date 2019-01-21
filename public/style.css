@@ -64,6 +64,9 @@ h3{
   margin-top: 1.5em;
   font-size: 1.5em;
 }
+.channel_inner > h3{
+  padding-left: 2em;
+}
 #results{
   display: none;
   max-width: 80%;
@@ -81,15 +84,14 @@ ul{
   background-color: white;
 }
 .channel_outer{
+  padding-top: 1em;
   margin-top: 6.5em;
   /*height: 50px;*/
   display: flex;
-  flex-direction:column;
   justify-content: space-between;
   align-items: center;
 }
 .channel_inner{
-  background-color: blue;
   display: flex;
   align-items: center;
   height: 50px; 

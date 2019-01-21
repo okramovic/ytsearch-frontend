@@ -16,7 +16,7 @@ class VideoList extends React.Component{
       return (
         this.props.expt.map((x,i)=>{
           return (
-              <li key={i} classname="">                
+              <div key={i} classname="">                
                   <h2 className="channel_header">{x.title}</h2>
   
                
@@ -27,7 +27,7 @@ class VideoList extends React.Component{
                   </div>)
                  })
                 }
-              </li>
+              </div>
                            
           )
       })
