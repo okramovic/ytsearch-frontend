@@ -140,8 +140,7 @@ img.channel_thumb{
   outline: none;
 }
 #searchTermHeader{
-  display: none;
-  width: 50%;
+  width: 80%;
   margin: auto;
   margin-top: 1.2em;
   margin-bottom: 1.6em;
@@ -162,11 +161,21 @@ img.channel_thumb{
   margin-top: .5em;
 }
 .singleExcerpt{
+  display: flex;
   
+}
+.singleExcerpt:first-child{
+  padding-top: 1em;
 }
 .singleExcerpt:last-child{
   padding-bottom: 1.5em;
   
+}
+.singleExcerpt a{
+  padding-right: 1em;
+}
+.singleExcerpt p{
+  margin-top: 0;
 }
 /* .excerpt_text{} */
 .highlighted{

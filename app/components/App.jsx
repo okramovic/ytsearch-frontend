@@ -50,22 +50,14 @@ class HelloWorld extends React.Component {
           console.log('xhr response: ', res);
         
           const vidCount = res.reduce((tot, ch)=>tot+ch.expt.length, 0)
-          const exc_count = res.reduce((tot, ch)=>tot+ch.expt.reduce((t,curr)=>t+curr.excerpts.length,0), 0)
-          console.log(vid_count, exc_count)
+          const excCount = res.reduce((tot, ch)=>tot+ch.expt.reduce((t,curr)=>t+curr.excerpts.length,0), 0)
+          console.log(vidCount, excCount)
           
-          this.setState({channels: res, vidCount, excCount: exc_count },()=>{
+          this.setState({channels: res, vidCount, excCount },()=>{
             console.log('chans', this.state.channels)
           })
         
           return;
-
-          
-          // add stats
-          
-          const stats = document.createElement('h3')
-          stats.classList = ['stats']
-          stats.innerText = `found ${exc_count} excerpts in ${vid_count} videos`
-          getS('#searchTermHeader').appendChild(stats)
 
           res.map(oneChannel=>{
               //const keys = Object.keys(oneChannel)
@@ -106,13 +98,14 @@ class HelloWorld extends React.Component {
         <p>fulltext search in your</p>
       </form>
 
-      <h1 id="searchTermHeader" className={this.state.excCount? "":'hidden' }>found {this.state.excCount} excerpts in ${this.state.vidCount} videos</h1>
+      <h1 id="searchTermHeader" className={this.state.excCount? "":'hidden' }
+        >found {this.state.excCount} excerpts in {this.state.vidCount} videos</h1>
       
       <UnorderedList channels={this.state.channels} />
 
       
       <div id='mycredit'>
-        
+        <p>made</p>
       </div>
       
     </div>
