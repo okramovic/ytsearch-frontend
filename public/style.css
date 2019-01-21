@@ -20,8 +20,12 @@ body{
   z-index: -1;
   position: fixed;
 }
-.hidden{
-  display:none;
+.visib{
+  background-color: green;
+}
+.hidd{
+  background-color: purple;
+  /*display:none;*/
 }
 form{
   background-color: white;

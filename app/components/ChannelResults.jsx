@@ -6,34 +6,45 @@ const VideoList = require('./videoexpt');
 class ChannelRes extends React.Component{
   constructor(props){
     super(props)
+    this.clickHandler = this.clickHandler.bind(this)
+    this.state = {
+      shown: true
+    }
+  }
+  clickHandler(ev){
+    this.setState((x,y)=>{
+      console.log(x,y)
+      
+      x.shown = !x.shown
+      
+      console.log('  ',x)
+      return x
+    })
   }
   render(){
     
-    console.log('props', this.props)
+    //console.log('props', this.props)
     
-    if (!this.props.expt.length) return null;
+    if (!this.props.itemData.expt.length) return null;
     
-    const item = this.props.item
+    const item = this.props.itemData
     
     const iconUrl = getIconURL(item.channel)
-        
-    console.log(item.channel, item.expt)
     
-    return <p>pch</p>
         
-        return (
-          <li className="channel_results">
-            <div className="channel_outer">
-              <div className="channel_inner">
-                <img src={iconUrl} className="channel_thumb"></img>
-                <h3 >{item.channel}</h3>
-              </div>
-              <button className="collapse_button" onClick={this.props.shown===undefined? 1:0}>hide</button>
-            </div>
-            <VideoList expt={item.expt} className={this.props.shown? '':'hidden'}/>
-          </li>
-          
-        )
+    return (
+      <li className="channel_results">
+        <div className="channel_outer">
+          <div className="channel_inner">
+            <img src={iconUrl} className="channel_thumb"></img>
+            <h3 >{item.channel}</h3>
+          </div>
+          <button className="collapse_button" onClick={this.clickHandler}>hide</button>
+        </div>
+        <VideoList expt={item.expt} className={this.props.shown ? 'visib':'hid'}/>
+      </li>
+
+    )
   }
 }
 

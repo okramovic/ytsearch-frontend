@@ -101,7 +101,8 @@ class HelloWorld extends React.Component {
     <div class={this.state.channels.length==0? "initial" : 'with_results'}>
 
       <form onSubmit={this.submitHandler}>
-        <input id="main" type="text" placeholder="search" onChange={this.inputChangeHandler} value={this.state.input}/>
+        <input id="main" type="text" placeholder="search" 
+               onChange={this.inputChangeHandler} value={this.state.input} autocomplete="false" />
         <p>fulltext search in your favorite YT channels</p>
       </form>
 
