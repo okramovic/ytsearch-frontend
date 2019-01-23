@@ -39,11 +39,11 @@ class HelloWorld extends React.Component {
     this.setState((prev)=>({showChannelChoice: !prev.showChannelChoice}))
   }
   checkboxHandler(name){
-    console.log('checkbox', name)
     this.setState((prev)=>{
-      const i = prev.suppChannels.findIndex(chan=>chan.name===name)
-      
-    })
+      const sel = prev.suppChannels.find(chan=>chan.name===name)
+      sel.active= !sel.active
+      return {suppChannels: prev.suppChannels}
+    }) //, ()=> console.log('updated',this.state.suppChannels))
   }
   inputChangeHandler(ev){
       this.setState({input: ev.target.value })
@@ -57,8 +57,10 @@ class HelloWorld extends React.Component {
 
     document.querySelector('form input').blur()
     
+    const chans = '?channels=' + this.state.suppChannels.filter(chan=>chan.active).map(chan=>chan.name)
+    
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "/searchtext", true);
+    xhr.open("POST", "/searchtext" + chans, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = () => {
       if (xhr.readyState == 4) {
@@ -109,7 +111,8 @@ class HelloWorld extends React.Component {
             <p>choose channels</p>
             {this.state.suppChannels.map((chan, i)=>{
                return (<div>
-                   <input type="checkbox" value={chan.name} onClick={()=>this.checkboxHandler(chan.name)}/>
+                   <input type="checkbox" value={chan.name} checked={chan.active}
+                       onClick={()=>this.checkboxHandler(chan.name)}/>
                    <span key={i}>{chan.name}</span>
                 </div>
               )

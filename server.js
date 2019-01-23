@@ -19,7 +19,7 @@ app.get('/dirs', async (req, res)=> {
     res.end()
 })
 app.post('/searchtext', async (req,res)=>{
-    console.log('   request')
+    console.log('request', req.query)
     let data = ''
     req.setEncoding('utf8')
     req.on('data', chunk=>{ data+=chunk })
@@ -32,7 +32,9 @@ app.post('/searchtext', async (req,res)=>{
 
         const allResults = []
 
-        const dirs = getAllDirs()
+        const desiredDirs = req.query.channels
+        let dirs = getAllDirs()
+        dirs = dirs.filter(dir=>desiredDirs.includes(dir))
 
         const readPromises = dirs.map(async (dir, dI)=>{
           let results = await searchFilesinDir(dir, data.query)
