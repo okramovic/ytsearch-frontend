@@ -18,7 +18,12 @@ class Info extends React.Component{
     
     return (
       <div id="info" className={this.props.visible? '': 'hidden'}>
-        Out of supported channels, these videos unfortunately dont contain any caps
+        <p>Search is based on spoken content of videos. This is captured in captions, either by Youtuber him/herself
+          or the community or by YouTube's speech recognition.
+          In case of speech recognition it is likely that some unusual or technical terms will be misunderstood.
+          Only english language of captions is supported.
+        </p>
+        Out of supported channels, these videos unfortunately don't contain any captions.
         { this.state.channels.map((chan,i)=>{
           return (
             <div>

@@ -252,6 +252,11 @@ img.channel_thumb{
 .marg_t_em{
   margin-top: 1em;
 }
+
+.pad_lr_15{
+  padding-left: 15px;
+  padding-right:15px;
+}
 .pad_bot_em{
   padding-bottom: 1em;
 }

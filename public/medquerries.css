@@ -1,6 +1,6 @@
 @media (max-width: 600px) {
  form input[type="text"]{
-   width: 300px;
+   width: calc(100vw - 30px)
    
  }
 }

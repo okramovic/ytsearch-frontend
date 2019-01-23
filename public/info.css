@@ -20,7 +20,9 @@
   top: 2em;
   right: 2em;
   
-  min-width: 300px;
+  /*min-width: 300px;*/
+  width: calc(100vw - 4em);
+  
   z-index: 1;
   
   background-color: white;
