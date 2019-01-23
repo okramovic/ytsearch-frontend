@@ -112,6 +112,9 @@ ul{
   padding-inline-start: 40px;
   
 }
+li:last-child{
+  margin-bottom: 150px;
+}
 .channel_outer{
   
   padding-top: 1em;
@@ -169,7 +172,7 @@ img.channel_thumb{
   margin-top: 1.2em;
   margin-bottom: 1.6em;
   text-align: center;
-  font-size: 3em;
+  /*font-size: 3em;*/
   background-color: white;
   border-radius: 4px;
 }

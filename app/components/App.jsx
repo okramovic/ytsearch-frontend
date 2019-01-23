@@ -1,6 +1,8 @@
 const React = require('react');
 const Info = require('./Info');
 const UnorderedList = require('./UnorderedList');
+const HeaderResults = require('./HeaderResults');
+
 
 
 class HelloWorld extends React.Component {
@@ -128,8 +130,10 @@ class HelloWorld extends React.Component {
         </div>
       </div>
 
+      <HeaderResults />
       <h1 id="searchTermHeader" className={this.state.excCount? "":'hidden' }
-        >found<br/> {this.state.excCount} excerpts in {this.state.vidCount} videos for "{this.state.prevInput}"</h1>
+        >
+        found<br/> "{this.state.prevInput}" <br/>in {this.state.excCount} excerpts <br/>in {this.state.vidCount} videos</h1>
       
       <UnorderedList channels={this.state.channels} query={this.state.prevInput}/>
 
