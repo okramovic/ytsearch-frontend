@@ -23,7 +23,8 @@ class Info extends React.Component{
           In case of speech recognition it is likely that technical terms or other unusual words will be misunderstood for others.
           Only english language of captions is supported.
         </p>
-        Out of supported channels, following videos unfortunately don't contain any captions.
+        <p>Please tweet here <span className="underscore_gray">@okram_ovic</span>in case something is not as it should be.</p>
+        <p>Out of supported channels, following videos unfortunately don't contain any captions.</p>
         { this.state.channels.map((chan,i)=>{
           return (
             <div>

@@ -33,9 +33,14 @@
 }
 .h_nocaps{
   font-size: 1.5em;
+  margin-top: .5em;
   margin-bottom: .5em;
 }
 
 #info a{
   padding-left: 1em;
+  color: black;
+}
+#info a:visited{
+  color: black;
 }

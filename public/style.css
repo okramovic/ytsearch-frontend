@@ -221,6 +221,12 @@ img.channel_thumb{
   box-shadow: 0px 0px 1px 0px grey;
 }
 
+.underscore_gray{
+  /*text-decoration: underline #ccc;*/
+  border-bottom: 2px solid #ccc;
+}
+
+
 
 .full_width{
   width: 100%
