@@ -69,51 +69,58 @@ app.post('/searchtext', async (req,res)=>{
 app.post('/nowords', async (res,req)=>{
   const channel = 'Coding train'
 
-  fs.readdir(path, (er, dirs)=>{
+  const path = process.cwd() + '/channel_data/'
+        
+  const dirs = await getAllDirs()
     
-  })
+  const results = dirs.map((dir)=>{
+    return new Promise((resolve, reject)=>{
+    
+      const path = process.cwd() + '/channel_data/' + dir
 
-  const path = process.cwd() + '/channel_data/' + channel,
-  d = new Date(),
-  datestring = d.getFullYear() + '_' + (d.getMonth()+1) + '_' + d.getDate()
+      fs.readdir(path, (er, files)=>{
+        if (er) return console.log(er)
 
+        const emptyFiles = []
+        const emptyIds = []
 
+        files = files
+        .filter(name=>!name.match(/^(\.DS_Store|_empty|_err|_nocaps|_nocontrib)$/i)) // filter out foldernames
+        .filter(name=>name.match(/\.json$/))
 
-  fs.readdir(path, (er, files)=>{ //  process.cwd() + '/channel_data/'
-      if (er) return console.log(er)
+        files.map((file,i)=>{
+          fs.readFile(path + '/' + file, 'utf8', (er, data)=>{
 
-      console.log(files.length)
+            data = JSON.parse(data)
 
-      const emptyFiles = []
-      const emptyIds = []
-
-      files = files
-      .filter(name=>!name.match(/^(\.DS_Store|_empty|_err|_nocaps|_nocontrib)$/i))
-      .filter(name=>name.match(/\.json$/))
-
-      files.map((file,i)=>{
-        fs.readFile(path + '/' + file, 'utf8', (er, data)=>{
-
-          data = JSON.parse(data)
-
-          if (!data.words.every(word=>word[0])) {
-            console.log('title', data.title)
-            emptyFiles.push(data.title)
-            emptyIds.push(data.fromid)
-          }
-
-          if (i===files.length-1) {
-            const toSave = {
-              names: emptyFiles,
-              ids: emptyIds
+            if (!data.words.every(word=>word[0])) {
+              console.log('title', data.title)
+              emptyFiles.push(data.title)
+              emptyIds.push(data.fromid)
             }
-            fs.writeFile('channel_video_lists/_empty_' + channel + "_" + datestring + '.json', JSON.stringify(toSave), er=>{if (er) console.log(er)})
-          }
+
+            if (i===files.length-1) {
+                resolve({
+                  channel: '',
+                  names: emptyFiles,
+                  ids: emptyIds
+                })
+            }
+          })
         })
-      })
 
 
+    })
+    })
   })
+  
+  console.log('dir results', results)
+  
+  res.send([{
+                  channel: '',
+                  names: ,
+                  ids: emptyIds
+                }])
 })
 
 //app.listen(6707, ()=>console.log('server on 6707'))
