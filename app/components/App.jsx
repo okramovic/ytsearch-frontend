@@ -169,7 +169,6 @@ function getSupportedChannels(){
     xhr.onreadystatechange = () => {
       if (xhr.readyState == 4) {
         const res = JSON.parse(xhr.responseText)
-        console.log('empty list', res)
         resolve(res)
       }
     }
