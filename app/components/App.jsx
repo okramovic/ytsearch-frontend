@@ -1,4 +1,5 @@
 const React = require('react');
+const Info = require('./Info');
 const UnorderedList = require('./UnorderedList');
 
 

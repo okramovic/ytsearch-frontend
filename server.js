@@ -66,6 +66,56 @@ app.post('/searchtext', async (req,res)=>{
     })
 })
 
+app.post('/nowords', async (res,req)=>{
+  const channel = 'Coding train'
+
+  fs.readdir(path, (er, dirs)=>{
+    
+  })
+
+  const path = process.cwd() + '/channel_data/' + channel,
+  d = new Date(),
+  datestring = d.getFullYear() + '_' + (d.getMonth()+1) + '_' + d.getDate()
+
+
+
+  fs.readdir(path, (er, files)=>{ //  process.cwd() + '/channel_data/'
+      if (er) return console.log(er)
+
+      console.log(files.length)
+
+      const emptyFiles = []
+      const emptyIds = []
+
+      files = files
+      .filter(name=>!name.match(/^(\.DS_Store|_empty|_err|_nocaps|_nocontrib)$/i))
+      .filter(name=>name.match(/\.json$/))
+
+      files.map((file,i)=>{
+        fs.readFile(path + '/' + file, 'utf8', (er, data)=>{
+
+          data = JSON.parse(data)
+
+          if (!data.words.every(word=>word[0])) {
+            console.log('title', data.title)
+            emptyFiles.push(data.title)
+            emptyIds.push(data.fromid)
+          }
+
+          if (i===files.length-1) {
+            const toSave = {
+              names: emptyFiles,
+              ids: emptyIds
+            }
+            fs.writeFile('channel_video_lists/_empty_' + channel + "_" + datestring + '.json', JSON.stringify(toSave), er=>{if (er) console.log(er)})
+          }
+        })
+      })
+
+
+  })
+})
+
 //app.listen(6707, ()=>console.log('server on 6707'))
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
