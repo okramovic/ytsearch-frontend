@@ -1,4 +1,7 @@
 @media (max-width: 600px) {
+  #form_container{
+    border-radius: 0;
+  }
   form{
     border-radius: 0;
   }
@@ -37,6 +40,9 @@
 
 
 @media (min-width: 601px) {
+  #form_container{
+    /*border-radius: 4px;*/
+  }
   form{
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;

@@ -98,13 +98,13 @@ class HelloWorld extends React.Component {
 }
   render(){
   return (
-    <div class={this.state.channels.length==0? "initial" : 'with_results'}>
+    <div className={this.state.channels.length==0? "initial" : 'with_results'}>
 
       <button id="Q" onClick={this.infoClickHandler}>?</button>
       
       <Info visible={this.state.showInfo}/>
       
-      <div>
+      <div id="form_container" className={ "flex col bck_white " + (this.state.channels.length===0 ? 'corn_round': 'corn_sharp') }>
         <form onSubmit={this.submitHandler}>
           <input id="main" type="text" placeholder="search" 
                  onChange={this.inputChangeHandler} value={this.state.input} autocomplete="off" />
