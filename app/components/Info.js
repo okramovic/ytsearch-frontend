@@ -23,8 +23,9 @@ class Info extends React.Component{
           return (
             <div>
               <h4 > {chan.channel}</h4>
-              { chan.names.map((name,i)=>{
-                  return <a key={i} href={"youtu.be/" + chan.ids[i]} target="_blank">{name}</a>
+              { chan.names.map((title,i)=>{
+                  const href = "https://youtu.be/" + chan.ids[i]
+                  return <a key={i} href={href} target="_blank">{title}</a>
                 })
               }
             </div>

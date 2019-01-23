@@ -76,43 +76,46 @@ app.post('/nowords', async (req,res)=>{
   const results = dirs.map((dir)=>{
     return new Promise((resolve, reject)=>{
     
-      const path = process.cwd() + '/channel_data/' + dir
+        const path = process.cwd() + '/channel_data/' + dir
 
-      fs.readdir(path, (er, files)=>{
-        if (er) return console.log(er)
+        fs.readdir(path, async (er, files)=>{
+          if (er) return console.log(er)
 
-        const emptyFiles = []
-        const emptyIds = []
+          const emptyFiles = []
+          const emptyIds = []
 
-        files = files
-        .filter(name=>!name.match(/^(\.DS_Store|_empty|_err|_nocaps|_nocontrib)$/i)) // filter out foldernames
-        .filter(name=>name.match(/\.json$/))
+          files = files
+          .filter(name=>!name.match(/^(\.DS_Store|_empty|_err|_nocaps|_nocontrib)$/i)) // filter out foldernames
+          .filter(name=>name.match(/\.json$/))
 
-        files.map((file,i)=>{
-          fs.readFile(path + '/' + file, 'utf8', (er, data)=>{
+          const fileProms = files.map((file,i)=>{
+              return Promise((resolve, reject)=>{
+                fs.readFile(path + '/' + file, 'utf8', (er, data)=>{
 
-            data = JSON.parse(data)
+                    data = JSON.parse(data)
 
-            if (!data.words.every(word=>word[0])) {
-              console.log('title', data.title)
-              emptyFiles.push(data.title)
-              emptyIds.push(data.fromid)
-            }
-
-            if (i===files.length-1) {
-                resolve({
-                  channel: '',
-                  names: emptyFiles,
-                  ids: emptyIds
+                    if (!data.words.every(word=>word[0])) {
+                      console.log('title', data.title)
+                      emptyFiles.push(data.title)
+                      emptyIds.push(data.fromid)
+                    }
+                    resolve()
                 })
-            }
+              })
+            //})
           })
-        })
 
+          await Promise.all(fileProms)
 
-    })
+          resolve({
+             channel: dir,
+             names: emptyFiles,
+             ids: emptyIds
+          })
+      })
     })
   })
+  await 
   
   console.log('dir results', results)
   
