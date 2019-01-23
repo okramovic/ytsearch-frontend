@@ -15,6 +15,7 @@ class HelloWorld extends React.Component {
     this.state = {
       showInfo: false,
       showChannelChoice: false,
+      suppChannels: [],
       input: '',
       prevInput:'',
       channels:[],
@@ -23,7 +24,8 @@ class HelloWorld extends React.Component {
     }
   }
   componentDidMount(){
-    
+      getSupportedChannels()
+      .then(res=>this.setState({suppChannels: res}))
   }
   infoClickHandler(ev){
     this.setState((prev)=>({showInfo: !prev.showInfo}))
@@ -91,7 +93,16 @@ class HelloWorld extends React.Component {
                   onClick={this.channelChoiceHandler}>{this.state.showChannelChoice ? '▲':'▼' }</button>
         </div>
         <div id="channelChoice" 
-             className={ '' + (this.state.showChannelChoice? '':' hidden') }>choose channels</div>
+             className={ '' + (this.state.showChannelChoice? '':' hidden') }>
+            <p>choose channels</p>
+            {this.state.suppChannels.map((chan, i)=>{
+               return (<div>
+                   <input type="checkbox"/>
+                   <span key={i}>{chan}</span>
+                </div>
+              )
+            })}
+        </div>
       </form>
 
       <h1 id="searchTermHeader" className={this.state.excCount? "":'hidden' }

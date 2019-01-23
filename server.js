@@ -12,7 +12,11 @@ app.get("/", function(request, response) {
   response.sendFile(__dirname + '/app/index.html');
 });
 
-app.get('/dirs', function(request, response) {
+app.get('/dirs', async (req, res)=> {
+    const dirs = await getAllDirs()
+    
+    res.send(dirs)
+    res.end()
 })
 app.post('/searchtext', async (req,res)=>{
     console.log('   request')
