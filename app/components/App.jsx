@@ -76,7 +76,12 @@ class HelloWorld extends React.Component {
       <form onSubmit={this.submitHandler}>
         <input id="main" type="text" placeholder="search" 
                onChange={this.inputChangeHandler} value={this.state.input} autocomplete="off" />
-        <p>fulltext search in your</p>
+        <div className="full_width flex onsides marg_t_em">
+          <div></div>
+          <p className="no_margin">fulltext search in your</p>
+          <button className="no_border no_bck">▼</button>
+        </div>
+        <dvi></dvi>
       </form>
 
       <h1 id="searchTermHeader" className={this.state.excCount? "":'hidden' }

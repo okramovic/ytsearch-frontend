@@ -2,6 +2,10 @@ body{
   background-color: #f2f2f2;
   margin: 0;
 }
+
+*, *:focus, *:active {
+  outline: none;
+}
 .initial{
   height: 100vh;
   display: flex;
@@ -204,4 +208,33 @@ img.channel_thumb{
 
   background-color: #f2f2f2;
   box-shadow: 0px 0px 1px 0px grey;
+}
+
+
+.full_width{
+  width: 100%
+}
+
+.flex{
+  display: flex;
+  align-items: center;
+}
+
+.onsides{
+  justify-content: space-between;
+}
+
+.no_border{
+  border: none;
+}
+.no_bck{
+  background-color: transparent
+}
+
+.no_margin{
+  margin: 0;
+}
+
+.marg_t_em{
+  margin-top: 1em;
 }
