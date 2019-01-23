@@ -11,6 +11,8 @@ class HelloWorld extends React.Component {
     this.inputChangeHandler = this.inputChangeHandler.bind(this)
     this.infoClickHandler = this.infoClickHandler.bind(this)
     this.channelChoiceHandler = this.channelChoiceHandler.bind(this)
+    this.checkboxHandler = this.checkboxHandler.bind(this)
+    
     
     this.state = {
       showInfo: false,
@@ -25,13 +27,23 @@ class HelloWorld extends React.Component {
   }
   componentDidMount(){
       getSupportedChannels()
-      .then(res=>this.setState({suppChannels: res}))
+      .then(res=>{
+        const obj = res.map(chan=>({name: chan, active:true}))
+        this.setState({suppChannels: obj})
+      })
   }
   infoClickHandler(ev){
     this.setState((prev)=>({showInfo: !prev.showInfo}))
   }
   channelChoiceHandler(ev){
     this.setState((prev)=>({showChannelChoice: !prev.showChannelChoice}))
+  }
+  checkboxHandler(name){
+    console.log('checkbox', name)
+    this.setState((prev)=>{
+      const i = prev.suppChannels.findIndex(chan=>chan.name===name)
+      
+    })
   }
   inputChangeHandler(ev){
       this.setState({input: ev.target.value })
@@ -97,8 +109,8 @@ class HelloWorld extends React.Component {
             <p>choose channels</p>
             {this.state.suppChannels.map((chan, i)=>{
                return (<div>
-                   <input type="checkbox"/>
-                   <span key={i}>{chan}</span>
+                   <input type="checkbox" value={chan.name} onClick={()=>this.checkboxHandler(chan.name)}/>
+                   <span key={i}>{chan.name}</span>
                 </div>
               )
             })}
