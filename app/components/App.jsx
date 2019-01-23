@@ -109,14 +109,14 @@ class HelloWorld extends React.Component {
           
         </form>
         <div className="full_width flex onsides pad_bot_em bck_white">
-            <div></div>
+            <div className="pad_lr_15"></div>
             <p className="no_margin">fulltext search in your</p>
             <button className="no_border no_bck pad_lr_15" 
                     onClick={this.channelChoiceHandler}>{this.state.showChannelChoice ? '▲':'▼' }</button>
         </div>
         <div id="channelChoice" 
              className={ 'col ' + (this.state.showChannelChoice? ' flex ':' hidden ') }>
-            <h5>search in</h5>
+            <h5>less channels equals less waiting time</h5>
             {this.state.suppChannels.map((chan, i)=>{
                return (<div>
                    <input type="checkbox" value={chan.name} checked={chan.active}

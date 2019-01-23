@@ -2,7 +2,9 @@ body{
   background-color: #f2f2f2;
   margin: 0;
 }
-
+*{
+  font-family: 'Open Sans', sans-serif;
+}
 *, *:focus, *:active {
   outline: none;
 }
