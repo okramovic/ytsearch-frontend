@@ -73,7 +73,7 @@ app.post('/nowords', async (req,res)=>{
         
   const dirs = await getAllDirs()
     
-  const results = dirs.map((dir)=>{
+  const dirResults = dirs.map((dir)=>{
     return new Promise((resolve, reject)=>{
     
         const path = process.cwd() + '/channel_data/' + dir
@@ -83,30 +83,29 @@ app.post('/nowords', async (req,res)=>{
 
           const emptyFiles = []
           const emptyIds = []
-
+          console.log(files)
           files = files
           .filter(name=>!name.match(/^(\.DS_Store|_empty|_err|_nocaps|_nocontrib)$/i)) // filter out foldernames
           .filter(name=>name.match(/\.json$/))
 
           const fileProms = files.map((file,i)=>{
-              return Promise((resolve, reject)=>{
+              return new Promise((resolve, reject)=>{
                 fs.readFile(path + '/' + file, 'utf8', (er, data)=>{
-
                     data = JSON.parse(data)
+                    console.log('      file data', data.words.length)
 
-                    if (!data.words.every(word=>word[0])) {
-                      console.log('title', data.title)
+                    if (! data.words.length || !data.words.every(word=>word[0])) {
+                      console.log('      title', data.title)
                       emptyFiles.push(data.title)
                       emptyIds.push(data.fromid)
                     }
                     resolve()
                 })
               })
-            //})
           })
 
           await Promise.all(fileProms)
-
+          console.log(dir, emptyFiles, emptyIds)
           resolve({
              channel: dir,
              names: emptyFiles,
@@ -115,9 +114,13 @@ app.post('/nowords', async (req,res)=>{
       })
     })
   })
-  await 
+  await Promise.all(dirResults)
   
-  console.log('dir results', results)
+  console.log('dir results', dirResults)
+  
+  res.send(dirResults)
+  
+  return;
   
   res.send([
       {
