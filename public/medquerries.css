@@ -1,8 +1,15 @@
 @media (max-width: 600px) {
- form input[type="text"]{
-   width: calc(100vw - 30px)
+  form{
+    border-radius: 0;
+  }
+  form input[type="text"]{
+    width: calc(100vw - 30px)
    
- }
+  }
+  #Q{
+    top: 15px;
+    right: 14px;
+  }
   .channel_results{
     padding-left: 15px;
     padding-right: 15px;
@@ -13,12 +20,22 @@
     margin: 15px;
     margin-top: .4em;
     margin-bottom: .4em;
+    font-size: 2.4em;
   }
   ul{
     padding-left: 15px;
     margin-inline-end: 15px;
   }
+  .channel_inner > h3{
+    padding-left: .7em;
+  }
+  #mycredit p{
+    margin: .25em;
+  }
 }
+
+
+
 @media (min-width: 601px) {
   form input[type="text"]{
    width: 500px;

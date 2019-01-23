@@ -129,7 +129,7 @@ class HelloWorld extends React.Component {
       </div>
 
       <h1 id="searchTermHeader" className={this.state.excCount? "":'hidden' }
-        >found {this.state.excCount} excerpts in {this.state.vidCount} videos for "{this.state.prevInput}"</h1>
+        >found<br/> {this.state.excCount} excerpts in {this.state.vidCount} videos for "{this.state.prevInput}"</h1>
       
       <UnorderedList channels={this.state.channels} query={this.state.prevInput}/>
 

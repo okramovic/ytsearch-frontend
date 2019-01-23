@@ -94,6 +94,7 @@ h3{
 }
 .channel_inner > h3{
   padding-left: 2em;
+  margin-top: .9em;
 }
 #results{
   display: none;
