@@ -10,9 +10,11 @@ class HelloWorld extends React.Component {
     this.submitHandler = this.submitHandler.bind(this)
     this.inputChangeHandler = this.inputChangeHandler.bind(this)
     this.infoClickHandler = this.infoClickHandler.bind(this)
+    this.channelChoiceHandler = this.channelChoiceHandler.bind(this)
     
     this.state = {
       showInfo: false,
+      showChannelChoice: false,
       input: '',
       prevInput:'',
       channels:[],
@@ -22,6 +24,9 @@ class HelloWorld extends React.Component {
   }
   infoClickHandler(ev){
     this.setState((prev)=>({showInfo: !prev.showInfo}))
+  }
+  channelChoiceHandler(ev){
+    this.setState((prev)=>({showChannelChoice: !prev.showChannelChoice}))
   }
   inputChangeHandler(ev){
       this.setState({input: ev.target.value })
@@ -79,9 +84,11 @@ class HelloWorld extends React.Component {
         <div className="full_width flex onsides marg_t_em">
           <div></div>
           <p className="no_margin">fulltext search in your</p>
-          <button className="no_border no_bck">▼</button>
+          <button className="no_border no_bck" 
+                  onClick={this.channelChoiceHandler}>{this.state.showChannelChoice ? '▲':'▼' }</button>
         </div>
-        <dvi></dvi>
+        <div id="channelChoice" 
+             className={ '' + (this.state.showChannelChoice? '':' hidden') }>choose channels</div>
       </form>
 
       <h1 id="searchTermHeader" className={this.state.excCount? "":'hidden' }
