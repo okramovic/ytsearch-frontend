@@ -37,8 +37,15 @@
 
 
 @media (min-width: 601px) {
+  form{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
   form input[type="text"]{
-   width: 500px;
+    width: 500px;
+  }
+  div.full_width.flex.onsides {
+    width: 532px;
   }
   .channel_results{
     padding-left: 40px;

@@ -32,7 +32,7 @@ class ChannelRes extends React.Component{
         const x = b.title.toLowerCase() > a.title.toLowerCase()
         return x ? -1 : 1
     })
-    console.log('this.props.query',this.props)
+    
     
     return (
       <li className="channel_results" className={this.state.shown ? 'channel_results margTB65':'channel_results margTB10'}>
