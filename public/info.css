@@ -1,0 +1,39 @@
+#Q{
+  font-size: 20px;
+  width: 2em;
+  height: 2em;
+  
+  border-radius: 50%;
+  background-color: white;
+    
+  position: absolute;
+  top:1em;
+  right: 1em;
+  z-index: 2;
+}
+#Q:active, #Q:focus{
+  outline: none;
+  cursor: pointer;
+}  
+#info{
+  position: absolute;
+  top: 2em;
+  right: 2em;
+  
+  min-width: 300px;
+  z-index: 1;
+  
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px 2px gray;
+  
+  padding: 2em;
+}
+.h_nocaps{
+  font-size: 1.5em;
+  margin-bottom: .5em;
+}
+
+#info a{
+  padding-left: 1em;
+}

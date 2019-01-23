@@ -27,36 +27,6 @@ body{
   /*background-color: purple;*/
   display:none;
 }
-#Q{
-  font-size: 20px;
-  width: 2em;
-  height: 2em;
-  
-  border-radius: 50%;
-  background-color: white;
-    
-  position: absolute;
-  top:1em;
-  right: 1em;
-  z-index: 2;
-}
-#Q:active, #Q:focus{
-  outline: none;
-  cursor: pointer;
-}  
-#info{
-  position: absolute;
-  top: 2em;
-  right: 2em;
-  
-  min-width: 300px;
-  z-index: 1;
-  
-  background-color: white;
-  border-radius: 4px;
-  
-  padding: 2em;
-}
 
 
 form{

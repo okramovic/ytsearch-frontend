@@ -18,11 +18,11 @@ class Info extends React.Component{
     
     return (
       <div id="info" className={this.props.visible? '': 'hidden'}>
-        These videos unfortunately dont contain any caps
+        Out of supported channels, these videos unfortunately dont contain any caps
         { this.state.channels.map((chan,i)=>{
           return (
             <div>
-              <h4 > {chan.channel}</h4>
+              <h4 className="h_nocaps"> {chan.channel}</h4>
               { chan.names.map((title,i)=>{
                   const href = "https://youtu.be/" + chan.ids[i]
                   return <a key={i} href={href} target="_blank">{title}</a>
