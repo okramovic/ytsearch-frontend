@@ -22,6 +22,9 @@ class HelloWorld extends React.Component {
       excCount: 0
     }
   }
+  componentDidMount(){
+    
+  }
   infoClickHandler(ev){
     this.setState((prev)=>({showInfo: !prev.showInfo}))
   }
@@ -120,4 +123,22 @@ function secondsToHumanTime(num){
     minStr = mins<10? '0' + mins : mins,
     hrsStr = hrs<10? '0' + hrs : hrs
     return (hrsStr=='00'?'': hrsStr + ':') + minStr + ':' + secStr
+}
+
+
+function getSupportedChannels(){
+  return new Promise((resolve, reject)=>{
+  
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/dirs", true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState == 4) {
+        const res = JSON.parse(xhr.responseText)
+        console.log('empty list', res)
+        resolve(res)
+      }
+    }
+    xhr.send( JSON.stringify( {} ) );
+  })
 }

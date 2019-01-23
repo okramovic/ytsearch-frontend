@@ -12,7 +12,8 @@ app.get("/", function(request, response) {
   response.sendFile(__dirname + '/app/index.html');
 });
 
-
+app.get('/dirs', function(request, response) {
+})
 app.post('/searchtext', async (req,res)=>{
     console.log('   request')
     let data = ''
