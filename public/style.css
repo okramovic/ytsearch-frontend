@@ -1,5 +1,5 @@
 body{
-  background-color: #333;/*#f2f2f2;*/
+  background-color: #bbb; /*#333;/*#f2f2f2;*/
   margin: 0;
 }
 *{
@@ -200,6 +200,10 @@ img.channel_thumb{
 }
 .singleExcerpt a{
   padding-right: 1em;
+  color: black;
+}
+.singleExcerpt a:hover{
+  color: palevioletred;
 }
 .singleExcerpt p{
   margin-top: 0;
@@ -276,7 +280,8 @@ img.channel_thumb{
   padding-bottom: 1em;
 }
 .corn_round{
+  border-radius: 4px;
 }
-.corn{
+.corn_sharp{
   border-radius: 0;
 }
