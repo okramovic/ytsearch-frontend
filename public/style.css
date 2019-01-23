@@ -80,6 +80,7 @@ form p{
 #channelChoice{
   background-color: white;
   padding: 1em;
+  padding-top: 0;
 }
 
 h3{
@@ -233,6 +234,9 @@ img.channel_thumb{
 .no_border{
   border: none;
 }
+.bck_white{
+  background-color: white;
+}
 .no_bck{
   background-color: transparent
 }
@@ -243,4 +247,7 @@ img.channel_thumb{
 
 .marg_t_em{
   margin-top: 1em;
+}
+.pad_bot_em{
+  padding-bottom: 1em;
 }

@@ -51,13 +51,18 @@ class HelloWorld extends React.Component {
   submitHandler(ev){
     ev.preventDefault()
     const query = this.state.input
-    console.log('submitted', query)
-
-    if (!query || typeof query != 'string' || query.trim()=='') return;
+    
+    const chans = '?channels=' + this.state.suppChannels.filter(chan=>chan.active).map(chan=>chan.name)
+    console.log('submitted', typeof query, query, chans)
+    if (!query || query.trim()=='' || 
+         query.trim().length == 1 || 
+        /^\d+$/.test(query) || 
+        chans== '?channels=') 
+      return console.log('not valid search');
 
     document.querySelector('form input').blur()
     
-    const chans = '?channels=' + this.state.suppChannels.filter(chan=>chan.active).map(chan=>chan.name)
+    
     
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "/searchtext" + chans, true);
@@ -97,14 +102,17 @@ class HelloWorld extends React.Component {
       
       <Info visible={this.state.showInfo}/>
       
-      <form onSubmit={this.submitHandler}>
-        <input id="main" type="text" placeholder="search" 
-               onChange={this.inputChangeHandler} value={this.state.input} autocomplete="off" />
-        <div className="full_width flex onsides marg_t_em">
-          <div></div>
-          <p className="no_margin">fulltext search in your</p>
-          <button className="no_border no_bck" 
-                  onClick={this.channelChoiceHandler}>{this.state.showChannelChoice ? '▲':'▼' }</button>
+      <div>
+        <form onSubmit={this.submitHandler}>
+          <input id="main" type="text" placeholder="search" 
+                 onChange={this.inputChangeHandler} value={this.state.input} autocomplete="off" />
+          
+        </form>
+        <div className="full_width flex onsides pad_bot_em bck_white">
+            <div></div>
+            <p className="no_margin">fulltext search in your</p>
+            <button className="no_border no_bck" 
+                    onClick={this.channelChoiceHandler}>{this.state.showChannelChoice ? '▲':'▼' }</button>
         </div>
         <div id="channelChoice" 
              className={ '' + (this.state.showChannelChoice? '':' hidden') }>
@@ -118,7 +126,7 @@ class HelloWorld extends React.Component {
               )
             })}
         </div>
-      </form>
+      </div>
 
       <h1 id="searchTermHeader" className={this.state.excCount? "":'hidden' }
         >found {this.state.excCount} excerpts in {this.state.vidCount} videos for "{this.state.prevInput}"</h1>
