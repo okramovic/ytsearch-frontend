@@ -10,8 +10,17 @@ class Info extends React.Component{
   }
   render(){
     return (
-      <div id="info">
-        channels
+      <div id="info" className={this.props.visible? '': 'hidden'}>
+        These videos unfortunately dont contain any caps
+        {this.state.channels.map((chan,i)=>{
+          return (
+            <div>
+              <h4 > {chan.channel}</h4>
+              chan.names.map((name,i)=>{})
+            </div>
+          )
+         })
+        }
       </div>
     )
   }
@@ -30,7 +39,7 @@ function getEmptyVideos(){
       if (xhr.readyState == 4) {
         const res = JSON.parse(xhr.responseText)
         console.log('empty list', res)
-        resolve([])
+        resolve(res)
       }
     }
     xhr.send( JSON.stringify( {} ) );

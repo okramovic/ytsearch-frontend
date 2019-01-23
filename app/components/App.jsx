@@ -9,14 +9,19 @@ class HelloWorld extends React.Component {
     
     this.submitHandler = this.submitHandler.bind(this)
     this.inputChangeHandler = this.inputChangeHandler.bind(this)
+    this.infoClickHandler = this.infoClickHandler.bind(this)
     
     this.state = {
+      showInfo: false,
       input: '',
       prevInput:'',
       channels:[],
       vidCount: 0,
       excCount: 0
     }
+  }
+  infoClickHandler(ev){
+    this.setState((prev)=>({showInfo: !prev.showInfo}))
   }
   inputChangeHandler(ev){
       this.setState({input: ev.target.value })
@@ -64,7 +69,9 @@ class HelloWorld extends React.Component {
   return (
     <div class={this.state.channels.length==0? "initial" : 'with_results'}>
 
-      <button id="Q">?</button>
+      <button id="Q" onClick={this.infoClickHandler}>?</button>
+      
+      <Info visible={this.state.showInfo}/>
       
       <form onSubmit={this.submitHandler}>
         <input id="main" type="text" placeholder="search" 

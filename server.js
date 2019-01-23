@@ -66,7 +66,7 @@ app.post('/searchtext', async (req,res)=>{
     })
 })
 
-app.post('/nowords', async (res,req)=>{
+app.post('/nowords', async (req,res)=>{
   const channel = 'Coding train'
 
   const path = process.cwd() + '/channel_data/'
@@ -116,11 +116,13 @@ app.post('/nowords', async (res,req)=>{
   
   console.log('dir results', results)
   
-  res.send([{
-                  channel: '',
-                  names: ,
-                  ids: emptyIds
-                }])
+  res.send([
+      {
+       channel: 'siraj',
+       names: ['name1'],
+       ids: ['id1']
+      }
+  ])
 })
 
 //app.listen(6707, ()=>console.log('server on 6707'))

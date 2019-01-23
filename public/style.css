@@ -44,6 +44,11 @@ body{
   outline: none;
   cursor: pointer;
 }  
+#info{
+  position: absolute;
+  top: 2em;
+  right: 2em;
+}
 
 
 form{
