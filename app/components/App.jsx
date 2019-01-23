@@ -24,7 +24,7 @@ class HelloWorld extends React.Component {
       prevInput:'',
       channels:[],
       vidCount: 0,
-      excCount: 0
+      excCount: -1
     }
   }
   componentDidMount(){
@@ -130,10 +130,8 @@ class HelloWorld extends React.Component {
         </div>
       </div>
 
-      <HeaderResults />
-      <h1 id="searchTermHeader" className={this.state.excCount? "":'hidden' }
-        >
-        found<br/> "{this.state.prevInput}" <br/>in {this.state.excCount} excerpts <br/>in {this.state.vidCount} videos</h1>
+      <HeaderResults excCount={this.state.excCount} vidCount={this.state.vidCount} prevInput={this.state.prevInput}/>
+      
       
       <UnorderedList channels={this.state.channels} query={this.state.prevInput}/>
 

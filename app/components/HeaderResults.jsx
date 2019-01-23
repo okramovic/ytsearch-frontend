@@ -1,10 +1,14 @@
 const React = require('react');
 
-module.exports = function({excCount, vidCount}){
+module.exports = ({excCount, vidCount, prevInput})=>{
+  
+  if (!excCount) return(
+    <h1 id="searchTermHeader" className={ excCount===0? "":'hidden' }>Sorry, no results for "{prevInput}"</h1>
+  )
+  
   return (
-    <h1 id="searchTermHeader" className={excCount? "":'hidden' }
-        >
-        found<br/> "{this.props.prevInput}" <br/>in {this.state.excCount} excerpts <br/>in {this.state.vidCount} videos
+    <h1 id="searchTermHeader" className={excCount>0? "":'hidden' }>
+        found<br/> "{prevInput}" <br/>in {excCount} excerpts <br/>in {vidCount} videos
     </h1>
   )
 }
