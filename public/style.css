@@ -105,6 +105,10 @@ h3.stats{
   margin-top: .5em;
   font-size: .6em;
 }
+#results_container{
+  max-width: 1000px;
+ 
+}
 ul{
   list-style-type: none;
   /*margin-inline-start: 40px;*/

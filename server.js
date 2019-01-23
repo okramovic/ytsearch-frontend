@@ -8,8 +8,9 @@ const maxRead = 150
 app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function(request, response) {
-  response.sendFile(__dirname + '/app/index.html');
+app.get("/", (req, res)=>{
+  //res.send('locked')
+  res.sendFile(__dirname + '/app/index.html');
 });
 
 app.get('/dirs', async (req, res)=> {

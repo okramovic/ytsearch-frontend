@@ -59,5 +59,9 @@
     padding-left: 40px;
     padding-right: 40px;
   }
+  #results_container{
+    
+    margin-left: calc((100vw - 1000px)/2)
+  }
   
 }

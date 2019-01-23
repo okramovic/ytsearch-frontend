@@ -130,10 +130,11 @@ class HelloWorld extends React.Component {
         </div>
       </div>
 
-      <HeaderResults excCount={this.state.excCount} vidCount={this.state.vidCount} prevInput={this.state.prevInput}/>
+      <div id="results_container">
+        <HeaderResults excCount={this.state.excCount} vidCount={this.state.vidCount} prevInput={this.state.prevInput}/>
+        <UnorderedList channels={this.state.channels} query={this.state.prevInput}/>
+      </div>
       
-      
-      <UnorderedList channels={this.state.channels} query={this.state.prevInput}/>
 
       
       <div id='mycredit'>
