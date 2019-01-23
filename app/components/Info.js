@@ -4,19 +4,29 @@ class Info extends React.Component{
   constructor(props){
     super(props)
     this.state ={
-      channels: getEmptyVideos()
+      channels: []
     }
     
   }
+  componentDidMount(){
+    getEmptyVideos()
+    .then(res=>this.setState({channels: res}))
+  }
   render(){
+    
+    if (!this.state.channels.length) return null;
+    
     return (
       <div id="info" className={this.props.visible? '': 'hidden'}>
         These videos unfortunately dont contain any caps
-        {this.state.channels.map((chan,i)=>{
+        { this.state.channels.map((chan,i)=>{
           return (
             <div>
               <h4 > {chan.channel}</h4>
-              chan.names.map((name,i)=>{})
+              { chan.names.map((name,i)=>{
+                  return <a key={i} href={"youtu.be/" + chan.ids[i]} target="_blank">{name}</a>
+                })
+              }
             </div>
           )
          })
