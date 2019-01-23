@@ -1,0 +1,11 @@
+@media (max-width: 600px) {
+ form input[type="text"]{
+   width: 300px;
+   
+ }
+}
+@media (min-width: 601px) {
+  form input[type="text"]{
+   width: 500px;
+ }
+}

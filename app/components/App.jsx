@@ -115,8 +115,8 @@ class HelloWorld extends React.Component {
                     onClick={this.channelChoiceHandler}>{this.state.showChannelChoice ? '▲':'▼' }</button>
         </div>
         <div id="channelChoice" 
-             className={ '' + (this.state.showChannelChoice? '':' hidden') }>
-            <p>choose channels</p>
+             className={ 'col ' + (this.state.showChannelChoice? ' flex ':' hidden ') }>
+            <h5>search in</h5>
             {this.state.suppChannels.map((chan, i)=>{
                return (<div>
                    <input type="checkbox" value={chan.name} checked={chan.active}

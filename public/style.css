@@ -46,7 +46,7 @@ form{
   border-radius: 5px;
 }
 form input[type="text"]{
-  width: calc(50vw - 30px);
+  /* width is set in media querries*/
   /*min-width: 50vw;*/
   height:2.5em;
   font-size: 2em;
@@ -82,7 +82,9 @@ form p{
   padding: 1em;
   padding-top: 0;
 }
-
+#channelChoice h5{
+  margin-top: 0;
+}
 h3{
   margin-top: 1.5em;
   font-size: 1.5em;
@@ -226,7 +228,9 @@ img.channel_thumb{
   display: flex;
   align-items: center;
 }
-
+.col{
+  flex-direction: column;
+}
 .onsides{
   justify-content: space-between;
 }
