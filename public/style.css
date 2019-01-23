@@ -132,8 +132,9 @@ ul{
 .channel_results{
   
   background-color: white;
+  /*set in MQ 
   padding-left: 40px;
-  padding-right: 40px;
+  padding-right: 40px;*/
   border-radius: 4px;
 }
 .channel_results:last-of-type{
@@ -169,6 +170,7 @@ img.channel_thumb{
   text-align: center;
   font-size: 3em;
   background-color: white;
+  border-radius: 4px;
 }
 .channel_header{
   margin-top: 1.5em;
