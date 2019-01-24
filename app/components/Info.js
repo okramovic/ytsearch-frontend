@@ -51,7 +51,7 @@ function getEmptyVideos(){
   return new Promise((resolve, reject)=>{
   
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "/nowords", true);
+    xhr.open("POST", "http://127.0.0.1:6707/nowords", true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = () => {
       if (xhr.readyState == 4) {

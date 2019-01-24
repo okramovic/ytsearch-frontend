@@ -58,16 +58,19 @@ module.exports = ChannelRes
 
 
 function getIconURL(channel){
-      const CT = 'https://yt3.ggpht.com/a-/AAuE7mC56ctnjTBFVmFaDttL3sC26U2CRiICqBgJ-g=s288-mo-c-c0xffffffff-rj-k-no'
+    const CT = 'https://yt3.ggpht.com/a-/AAuE7mC56ctnjTBFVmFaDttL3sC26U2CRiICqBgJ-g=s288-mo-c-c0xffffffff-rj-k-no'
     const Jeremy = 'https://yt3.ggpht.com/a-/AAuE7mBtvK6ioufwJFDGRT9WOvEykaDnAo0jGPOwvQ=s288-mo-c-c0xffffffff-rj-k-no'
     const Siraj = 'https://yt3.ggpht.com/a-/AAuE7mAfNzuo-vOC8wdETbqIPU4UbnknsxCbCj3lLg=s176-c-k-c0x00ffffff-no-rj-mo'
     const Twominute = 'https://yt3.ggpht.com/a-/AAuE7mBCBo51MwaRPnZWRH-BvZXhTCejRrbWhzYxuA=s48-mo-c-c0xffffffff-rj-k-no'
+    const StatOfDOOM = 'https://yt3.ggpht.com/a-/AAuE7mCy4GqOAJM5NfMAFpzROugAVx-ySG5ZcIfkWQ=s176-c-k-c0x00ffffff-no-rj-mo'
+    
     let iconUrl = ''
 
     if ( channel == 'Coding train') iconUrl = CT
     else if (channel.match(/fastai/))  iconUrl = Jeremy
     else if (channel.match(/siraj raval/i))  iconUrl = Siraj
     else if (channel.match(/two minute papers/i))  iconUrl = Twominute
+    else if (channel.match(/Statistics of DOOM/i))  iconUrl = StatOfDOOM
   
   return iconUrl
 }
