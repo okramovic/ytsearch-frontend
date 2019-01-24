@@ -67,7 +67,7 @@ class HelloWorld extends React.Component {
     
     
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://127.0.0.1:6707/searchtext" + chans, true);
+    xhr.open("POST", "/searchtext" + chans, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = () => {
       if (xhr.readyState == 4) {
@@ -167,7 +167,7 @@ function getSupportedChannels(){
   return new Promise((resolve, reject)=>{
   
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://127.0.0.1:6707/dirs", true);
+    xhr.open("GET", "/dirs", true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = () => {
       if (xhr.readyState == 4) {

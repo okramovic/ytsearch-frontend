@@ -55,7 +55,7 @@ class ChannelRes extends React.Component{
 } //  <VideoList videos={item.expt} />
 
 module.exports = ChannelRes
-
+    
 
 function getIconURL(channel){
     const CT = 'https://yt3.ggpht.com/a-/AAuE7mC56ctnjTBFVmFaDttL3sC26U2CRiICqBgJ-g=s288-mo-c-c0xffffffff-rj-k-no'
