@@ -72,5 +72,6 @@ function getIconURL(channel){
     else if (channel.match(/two minute papers/i))  iconUrl = Twominute
     else if (channel.match(/Statistics of DOOM/i))  iconUrl = StatOfDOOM
   
+  console.log('iconUrl', iconUrl)
   return iconUrl
 }
