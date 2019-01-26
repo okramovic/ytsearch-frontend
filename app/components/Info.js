@@ -40,7 +40,7 @@ class Info extends React.Component{
           In case of speech recognition it is likely that technical terms or other uncommon words will be misunderstood for others.
           Only english language of captions is supported.
         </p>
-        <p>Please tweet <span className="underscore_gray" >@okram_ovic</span> in case something is not as it should be. Guys, I'm sorry for the design...</p>
+        <p>Please tweet <span className="underscore_gray" >@okram_ovic</span> in case something is not as it should be. Guys, I'm sorry for the design. I am currently not able to come up with anything better.</p>
         <p>Out of supported channels, following videos unfortunately don't contain any or enough captions. Numbers behind each video title show: words present / total words estimated.</p>
         { this.state.channels.map((chan,i)=>{
           if (!chan.empty_videos.length) return null;
