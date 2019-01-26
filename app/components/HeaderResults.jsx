@@ -3,6 +3,16 @@ const React = require('react');
 
 module.exports = ({initial, loadText, loading, excCount, vidCount, prevInput})=>{
   
+  if (loadText.match(/input must be/i)) {
+    console.log('invalid')
+    return(
+    <h1 id="searchTermHeader" style={{ 
+        marginTop: initial? '0.6em':'1.2em',
+        textAlign: loading? 'center': ''
+    }}>{loadText}</h1>
+  )
+  }  
+  
   if (loading) return(
     <h1 id="searchTermHeader" style={{ 
         marginTop: initial? '0.6em':'1.2em',
