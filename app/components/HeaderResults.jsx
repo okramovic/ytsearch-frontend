@@ -1,13 +1,15 @@
 const React = require('react');
 
-module.exports = ({initial, loading, excCount, vidCount, prevInput})=>{
+module.exports = ({initial, loadText, loading, excCount, vidCount, prevInput})=>{
+  
+  //let text = 'loading'
   
   if (loading) return(
     <h1 id="searchTermHeader" style={{ 
         marginTop: initial? '0.6em':'1.2em',
         textAlign: loading? 'center': ''
       }}
-    >loading...</h1>
+    >{loadText}</h1>
   )
   
   if (!excCount) return(
@@ -21,4 +23,7 @@ module.exports = ({initial, loading, excCount, vidCount, prevInput})=>{
   )
 }
 
+function changeLoader(){
+  
+}
 //  found "{prevInput}" <br/>in {excCount} excerpts <br/>in {vidCount} videos

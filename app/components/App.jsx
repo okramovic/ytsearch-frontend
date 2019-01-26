@@ -23,6 +23,7 @@ class HelloWorld extends React.Component {
       showTerms: false,
       showChannelChoice: false,
       loading:false,
+      loadText: 'loading',
       suppChannels: [],
       input: '',
       prevInput:'',
@@ -115,6 +116,19 @@ class HelloWorld extends React.Component {
 }
   render(){
     const initial = this.state.channels.length===0
+    const self = this
+    let text = 'loading'
+    
+    /*self.mytimer = setInterval(()=>{
+      
+      if (!self.state.loading) {
+        
+        clearInterval(self.mytimer)
+        console.log('clearing interval')
+      };
+      text += '.'
+      console.log('text', text)
+    }, 1000)*/
     
     return (
       <div className={this.state.loading? 'centered':(initial ? "initial" : 'with_results')}
@@ -154,6 +168,7 @@ class HelloWorld extends React.Component {
 
         <div id="results_container" style={{ display: this.state.loading ? 'flex': (initial? 'none':'flex') }}>
           <HeaderResults initial={initial} loading={this.state.loading} 
+                loadText={text}
                 excCount={this.state.excCount} vidCount={this.state.vidCount} 
                 prevInput={this.state.prevInput}
           />
