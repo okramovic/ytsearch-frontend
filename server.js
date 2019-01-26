@@ -9,8 +9,8 @@ app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", (req, res)=>{
-  res.send('locked')
-  //res.sendFile(__dirname + '/app/index.html');
+  //res.send('locked')
+  res.sendFile(__dirname + '/app/index.html');
 });
 
 app.get('/dirs', async (req, res)=> {
@@ -77,55 +77,9 @@ app.post('/searchtext', async (req,res)=>{
 app.post('/nowords', async (req,res)=>{
   const channel = 'Coding train'
 
-  const path = process.cwd() + '/channel_data/'
-        
-  const dirs = await getAllDirs()
-    
-  let dirResults = dirs.map((dir)=>{
-    return new Promise((resolve, reject)=>{
-    
-        const path = process.cwd() + '/channel_data/' + dir
-
-        fs.readdir(path, async (er, files)=>{
-          if (er) return console.log(er)
-
-          const emptyFiles = []
-          const emptyIds = []
-          
-          files = files
-          .filter(name=>!name.match(/^(\.DS_Store|_empty|_err|_nocaps|_nocontrib)$/i)) // filter out foldernames
-          .filter(name=>name.match(/\.json$/))
-
-          const fileProms = files.map((file,i)=>{
-              return new Promise((resolve, reject)=>{
-                fs.readFile(path + '/' + file, 'utf8', (er, data)=>{
-                    data = JSON.parse(data)
-
-                    if (! data.words.length || !data.words.every(word=>word[0])) {
-                      //console.log('      title', data.title)
-                      emptyFiles.push(data.title)
-                      emptyIds.push(data.fromid)
-                    }
-                    resolve()
-                })
-              })
-          })
-
-          await Promise.all(fileProms)
-
-          resolve({
-             channel: dir,
-             names: emptyFiles,
-             ids: emptyIds
-          })
-      })
-    })
-  })
-  dirResults = await Promise.all(dirResults)
   
-  console.log('dir results', dirResults)
   
-  res.send(dirResults)
+  //res.send(dirResults)
 })
 
 //app.listen(6707, ()=>console.log('server on 6707'))
@@ -370,4 +324,66 @@ function timeInfoToSeconds(data){
 
       return secondsTotal
   })
+}
+
+
+
+async function getEmptyVideosFromLists(){
+  
+  fs.readDir('empty_lists',(er, files)=>{
+    //files = files.map(name=> name.replace(/()/, '$1'))
+    files = files.map(name=>{
+      fs.read
+    })
+  })
+}
+
+async function scanFilesOld(){
+  const path = process.cwd() + '/channel_data/'
+        
+  const dirs = await getAllDirs()
+    
+  let dirResults = dirs.map((dir)=>{
+    return new Promise((resolve, reject)=>{
+    
+        const path = process.cwd() + '/channel_data/' + dir
+
+        fs.readdir(path, async (er, files)=>{
+          if (er) return console.log(er)
+
+          const emptyFiles = []
+          const emptyIds = []
+          
+          files = files
+          .filter(name=>!name.match(/^(\.DS_Store|_empty|_err|_nocaps|_nocontrib)$/i)) // filter out foldernames
+          .filter(name=>name.match(/\.json$/))
+
+          const fileProms = files.map((file,i)=>{
+              return new Promise((resolve, reject)=>{
+                fs.readFile(path + '/' + file, 'utf8', (er, data)=>{
+                    data = JSON.parse(data)
+
+                    if (! data.words.length || !data.words.every(word=>word[0])) {
+                      //console.log('      title', data.title)
+                      emptyFiles.push(data.title)
+                      emptyIds.push(data.fromid)
+                    }
+                    resolve()
+                })
+              })
+          })
+
+          await Promise.all(fileProms)
+
+          resolve({
+             channel: dir,
+             names: emptyFiles,
+             ids: emptyIds
+          })
+      })
+    })
+  })
+  dirResults = await Promise.all(dirResults)
+  
+  console.log('dir results', dirResults)
 }
