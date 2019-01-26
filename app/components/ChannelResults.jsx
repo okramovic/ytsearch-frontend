@@ -42,7 +42,7 @@ class ChannelRes extends React.Component{
             <img src={iconUrl} className="channel_thumb"></img>
             <h3 >{item.channel}</h3>
           </div>
-          <button className="collapse_button" onClick={this.clickHandler}>hide</button>
+          <button className="collapse_button" onClick={this.clickHandler}>{this.state.shown? 'hide':'open'}</button>
         </div>
         <div className={this.state.shown ? '':'hidden'} chan={item.channel}>
           {item.expt.map((video,i)=>{
