@@ -61,9 +61,10 @@
   .channel_results{
     padding-left: 40px;
     padding-right: 40px;
+    min-width: 75vw;
   }
   #results_container{
-    
+    max-width: 950px;
     /*margin-left: calc((100vw - 1000px)/2)*/
   }
   
