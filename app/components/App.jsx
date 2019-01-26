@@ -103,29 +103,24 @@ class HelloWorld extends React.Component {
                          channels: res, vidCount, excCount, prevInput:query, input:'' },()=>{})
         
           return;
-              // sort them alphabetically
-              /*oneChannel.expt = oneChannel.expt.sort((a,b)=>{
-                  const x = b.title.toLowerCase() > a.title.toLowerCase()
-                  return x ? -1 : 1
-              })*/
+          // sort them alphabetically
+          /*oneChannel.expt = oneChannel.expt.sort((a,b)=>{
+              const x = b.title.toLowerCase() > a.title.toLowerCase()
+              return x ? -1 : 1
+          })*/
       }
     }
-    setTimeout(()=>xhr.send( JSON.stringify( {query} ) ), 10000);
+    setTimeout(()=>xhr.send( JSON.stringify( {query} ) ), 3000);
 
     if (self.mytimer) clearInterval(self.mytimer)
     
     this.setState({loading: true})
     
     self.mytimer = setInterval(()=>{
-      
-      if (!self.state.loading) {
+      if (!self.state.loading) clearInterval(self.mytimer)
         
-        clearInterval(self.mytimer)
-        console.log('clearing interval')
-      };
       self.setState(prev=>({loadText: prev.loadText.length<12? prev.loadText+='.': 'loading.'}))
       console.log(self.state.loadText)
-      
     }, 1000)
 
 }
