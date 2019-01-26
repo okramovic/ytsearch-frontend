@@ -87,7 +87,7 @@ app.post('/nowords', async (req,res)=>{
 })
 
 //app.listen(6707, ()=>console.log('server on 6707'))
-var listener = app.listen(process.env.PORT, function () {
+const listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 

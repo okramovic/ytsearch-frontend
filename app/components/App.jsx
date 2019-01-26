@@ -77,9 +77,9 @@ class HelloWorld extends React.Component {
     console.log('submitted', typeof query, query, chans)
     if (!query || query.trim()=='' || 
          query.trim().length == 1 || 
-        /^\d+$/.test(query) || 
-        chans== '?channels=') {
-      this.setState({loadText: 'input must be longer than 1 character. Only numbers not allowed.'})
+        /^\d+$/.test(query) || chans== '?channels=') {
+      
+      this.setState({loadText: 'Input must be longer than 1 character. Only numbers not allowed.'})
       return console.log('not valid search');
     }
 
@@ -169,7 +169,7 @@ class HelloWorld extends React.Component {
           </div>
         </div>
 
-        <div id="results_container" style={{ display: getHeaderDisplayValue(this.state.) }}>
+        <div id="results_container" style={{ display: getHeaderDisplayValue(this.state.loadText, this.state.loading, initial) }}>
           <HeaderResults initial={initial} loading={this.state.loading} 
                 loadText={this.state.loadText}
                 excCount={this.state.excCount} vidCount={this.state.vidCount} 
@@ -202,11 +202,17 @@ class HelloWorld extends React.Component {
 }
 // <p>made with love in Vienna by me</p>
 
+
+
 module.exports = HelloWorld;
+
+
 
 function getHeaderDisplayValue(text, loading, initial){
   
-  return loading ? 'flex': (initial? 'none':'flex')
+    if (text.match(/input must be/i)) return 'flex'
+
+    return loading ? 'flex': (initial? 'none':'flex')
 }
 
 function getFormContanierWidth(initial, loading){
