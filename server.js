@@ -4,10 +4,10 @@ const fs = require('fs')
 
 const maxRead = 150
 
-// http://expressjs.com/en/starter/static-files.html
+
 app.use(express.static('public'));
 
-// http://expressjs.com/en/starter/basic-routing.html
+
 app.get("/", (req, res)=>{
   res.send('locked')
   //res.sendFile(__dirname + '/app/index.html');
@@ -15,7 +15,6 @@ app.get("/", (req, res)=>{
 
 app.get('/dirs', async (req, res)=> {
     const dirs = await getAllDirs()
-    
     res.send(dirs)
     res.end()
 })
@@ -225,7 +224,9 @@ function searchFilesinDir(channel, string){
                       }
                       tillI = tillI === null ? fulltext.length : tillI
 
-                      let time = fullTextIndices[fromI]!==undefined ? fullTextIndices[fromI] : fullTextIndices[fromI+1] // prevent undefined times
+                      let time = fullTextIndices[fromI] || fullTextIndices[fromI+1] ||
+                                 fullTextIndices[fromI+2] || fullTextIndices[fromI+3] ||
+                                 fullTextIndices[fromI+4] // prevent undefined times
                       //console.log('    time', time, '\n\n')
 
 
