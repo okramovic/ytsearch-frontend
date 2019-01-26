@@ -70,8 +70,9 @@ class HelloWorld extends React.Component {
   }
   submitHandler(ev){
     ev.preventDefault()
-    const query = this.state.input
+    const self = this
     
+    const query = this.state.input
     const chans = '?channels=' + this.state.suppChannels.filter(chan=>chan.active).map(chan=>chan.name)
     console.log('submitted', typeof query, query, chans)
     if (!query || query.trim()=='' || 
@@ -89,29 +90,43 @@ class HelloWorld extends React.Component {
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = () => {
       if (xhr.readyState == 4) {
-        
+          clearInterval(self.mytimer)
           const res = JSON.parse(xhr.responseText)
           console.log('xhr response: ', res);
         
           const vidCount = res.reduce((tot, ch)=>tot+ch.expt.length, 0)
           const excCount = res.reduce((tot, ch)=>tot+ch.expt.reduce((t,curr)=>t+curr.excerpts.length,0), 0)
           
-          this.setState({loading: false, channels: res, vidCount, excCount, prevInput:query, input:'' },()=>{})
+          this.setState({loading: false, 
+                         loadText: 'loading',
+                         
+                         channels: res, vidCount, excCount, prevInput:query, input:'' },()=>{})
         
           return;
-
-          res.map(oneChannel=>{
               // sort them alphabetically
               /*oneChannel.expt = oneChannel.expt.sort((a,b)=>{
                   const x = b.title.toLowerCase() > a.title.toLowerCase()
                   return x ? -1 : 1
               })*/
-          })
       }
     }
-    setTimeout(()=>xhr.send( JSON.stringify( {query} ) ), 7000);
+    setTimeout(()=>xhr.send( JSON.stringify( {query} ) ), 10000);
 
+    if (self.mytimer) clearInterval(self.mytimer)
+    
     this.setState({loading: true})
+    
+    self.mytimer = setInterval(()=>{
+      
+      if (!self.state.loading) {
+        
+        clearInterval(self.mytimer)
+        console.log('clearing interval')
+      };
+      self.setState(prev=>({loadText: prev.loadText.length<12? prev.loadText+='.': 'loading.'}))
+      console.log(self.state.loadText)
+      
+    }, 1000)
 
 }
   render(){
@@ -119,16 +134,7 @@ class HelloWorld extends React.Component {
     const self = this
     let text = 'loading'
     
-    /*self.mytimer = setInterval(()=>{
-      
-      if (!self.state.loading) {
-        
-        clearInterval(self.mytimer)
-        console.log('clearing interval')
-      };
-      text += '.'
-      console.log('text', text)
-    }, 1000)*/
+    
     
     return (
       <div className={this.state.loading? 'centered':(initial ? "initial" : 'with_results')}
@@ -168,7 +174,7 @@ class HelloWorld extends React.Component {
 
         <div id="results_container" style={{ display: this.state.loading ? 'flex': (initial? 'none':'flex') }}>
           <HeaderResults initial={initial} loading={this.state.loading} 
-                loadText={text}
+                loadText={this.state.loadText}
                 excCount={this.state.excCount} vidCount={this.state.vidCount} 
                 prevInput={this.state.prevInput}
           />
