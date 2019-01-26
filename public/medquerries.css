@@ -84,5 +84,7 @@
     max-width: 950px;
     /*margin-left: calc((100vw - 1000px)/2)*/
   }
-  
+  #terms{
+    max-width: 600px;
+  }
 }

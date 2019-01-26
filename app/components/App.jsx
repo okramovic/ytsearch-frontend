@@ -47,10 +47,11 @@ class HelloWorld extends React.Component {
     this.setState((prev)=>({showInfo: !prev.showInfo, showTerms: false}))
   }
   termsHandler(){
-    this.setState({
-      showInfo: false,
-      showTerms: true,
-    })
+    this.setState(prev=>({
+        showInfo: false,
+        showTerms: !prev.showTerms,
+      })
+    )
   }
   channelChoiceHandler(ev){
     this.setState((prev)=>({showChannelChoice: !prev.showChannelChoice}))
@@ -160,6 +161,7 @@ class HelloWorld extends React.Component {
         </div>
         
         <div id="terms" style={{display: this.state.showTerms ? 'flex': 'none'}}>
+          <h4>Terms of service & Privacy policy</h4>
           <p>All valid search requests are stored with date it was made. 
             Only these two pieces of information are stored on server side, nothing else (no IP address, no country etc). 
             They are stored for unlimited amount of time.</p>
