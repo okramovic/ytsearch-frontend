@@ -91,19 +91,21 @@ var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
+//let timer = setInterval(saveLogs, 180000)
+
 
 function saveLogs(){
   if (!logInfo.length) return console.log('nothing to log');
   
   fs.readFile('logs.json', 'utf8',(er, data)=>{
-    console.log(data)
+    
     data = JSON.parse(data)
+    console.log('log data length',data.length)
     data.push(...logInfo)
     fs.writeFile('logs.json', JSON.stringify(data), (er)=>{
       if (er)console.log(er)
       else logInfo = []
     })
-    
   })
 }
 
