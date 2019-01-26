@@ -241,7 +241,9 @@ img.channel_thumb{
   border-bottom: 2px solid #ccc;
 }
 
-
+.noselect{
+  user-select:none;
+}
 
 .full_width{
   width: 100%
