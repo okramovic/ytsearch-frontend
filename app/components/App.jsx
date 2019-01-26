@@ -22,6 +22,7 @@ class HelloWorld extends React.Component {
       showInfo: false,
       showTerms: false,
       showChannelChoice: false,
+      loading:false,
       suppChannels: [],
       input: '',
       prevInput:'',
@@ -94,7 +95,7 @@ class HelloWorld extends React.Component {
           const vidCount = res.reduce((tot, ch)=>tot+ch.expt.length, 0)
           const excCount = res.reduce((tot, ch)=>tot+ch.expt.reduce((t,curr)=>t+curr.excerpts.length,0), 0)
           
-          this.setState({channels: res, vidCount, excCount, prevInput:query, input:'' },()=>{})
+          this.setState({loading: false, channels: res, vidCount, excCount, prevInput:query, input:'' },()=>{})
         
           return;
 
@@ -107,9 +108,9 @@ class HelloWorld extends React.Component {
           })
       }
     }
-    xhr.send( JSON.stringify( {query} ) );
+    setTimeout(()=>xhr.send( JSON.stringify( {query} ) ), 6000);
 
-    
+    this.setState({loading: true})
 
 }
   render(){
@@ -147,14 +148,14 @@ class HelloWorld extends React.Component {
           </div>
         </div>
 
-        <div id="results_container" style={{ display: initial? 'none':'flex' }}>
-          <HeaderResults excCount={this.state.excCount} vidCount={this.state.vidCount} prevInput={this.state.prevInput}/>
-          <UnorderedList channels={this.state.channels} query={this.state.prevInput}/>
+        <div id="results_container" style={{ display: this.state.loading ? 'flex': (initial? 'none':'flex') }}>
+          <HeaderResults loading={this.state.loading} excCount={this.state.excCount} vidCount={this.state.vidCount} prevInput={this.state.prevInput}/>
+          <UnorderedList style={{display: this.state.loading? 'none': 'flex'}} channels={this.state.channels} query={this.state.prevInput}/>
         </div>
 
 
 
-        <div id='mycredit' style={{ position: initial ? 'static':'fixed' }}>
+        <div id='mycredit' style={{ position: this.state.loading? 'fixed':(initial ? 'static':'fixed') }}>
           <div className="pad_lr_15"></div>
           <p>made in Vienna by <a href='https://twitter.com/okram_ovic' target='_blank'>me</a></p>
           <button onClick={this.termsHandler}>Terms</button>
