@@ -43,6 +43,10 @@
   #mycredit p{
     margin: .25em;
   }
+  
+  #terms{
+    margin:0;
+  }
 }
 
 

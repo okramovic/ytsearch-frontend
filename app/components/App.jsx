@@ -44,7 +44,7 @@ class HelloWorld extends React.Component {
       } else console.log('not 500')
   }
   infoClickHandler(ev){
-    this.setState((prev)=>({showInfo: !prev.showInfo}))
+    this.setState((prev)=>({showInfo: !prev.showInfo, showTerms: false}))
   }
   termsHandler(){
     this.setState({
@@ -156,10 +156,16 @@ class HelloWorld extends React.Component {
         <div id='mycredit' style={{ position: initial ? 'static':'fixed' }}>
           <div className="pad_lr_15"></div>
           <p>made in Vienna by <a href='https://twitter.com/okram_ovic' target='_blank'>me</a></p>
-          <button>Terms</button>
+          <button onClick={this.termsHandler}>Terms</button>
         </div>
         
-        <div id="terms" style={{displaz}}>All valid search requests are stored with date it was made. I</div>
+        <div id="terms" style={{display: this.state.showTerms ? 'flex': 'none'}}>
+          <p>All valid search requests are stored with date it was made. 
+            Only these two pieces of information are stored on server side, nothing else (no IP address, no country etc). 
+            They are stored for unlimited amount of time.</p>
+          <p>No information is being stored in your browser.</p>
+          <p>By using the search tool, you agree with above mentioned conditions of usage.</p>
+        </div>
 
       </div>
     );
