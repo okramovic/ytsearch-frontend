@@ -13,10 +13,18 @@ class VideoList extends React.Component{
     }
   }
   clickHandler(ev){
-    this.setState((prev)=>{
-        //return {shown: !prevState.shown}
-        return {show: !prev.show }
-       })
+    this.setState((prev)=>//{
+        //return 
+                  ({show: !prev.show })
+       // }
+    )
+    const self = this
+    setTimeout(()=>{ 
+        self.setState((prev)=>{  
+          return { span_color: 'white'}
+          // prev.span_color == 'black'? 'white' : 'white'
+        })
+    },5000)
   }
   render(){
       const vid = this.props.vid
@@ -26,21 +34,17 @@ class VideoList extends React.Component{
               <div > 
                   <h2 className={ "channel_header " + (this.state.show? '':'title_collapsed') }
                     videoname={this.props.title} onClick={this.clickHandler}>{this.props.title}</h2>
-                <span style={{
+                <span className={color: this.state.span_color} style={{
                     display: this.state.show? 'block':'none',
-                    fontSize: '12px',
-                    color: this.state.span_color
+                    fontSize: '12px'
                 }}>click on time to watch excerpt</span>
                 {this.props.videos.map((e,i)=>{
                   if (!this.state.show) return null;
-                
-                  const re = new RegExp( '('+ this.props.query + ')' ,'g')
                   
                   return (<div className="singleExcerpt">
                     <a href={'https://youtu.be/'+ vid +'?t='+e.time} 
                        target="_blank">{secondsToHumanTime(e.time)}</a>
                     <p className="excerpt_text">{
-                        //e.text.replace( re, '<span className="highlighted">' +'$1' + '</span>')
                         getHighlightedText(e.text, this.props.query) 
                         // highlight words from query
                         /*e.text.split(' ').map(w=>{
@@ -68,7 +72,7 @@ module.exports = VideoList;
 function getHighlightedText(text, higlight) {
     // Split on higlight term and include term into parts
     let parts = text.split(new RegExp(`(${higlight})`, 'g'));
-    return <span> { parts.map((part, i) => 
+    return <span>{ parts.map((part, i) => 
         <span key={i} className={ part === higlight ? 'highlighted':''}>
             { part }
         </span>)
