@@ -34,7 +34,7 @@ class VideoList extends React.Component{
               <div > 
                   <h2 className={ "channel_header " + (this.state.show? '':'title_collapsed') }
                     videoname={this.props.title} onClick={this.clickHandler}>{this.props.title}</h2>
-                <span className={color: this.state.span_color} style={{
+                <span className={this.state.span_color == 'white'? 'white':'black'} style={{
                     display: this.state.show? 'block':'none',
                     fontSize: '12px'
                 }}>click on time to watch excerpt</span>

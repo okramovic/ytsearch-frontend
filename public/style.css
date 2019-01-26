@@ -334,3 +334,9 @@ img.channel_thumb{
 .corn_sharp{
   border-radius: 0;
 }
+
+
+.white{
+  color: white;
+  transition: color .2s;
+}
