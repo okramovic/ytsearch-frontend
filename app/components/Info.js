@@ -51,7 +51,10 @@ class Info extends React.Component{
         { this.state.channels.map((chan,i)=>{
           return (
             <div>
-              <h4 className="h_nocaps" onClick={()=>this.toggleHandler(chan.channel) }> {chan.channel}</h4><span>click to open</span>
+              <div className="flex clickable_header" onClick={()=>this.toggleHandler(chan.channel) }>
+                <h4 className="h_nocaps"> {chan.channel}</h4>
+                <span className='pad_lr_15">{ this.state[chan.channel]?'▲':'expand'}</span>
+              </div>
               <div className={ this.state[chan.channel] ? '': 'hidden'}>
               { chan.empty_videos.map((infoObj,i)=>{
                   const href = "https://youtu.be/" + infoObj.id
