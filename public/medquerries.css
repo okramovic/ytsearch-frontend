@@ -28,6 +28,7 @@
   ul{
     padding-left: 15px;
     margin-inline-end: 15px;
+    width: 98%;
   }
   .channel_inner > h3{
     padding-left: .7em;

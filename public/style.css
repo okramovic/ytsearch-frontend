@@ -115,6 +115,7 @@ h3.stats{
   align-items:center;
 }
 ul{
+  margin-top: 0;
   list-style-type: none;
   /*margin-inline-start: 40px;
   min-width: calc(100vw - 20vw);
@@ -182,9 +183,10 @@ img.channel_thumb{
   width: 80%;
   margin: auto;
   margin-top: 1.2em;
-  margin-bottom: 1.6em;
+  margin-bottom: 1.2em;
   text-align: center;
-  font-size: 3em;
+  font-size: 2.6em;
+  color: white;
   /*background-color: white;*/
   border-radius: 4px;
 }
