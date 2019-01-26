@@ -54,7 +54,8 @@ form input[type="text"]{
 
 
 form{
-  background-color: white;
+  /*background-color: white;
+  border-radius: 4px;
   /*width:100%;
   /* height: 4em; */
   margin: auto;
@@ -63,7 +64,7 @@ form{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 4px;
+  
 }
 form input[type="text"]{
   /* width is set in media querries*/

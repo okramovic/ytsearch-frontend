@@ -97,52 +97,53 @@ class HelloWorld extends React.Component {
 
 }
   render(){
-  return (
-    <div className={this.state.channels.length==0? "initial" : 'with_results'}>
+    const initial = this.state.channels.length===0
+    return (
+      <div className={initial ? "initial" : 'with_results'}>
 
-      <button id="Q" onClick={this.infoClickHandler}>?</button>
-      <Info visible={this.state.showInfo}/>
-      
-      <div style={{ display: this.state.channels.length? 'none':'block' }}></div>
-      
-      <div id="form_container" className={ "flex col bck_white " + (this.state.channels.length===0 ? 'corn_round': 'corn_sharp') }>
-        <form onSubmit={this.submitHandler}>
-          <input id="main" type="text" placeholder="search" 
-                 onChange={this.inputChangeHandler} value={this.state.input} autocomplete="off" />
-        </form>
-        <div className="full_width flex onsides pad_bot_em bck_white">
-            <div className="pad_lr_15"></div>
-            <p className="no_margin">fulltext search in your favourite channels</p>
-            <button className="no_border no_bck pad_lr_15" 
-                    onClick={this.channelChoiceHandler}>{this.state.showChannelChoice ? '▲':'▼' }</button>
+        <button id="Q" onClick={this.infoClickHandler}>?</button>
+        <Info visible={this.state.showInfo}/>
+
+        <div style={{ display: initial ? 'block':'none' }}></div>
+
+        <div id="form_container" className={ "flex col bck_white " + ( initial ? 'corn_round': 'corn_sharp') }>
+          <form onSubmit={this.submitHandler}>
+            <input id="main" type="text" placeholder="search" 
+                   onChange={this.inputChangeHandler} value={this.state.input} autocomplete="off" />
+          </form>
+          <div className="full_width flex onsides pad_bot_em bck_white">
+              <div className="pad_lr_15"></div>
+              <p className="no_margin">fulltext search in your favourite channels</p>
+              <button className="no_border no_bck pad_lr_15" 
+                      onClick={this.channelChoiceHandler}>{this.state.showChannelChoice ? '▲':'▼' }</button>
+          </div>
+          <div id="channelChoice" 
+               className={ 'col ' + (this.state.showChannelChoice? ' flex ':' hidden ') }>
+              <h5>less channels equals less waiting time</h5>
+              {this.state.suppChannels.map((chan, i)=>{
+                 return (<div>
+                     <input type="checkbox" value={chan.name} checked={chan.active}
+                         onClick={()=>this.checkboxHandler(chan.name)}/>
+                     <span key={i}>{chan.name}</span>
+                  </div>
+                )
+              })}
+          </div>
         </div>
-        <div id="channelChoice" 
-             className={ 'col ' + (this.state.showChannelChoice? ' flex ':' hidden ') }>
-            <h5>less channels equals less waiting time</h5>
-            {this.state.suppChannels.map((chan, i)=>{
-               return (<div>
-                   <input type="checkbox" value={chan.name} checked={chan.active}
-                       onClick={()=>this.checkboxHandler(chan.name)}/>
-                   <span key={i}>{chan.name}</span>
-                </div>
-              )
-            })}
+
+        <div id="results_container" style={{ display: initial? 'none':'flex' }}>
+          <HeaderResults excCount={this.state.excCount} vidCount={this.state.vidCount} prevInput={this.state.prevInput}/>
+          <UnorderedList channels={this.state.channels} query={this.state.prevInput}/>
         </div>
-      </div>
 
-      <div id="results_container" className=''>
-        <HeaderResults excCount={this.state.excCount} vidCount={this.state.vidCount} prevInput={this.state.prevInput}/>
-        <UnorderedList channels={this.state.channels} query={this.state.prevInput}/>
-      </div>
-      
 
-      
-      <div id='mycredit' style={{ position: this.state.channels.length ? 'fixed':'absolute' }}>
-        <p>made by me</p>
+
+        <div id='mycredit' style={{ position: initial ? 'static':'fixed' }}>
+          <p>made by me</p>
+        </div>
+
       </div>
-      
-    </div>
-  );
+    );
   } // fulltext search in your favorite YT channels
 }
 // <p>made with love in Vienna by me</p>
