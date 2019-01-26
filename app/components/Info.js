@@ -34,14 +34,14 @@ class Info extends React.Component{
     
     return (
       <div id="info" className={this.props.visible? '': 'hidden'}>
-        <p>Exact phrase of what you wrote is searched for. No further intelligence is involved so you get all results that are found.</p>
+        <p>Exact phrase of what you wrote is searched for. No further intelligence is involved so you get all results that are found. Ordering is alphabetical.</p>
         <p>Search is based only on spoken content of videos. This is stored in captions that are made either by youtuber him/herself,
           the community or by YouTube's automatic speech recognition.
           In case of speech recognition it is likely that technical terms or other unusual words will be misunderstood for others.
           Only english language of captions is supported.
         </p>
         <p>Please tweet <span className="underscore_gray" >@okram_ovic</span> in case something is not as it should be. Guys, I'm sorry for the design...</p>
-        <p>Out of supported channels, following videos unfortunately don't contain enough captions. Numbers behind each video title show: words present / words total.</p>
+        <p>Out of supported channels, following videos unfortunately don't contain any or enough captions. Numbers behind each video title show: words present / total words estimated.</p>
         { this.state.channels.map((chan,i)=>{
           if (!chan.empty_videos.length) return null;
           return (
@@ -54,7 +54,7 @@ class Info extends React.Component{
               { chan.empty_videos.sort((a,b)=>{
                   if (/^ ?live stream #(\d+)/i.test(a.title) && /^ ?live stream #(\d+)/i.test(b.title)){
                     let numA = a.title.match(/^ ?live stream #(\d+)/i),
-                        numB = a.title.match(/^ ?live stream #(\d+)/i)
+                        numB = b.title.match(/^ ?live stream #(\d+)/i)
                         numA = numA[1]
                         numB = numB[1]
                     
