@@ -25,7 +25,7 @@ class VideoList extends React.Component{
               <div > 
                   <h2 className={ "channel_header " + (this.state.show? '':'title_collapsed') }
                     videoname={this.props.title} onClick={this.clickHandler}>{this.props.title}</h2>
-  
+                <span style={{display: this.state.show? 'block':'none'}}>click on time to watch excerpt</span>
                 {this.props.videos.map((e,i)=>{
                   if (!this.state.show) return null;
                 

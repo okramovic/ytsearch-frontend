@@ -35,8 +35,9 @@ class HelloWorld extends React.Component {
         this.setState({suppChannels: obj})
       })
       if (innerWidth>500) {
-        console.log('over 500');
+        console.log('over 500',this.textInput.current );
         this.textInput.current.focus();
+        this.textInput.current.placeholder = ''
       } else console.log('not 500')
   }
   infoClickHandler(ev){
