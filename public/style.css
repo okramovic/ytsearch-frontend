@@ -118,10 +118,11 @@ ul{
   list-style-type: none;
   /*margin-inline-start: 40px;
   min-width: calc(100vw - 20vw);
-  max-width: 950px;*/
+  max-width: 950px;
+  width: 100%;*/
   margin-inline-end: 40px;
   padding-inline-start: 40px;
-  width: 100%;
+  
 }
 li:last-child{
   margin-bottom: 150px;
@@ -183,8 +184,8 @@ img.channel_thumb{
   margin-top: 1.2em;
   margin-bottom: 1.6em;
   text-align: center;
-  /*font-size: 3em;*/
-  background-color: white;
+  font-size: 3em;
+  /*background-color: white;*/
   border-radius: 4px;
 }
 .channel_header{

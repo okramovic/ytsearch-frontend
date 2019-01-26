@@ -8,7 +8,7 @@ module.exports = ({excCount, vidCount, prevInput})=>{
   
   return (
     <h1 id="searchTermHeader" className={excCount>0? "":'hidden' }>
-        found<br/> "{prevInput}" <br/>in {excCount} excerpts <br/>in {vidCount} videos
+        found "{prevInput}" <br/>in {excCount} excerpts <br/>in {vidCount} videos
     </h1>
   )
 }
