@@ -186,8 +186,8 @@ class HelloWorld extends React.Component {
         
         <div id="terms" style={{display: this.state.showTerms ? 'flex': 'none'}}>
           <h4>Terms of service & Privacy policy</h4>
-          <p>All valid search requests are stored with date it was made. 
-            Only these two pieces of information are stored on server side, nothing else is (no IP address, no country etc). 
+          <p>All valid search requests are stored with date it was made and chosen channels of interest. 
+            Only this information is stored on server side, nothing else (no IP address, no country etc). 
             They are stored for unlimited amount of time.</p>
           <p>No information is being stored in your browser.</p>
           <p>Search accuracy is not guaranteed.</p>

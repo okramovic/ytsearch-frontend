@@ -3,6 +3,7 @@ var app = express();
 const fs = require('fs')
 
 const maxRead = 150
+let logInfo = []
 
 
 app.use(express.static('public'));
@@ -28,6 +29,12 @@ app.post('/searchtext', async (req,res)=>{
         data = JSON.parse(data)
         console.log('search', data, data.query)
 
+        logInfo.push({
+          d: new Date(),
+          s: data.query.toString(),
+          ch: req.query.channels
+        })
+      
         // verify that query is harmless
 
         const allResults = []
@@ -84,6 +91,21 @@ var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
+
+function saveLogs(){
+  if (!logInfo.length) return console.log('nothing to log');
+  
+  fs.readFile('logs.json', 'utf8',(er, data)=>{
+    console.log(data)
+    data = JSON.parse(data)
+    data.push(...logInfo)
+    fs.writeFile('logs.json', JSON.stringify(data), (er)=>{
+      if (er)console.log(er)
+      else logInfo = []
+    })
+    
+  })
+}
 
 function getAllDirs(){
     const path = process.cwd() + '/channel_data/' // + (channel || 'Coding train')
