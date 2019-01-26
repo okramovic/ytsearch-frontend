@@ -294,7 +294,7 @@ img.channel_thumb{
   bottom: 2em;
   left: 0;
   width: 95vw;
-  min-width: 500px;
+  /*min-width: 500px;*/
   margin: 50px;
   padding: 15px;
   
@@ -304,6 +304,11 @@ img.channel_thumb{
   background-color: white;
   border-radius: 4px;
   box-shadow: 0px 0px 2px 2px gray;
+}
+#terms p{
+  line-break: normal;
+  width:35%;
+  /*width: 100%;*/
 }
 
 .underscore_gray{
