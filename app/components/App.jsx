@@ -108,7 +108,7 @@ class HelloWorld extends React.Component {
           })
       }
     }
-    setTimeout(()=>xhr.send( JSON.stringify( {query} ) ), 6000);
+    setTimeout(()=>xhr.send( JSON.stringify( {query} ) ), 20000);
 
     this.setState({loading: true})
 
@@ -116,14 +116,16 @@ class HelloWorld extends React.Component {
   render(){
     const initial = this.state.channels.length===0
     return (
-      <div className={initial ? "initial" : 'with_results'}>
+      <div className={this.state.loading? 'centered':(initial ? "initial" : 'with_results')}>
 
         <button id="Q" onClick={this.infoClickHandler}>?</button>
         <Info visible={this.state.showInfo}/>
 
         <div style={{ display: initial ? 'block':'none' }}></div>
 
-        <div id="form_container" className={ "flex col bck_white " + ( initial ? 'corn_round': 'corn_sharp') }>
+        <div id="form_container" className={ "flex col bck_white " + ( initial ? 'corn_round': 'corn_sharp') }
+          style={{width: this.state.loading ? 'auto':'100%' }}
+          >
           <form onSubmit={this.submitHandler}>
             <input id="main" type="text" placeholder="search" ref={this.textInput}
                    onChange={this.inputChangeHandler} value={this.state.input} autocomplete="off" />
