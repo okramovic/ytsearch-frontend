@@ -3,8 +3,8 @@ body{
   margin: 0;
 }
 *{
-  /*font-family: 'Open Sans', sans-serif;*/
-  font-family: 'Geneva', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Geneva', sans-serif;*/
 }
 *, *:focus, *:active {
   outline: none;
@@ -16,8 +16,8 @@ form input[type="text"]{
   
 }
 #searchTermHeader{
-  font-family: 'Merriweather', serif;
-  font-family: 'Georgia', serif;
+  font-family: 'Crimson Text', serif;
+  /* font-family: 'Georgia', serif;*/
 }
 
 .initial{
@@ -212,6 +212,7 @@ img.channel_thumb{
   margin-bottom: 0em;
   /*padding-left: 1em;*/
   font-size: 2em;
+  line-height: 1.1;
   color: palevioletred;
   cursor: pointer;
 }
