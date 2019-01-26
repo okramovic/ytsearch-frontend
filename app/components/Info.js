@@ -34,12 +34,13 @@ class Info extends React.Component{
     
     return (
       <div id="info" className={this.props.visible? '': 'hidden'}>
-        <p>Exact phrase of what you wrote is searched for. Even spaces around words count. No further intelligence is involved so you get all results that are found. Ordering of videos in each channel is alphabetical.</p>
+        <p>Exact phrase of what you wrote is searched for. Even spaces around words count. 
+          Ordering of videos in each channel is alphabetical.
+          No further processing of results is involved so you get all non-duplicated results that are found.</p>
         <p>Search is based only on spoken content of videos. This is stored in captions that are made either by youtuber him/herself,
           the community or by YouTube's automatic speech recognition.
           In case of speech recognition it is likely that technical terms or other uncommon words will be misunderstood for others.
-          Only english language of captions is supported.
-        </p>
+          Only english language of captions is supported.</p>
         <p>Please tweet <span className="underscore_gray" >@okram_ovic</span> in case something is not as it should be. Guys, I'm sorry for the design. I am currently not able to come up with anything better.</p>
         <p>Out of supported channels, following videos unfortunately don't contain any or enough captions. Numbers behind each video title show: words available / total words estimated.</p>
         { this.state.channels.map((chan,i)=>{

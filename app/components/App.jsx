@@ -166,6 +166,7 @@ class HelloWorld extends React.Component {
             Only these two pieces of information are stored on server side, nothing else is (no IP address, no country etc). 
             They are stored for unlimited amount of time.</p>
           <p>No information is being stored in your browser.</p>
+          <p>Search accuracy is not guaranteed.</p>
           <p>By using the search tool you agree with above mentioned conditions of usage.</p>
         </div>
 
