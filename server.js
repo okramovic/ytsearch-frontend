@@ -329,21 +329,19 @@ function timeInfoToSeconds(data){
 async function getEmptyVideosFromLists(){
   return new Promise((resolve)=>{
   
-  fs.readdir('empty_lists',async (er, files)=>{
-    console.log(files)
-    //files = files.map(name=> name.replace(/()/, '$1'))
-    files = files.map(name=>{
-      return new Promise((resolve)=>{
-        const channel = name.replace(/_\d+_\d+_\d+\.json$/, '')
-        fs.readFile('empty_lists/' + name, (er, data)=>resolve({
-            channel,
-            empty_videos: JSON.parse(data)
-          })
-        )
+    fs.readdir('empty_lists',async (er, files)=>{
+      files = files.map(name=>{
+        return new Promise((resolve)=>{
+          const channel = name.replace(/_\d+_\d+_\d+\.json$/, '')
+          fs.readFile('empty_lists/' + name, (er, data)=>resolve({
+              channel,
+              empty_videos: JSON.parse(data)
+            })
+          )
+        })
       })
+      resolve( await Promise.all(files))
     })
-    return await Promise.all(files)
-  })
   })
 }
 

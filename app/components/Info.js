@@ -30,9 +30,9 @@ class Info extends React.Component{
           return (
             <div>
               <h4 className="h_nocaps"> {chan.channel}</h4>
-              { chan.names.map((title,i)=>{
-                  const href = "https://youtu.be/" + chan.ids[i]
-                  return <a key={i} href={href} target="_blank">{title}</a>
+              { chan.empty_videos.map((infoObj,i)=>{
+                  const href = "https://youtu.be/" + infoObj.id
+                  return <a key={i} href={href} target="_blank">{infoObj.title} {infoObj.ok_count}/{infoObj.ok_count + infoObj.empty_count}</a>
                 })
               }
             </div>
