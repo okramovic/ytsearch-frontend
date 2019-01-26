@@ -108,7 +108,7 @@ class HelloWorld extends React.Component {
           })
       }
     }
-    setTimeout(()=>xhr.send( JSON.stringify( {query} ) ), 10000);
+    setTimeout(()=>xhr.send( JSON.stringify( {query} ) ), 7000);
 
     this.setState({loading: true})
 
@@ -117,7 +117,8 @@ class HelloWorld extends React.Component {
     const initial = this.state.channels.length===0
     
     return (
-      <div className={this.state.loading? 'centered':(initial ? "initial" : 'with_results')}>
+      <div className={this.state.loading? 'centered':(initial ? "initial" : 'with_results')}
+          style={{height: initial? '100vh': 'auto'}}>
 
         <button id="Q" onClick={this.infoClickHandler}>?</button>
         <Info visible={this.state.showInfo}/>
@@ -152,7 +153,10 @@ class HelloWorld extends React.Component {
         </div>
 
         <div id="results_container" style={{ display: this.state.loading ? 'flex': (initial? 'none':'flex') }}>
-          <HeaderResults loading={this.state.loading} excCount={this.state.excCount} vidCount={this.state.vidCount} prevInput={this.state.prevInput}/>
+          <HeaderResults initial={initial} loading={this.state.loading} 
+                excCount={this.state.excCount} vidCount={this.state.vidCount} 
+                prevInput={this.state.prevInput}
+          />
           <UnorderedList style={{display: this.state.loading? 'none': 'flex'}} channels={this.state.channels} query={this.state.prevInput}/>
         </div>
 

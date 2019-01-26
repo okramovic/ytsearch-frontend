@@ -1,9 +1,13 @@
 const React = require('react');
 
-module.exports = ({loading, excCount, vidCount, prevInput})=>{
+module.exports = ({initial, loading, excCount, vidCount, prevInput})=>{
   
   if (loading) return(
-    <h1 id="searchTermHeader" style={{ marginTop: loading? '0.6em':'1.2em'}}>loading...</h1>
+    <h1 id="searchTermHeader" style={{ 
+        marginTop: initial? '0.6em':'1.2em',
+        textAlign: loading? 'center': ''
+      }}
+    >loading...</h1>
   )
   
   if (!excCount) return(
