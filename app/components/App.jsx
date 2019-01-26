@@ -25,7 +25,8 @@ class HelloWorld extends React.Component {
       prevInput:'',
       channels:[],
       vidCount: 0,
-      excCount: -1
+      excCount: -1,
+      showTerms: false
     }
   }
   componentDidMount(){
@@ -145,8 +146,12 @@ class HelloWorld extends React.Component {
 
 
         <div id='mycredit' style={{ position: initial ? 'static':'fixed' }}>
+          <div className="pad_lr_15"></div>
           <p>made in Vienna by <a href='https://twitter.com/okram_ovic' target='_blank'>me</a></p>
+          <button>Terms</button>
         </div>
+        
+        <div id="terms">All valid search requests are stored with date it was made. I</div>
 
       </div>
     );
