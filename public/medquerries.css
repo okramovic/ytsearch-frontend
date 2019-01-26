@@ -31,6 +31,9 @@
     margin-inline-end: 15px;
     width: 100%;
   }
+  .channel_header.title_collapsed{
+    margin-top: .5em;
+  }
   .channel_inner > h3{
     padding-left: .7em;
   }

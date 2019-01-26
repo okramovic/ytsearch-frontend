@@ -219,8 +219,16 @@ img.channel_thumb{
   color: palevioletred;
   cursor: pointer;
 }
+.channel_header.title_collapsed{
+  margin-top: 0;
+}
 .channel_header:first-of-type{
   margin-top: .5em;
+}
+
+
+.channel_header:first-of-type .title_collapsed{
+  /*margin-top: .5em;*/
 }
 .singleExcerpt:first-of-type{
   padding-top: 1em;
