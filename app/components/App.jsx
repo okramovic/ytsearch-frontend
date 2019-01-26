@@ -14,11 +14,13 @@ class HelloWorld extends React.Component {
     this.infoClickHandler = this.infoClickHandler.bind(this)
     this.channelChoiceHandler = this.channelChoiceHandler.bind(this)
     this.checkboxHandler = this.checkboxHandler.bind(this)
+    this.termsHandler = this.termsHandler.bind(this)
     
     this.textInput = React.createRef();
     
     this.state = {
       showInfo: false,
+      showTerms: false,
       showChannelChoice: false,
       suppChannels: [],
       input: '',
@@ -26,7 +28,7 @@ class HelloWorld extends React.Component {
       channels:[],
       vidCount: 0,
       excCount: -1,
-      showTerms: false
+      
     }
   }
   componentDidMount(){
@@ -43,6 +45,12 @@ class HelloWorld extends React.Component {
   }
   infoClickHandler(ev){
     this.setState((prev)=>({showInfo: !prev.showInfo}))
+  }
+  termsHandler(){
+    this.setState({
+      showInfo: false,
+      showTerms: true,
+    })
   }
   channelChoiceHandler(ev){
     this.setState((prev)=>({showChannelChoice: !prev.showChannelChoice}))
@@ -151,7 +159,7 @@ class HelloWorld extends React.Component {
           <button>Terms</button>
         </div>
         
-        <div id="terms">All valid search requests are stored with date it was made. I</div>
+        <div id="terms" style={{displaz}}>All valid search requests are stored with date it was made. I</div>
 
       </div>
     );

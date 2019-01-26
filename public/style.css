@@ -289,6 +289,14 @@ img.channel_thumb{
   background-color: transparent;
 }
 
+#terms{
+  position: fixed;
+  bottom: 2em;
+  left: 0;
+  width: 95vw;
+  z-index: 3;
+}
+
 .underscore_gray{
   /*text-decoration: underline #ccc;*/
   border-bottom: 2px solid #ccc;
