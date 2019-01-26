@@ -108,7 +108,7 @@ class HelloWorld extends React.Component {
           })
       }
     }
-    setTimeout(()=>xhr.send( JSON.stringify( {query} ) ), 3000);
+    setTimeout(()=>xhr.send( JSON.stringify( {query} ) ), 10000);
 
     this.setState({loading: true})
 
