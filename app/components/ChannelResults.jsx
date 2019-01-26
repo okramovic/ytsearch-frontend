@@ -35,7 +35,8 @@ class ChannelRes extends React.Component{
     
     
     return (
-      <li className="channel_results" className={this.state.shown ? 'channel_results margTB65':'channel_results margTB10'}>
+      <li className={'channel_results ' + (this.state.shown ? 'margTB65':'margTB10')}
+          style={{paddingBottom: this.state.shown? '16px': '0px'}}>
         <div className="channel_outer">
           <div className="channel_inner">
             <img src={iconUrl} className="channel_thumb"></img>

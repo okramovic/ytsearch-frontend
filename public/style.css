@@ -140,6 +140,9 @@ ul{
   padding-inline-start: 40px;
   
 }
+li.channel_results{
+  padding-bottom: 16px;
+}
 li:last-child{
   margin-bottom: 150px;
 }
@@ -221,6 +224,7 @@ img.channel_thumb{
 }
 .channel_header.title_collapsed{
   margin-top: 0;
+  padding-bottom:0;
 }
 .channel_header:first-of-type{
   margin-top: .5em;
