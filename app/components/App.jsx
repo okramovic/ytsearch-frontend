@@ -101,8 +101,9 @@ class HelloWorld extends React.Component {
     <div className={this.state.channels.length==0? "initial" : 'with_results'}>
 
       <button id="Q" onClick={this.infoClickHandler}>?</button>
-      
       <Info visible={this.state.showInfo}/>
+      
+      <div style={{ display: this.state.channels.length? 'none':'block' }}></div>
       
       <div id="form_container" className={ "flex col bck_white " + (this.state.channels.length===0 ? 'corn_round': 'corn_sharp') }>
         <form onSubmit={this.submitHandler}>
@@ -136,7 +137,7 @@ class HelloWorld extends React.Component {
       
 
       
-      <div id='mycredit'>
+      <div id='mycredit' style={{ position: this.state.channels.length ? 'fixed':'absolute' }}>
         <p>made by me</p>
       </div>
       
