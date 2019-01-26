@@ -1,8 +1,11 @@
 body{
-  background-color: #bbb; /*#333;/*#f2f2f2;*/
+  background-color: #ddd; /*#333;/*#f2f2f2;*/
   margin: 0;
 }
 *{
+  /*
+  https://www.w3schools.com/cssref/css_websafe_fonts.asp
+  */
   font-family: 'Open Sans', sans-serif;
   /*font-family: 'Geneva', sans-serif;*/
 }
