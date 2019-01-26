@@ -38,10 +38,10 @@ class HelloWorld extends React.Component {
         this.setState({suppChannels: obj})
       })
       if (innerWidth>500) {
-        console.log('over 500',this.textInput.current );
+        //console.log('over 500',this.textInput.current );
         this.textInput.current.focus();
         this.textInput.current.placeholder = ''
-      } else console.log('not 500')
+      } //else console.log('not 500')
   }
   infoClickHandler(ev){
     this.setState((prev)=>({showInfo: !prev.showInfo, showTerms: false}))
@@ -163,10 +163,10 @@ class HelloWorld extends React.Component {
         <div id="terms" style={{display: this.state.showTerms ? 'flex': 'none'}}>
           <h4>Terms of service & Privacy policy</h4>
           <p>All valid search requests are stored with date it was made. 
-            Only these two pieces of information are stored on server side, nothing else (no IP address, no country etc). 
+            Only these two pieces of information are stored on server side, nothing else is (no IP address, no country etc). 
             They are stored for unlimited amount of time.</p>
           <p>No information is being stored in your browser.</p>
-          <p>By using the search tool, you agree with above mentioned conditions of usage.</p>
+          <p>By using the search tool you agree with above mentioned conditions of usage.</p>
         </div>
 
       </div>

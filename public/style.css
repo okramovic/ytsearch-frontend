@@ -306,7 +306,8 @@ img.channel_thumb{
   box-shadow: 0px 0px 2px 2px gray;
 }
 #terms p{
-  line-break: normal;
+  text-align: center;
+  /*line-break: normal;
   /*width:5%;
   /*width: 100%;*/
 }
