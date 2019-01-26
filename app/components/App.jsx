@@ -108,13 +108,14 @@ class HelloWorld extends React.Component {
           })
       }
     }
-    setTimeout(()=>xhr.send( JSON.stringify( {query} ) ), 20000);
+    setTimeout(()=>xhr.send( JSON.stringify( {query} ) ), 3000);
 
     this.setState({loading: true})
 
 }
   render(){
     const initial = this.state.channels.length===0
+    
     return (
       <div className={this.state.loading? 'centered':(initial ? "initial" : 'with_results')}>
 
@@ -124,7 +125,7 @@ class HelloWorld extends React.Component {
         <div style={{ display: initial ? 'block':'none' }}></div>
 
         <div id="form_container" className={ "flex col bck_white " + ( initial ? 'corn_round': 'corn_sharp') }
-          style={{width: this.state.loading ? 'auto':'100%' }}
+          style={{ width:  getFormContanierWidth(initial, this.state.loading)   }}
           >
           <form onSubmit={this.submitHandler}>
             <input id="main" type="text" placeholder="search" ref={this.textInput}
@@ -181,7 +182,13 @@ class HelloWorld extends React.Component {
 
 module.exports = HelloWorld;
 
-
+function getFormContanierWidth(initial, loading){
+  if(!loading && initial) return 'auto'
+  if(!loading && !initial) return '100%'
+  if(loading && !initial) return '100%'
+     
+  return initial? 'auto': (loading ? 'auto':'100%') 
+}
 
 function secondsToHumanTime(num){
     const sec = num % 60
