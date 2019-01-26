@@ -75,11 +75,9 @@ app.post('/searchtext', async (req,res)=>{
 })
 
 app.post('/nowords', async (req,res)=>{
-  const channel = 'Coding train'
-
-  
-  
-  //res.send(dirResults)
+  const empty = await getEmptyVideosFromLists()
+  console.log('no words', empty)
+  res.send(empty)
 })
 
 //app.listen(6707, ()=>console.log('server on 6707'))
@@ -329,12 +327,23 @@ function timeInfoToSeconds(data){
 
 
 async function getEmptyVideosFromLists(){
+  return new Promise((resolve)=>{
   
-  fs.readDir('empty_lists',(er, files)=>{
+  fs.readdir('empty_lists',async (er, files)=>{
+    console.log(files)
     //files = files.map(name=> name.replace(/()/, '$1'))
     files = files.map(name=>{
-      fs.read
+      return new Promise((resolve)=>{
+        const channel = name.replace(/_\d+_\d+_\d+\.json$/, '')
+        fs.readFile('empty_lists/' + name, (er, data)=>resolve({
+            channel,
+            empty_videos: JSON.parse(data)
+          })
+        )
+      })
     })
+    return await Promise.all(files)
+  })
   })
 }
 
