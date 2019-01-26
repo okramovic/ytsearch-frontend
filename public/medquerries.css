@@ -40,6 +40,9 @@
 
 
 @media (min-width: 601px) {
+  .with_results #form_container{
+     width: 100vw; 
+  }
   #form_container{
     /*border-radius: 4px;*/
   }
