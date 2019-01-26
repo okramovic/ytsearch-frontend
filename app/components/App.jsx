@@ -108,7 +108,6 @@ class HelloWorld extends React.Component {
         <form onSubmit={this.submitHandler}>
           <input id="main" type="text" placeholder="search" 
                  onChange={this.inputChangeHandler} value={this.state.input} autocomplete="off" />
-          
         </form>
         <div className="full_width flex onsides pad_bot_em bck_white">
             <div className="pad_lr_15"></div>

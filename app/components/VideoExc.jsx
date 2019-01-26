@@ -8,7 +8,7 @@ class VideoList extends React.Component{
     //this.inputChangeHandler = this.inputChangeHandler.bind(this)
     
     this.state = {
-      show: true
+      show: false
     }
   }
   clickHandler(ev){
@@ -20,10 +20,11 @@ class VideoList extends React.Component{
   render(){
       const vid = this.props.vid
       
-      // className={this.state.show ? '':'hidden'}
+      // className={this.state.show ? '':'hidden'}  style={padingBottom}
       return (
               <div > 
-                  <h2 className="channel_header" videoname={this.props.title} onClick={this.clickHandler}>{this.props.title}</h2>
+                  <h2 className={ "channel_header " + (this.state.show? '':'title_collapsed') }
+                    videoname={this.props.title} onClick={this.clickHandler}>{this.props.title}</h2>
   
                 {this.props.videos.map((e,i)=>{
                   if (!this.state.show) return null;
