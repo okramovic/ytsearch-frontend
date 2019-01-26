@@ -40,7 +40,8 @@ class VideoList extends React.Component{
                     <a href={'https://youtu.be/'+ vid +'?t='+e.time} 
                        target="_blank">{secondsToHumanTime(e.time)}</a>
                     <p className="excerpt_text">{
-                        e.text.replace( re, '<span className="highlighted">' +'$1' + '</span>')
+                        //e.text.replace( re, '<span className="highlighted">' +'$1' + '</span>')
+                        getHighlightedText(e.text, this.props.query) 
                         // highlight words from query
                         /*e.text.split(' ').map(w=>{
                           if (!w) return w;
@@ -63,6 +64,18 @@ class VideoList extends React.Component{
 
 module.exports = VideoList;
 
+
+function getHighlightedText(text, higlight) {
+    // Split on higlight term and include term into parts
+    let parts = text.split(new RegExp(`(${higlight})`, 'g'));
+    return <span> { parts.map((part, i) => 
+        <span key={i} className={ part === higlight ? 'highlighted':''}>
+            { part }
+        </span>)
+    } </span>;
+  
+  // style={part === higlight ? { fontWeight: 'bold' } : {} }
+}
 
 function secondsToHumanTime(num){
     const sec = num % 60

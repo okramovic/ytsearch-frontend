@@ -258,8 +258,8 @@ img.channel_thumb{
 /* .excerpt_text{} */
 .highlighted{
   background-color: pink;
-  /*padding-left: 0.5em;*/
-  margin-right: 0.21em;
+  /*padding-left: 0.5em;
+  margin-right: 0.21em;*/
 }
 #bottomBuffer{
   height: 120px;
