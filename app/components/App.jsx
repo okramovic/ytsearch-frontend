@@ -15,6 +15,7 @@ class HelloWorld extends React.Component {
     this.channelChoiceHandler = this.channelChoiceHandler.bind(this)
     this.checkboxHandler = this.checkboxHandler.bind(this)
     
+    this.textInput = React.createRef();
     
     this.state = {
       showInfo: false,
@@ -33,6 +34,10 @@ class HelloWorld extends React.Component {
         const obj = res.map(chan=>({name: chan, active:true}))
         this.setState({suppChannels: obj})
       })
+      if (innerWidth>500) {
+        console.log('over 500');
+        this.textInput.current.focus();
+      } else console.log('not 500')
   }
   infoClickHandler(ev){
     this.setState((prev)=>({showInfo: !prev.showInfo}))
@@ -108,7 +113,7 @@ class HelloWorld extends React.Component {
 
         <div id="form_container" className={ "flex col bck_white " + ( initial ? 'corn_round': 'corn_sharp') }>
           <form onSubmit={this.submitHandler}>
-            <input id="main" type="text" placeholder="search" 
+            <input id="main" type="text" placeholder="search" ref={this.textInput}
                    onChange={this.inputChangeHandler} value={this.state.input} autocomplete="off" />
           </form>
           <div className="full_width flex onsides pad_bot_em bck_white">
