@@ -22,15 +22,9 @@ class Info extends React.Component{
     }))
   }
   toggleHandler(name){
-    console.log('name', name)
-    //()=> this.state[chan.channel]
+    // toggle visibility of empty video list
     this.setState(prev=>{
       const val = !prev[name]
-      console.log(name,  prev[name], 'now',val)
-      
-      //const key = 
-      //return prev
-      //return {name: val}
       return { [name]:val}
     })
   }
