@@ -34,11 +34,13 @@ class VideoList extends React.Component{
                 {this.props.videos.map((e,i)=>{
                   if (!this.state.show) return null;
                 
+                  const re = new RegExp( '('+ this.props.query + ')' ,'g')
+                  
                   return (<div className="singleExcerpt">
                     <a href={'https://youtu.be/'+ vid +'?t='+e.time} 
                        target="_blank">{secondsToHumanTime(e.time)}</a>
                     <p className="excerpt_text">{
-                        e.text
+                        e.text.replace( re, '<span className="highlighted">' +'$1' + '</span>')
                         // highlight words from query
                         /*e.text.split(' ').map(w=>{
                           if (!w) return w;
