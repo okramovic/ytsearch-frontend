@@ -112,7 +112,7 @@ class HelloWorld extends React.Component {
         </form>
         <div className="full_width flex onsides pad_bot_em bck_white">
             <div className="pad_lr_15"></div>
-            <p className="no_margin">fulltext search in your</p>
+            <p className="no_margin">fulltext search in your favourite channels</p>
             <button className="no_border no_bck pad_lr_15" 
                     onClick={this.channelChoiceHandler}>{this.state.showChannelChoice ? '▲':'▼' }</button>
         </div>

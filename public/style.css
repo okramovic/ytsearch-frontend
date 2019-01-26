@@ -3,7 +3,8 @@ body{
   margin: 0;
 }
 *{
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-family: 'Geneva', sans-serif;
 }
 *, *:focus, *:active {
   outline: none;
@@ -12,6 +13,11 @@ body{
 form input[type="text"]{
   /*font-family: 'IBM Plex Serif', serif;
   font-weight: 300;*/
+  
+}
+#searchTermHeader{
+  font-family: 'Merriweather', serif;
+  font-family: 'Georgia', serif;
 }
 
 .initial{
@@ -189,7 +195,6 @@ img.channel_thumb{
   outline: none;
 }
 #searchTermHeader{
-  font-family: 'IBM Plex Serif', serif;
   width: 80%;
   margin: auto;
   margin-top: 1.2em;
