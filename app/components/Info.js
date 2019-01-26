@@ -3,6 +3,7 @@ const React = require('react');
 class Info extends React.Component{
   constructor(props){
     super(props)
+    this.toggleHandler = this.toggleHandler.bind(this)
     this.state ={
       channels: []
     }
@@ -19,6 +20,19 @@ class Info extends React.Component{
       
       return {channels: res}
     }))
+  }
+  toggleHandler(name){
+    console.log('name', name)
+    //()=> this.state[chan.channel]
+    this.setState(prev=>{
+      const val = !prev[name]
+      console.log(name,  prev[name], 'now',val)
+      
+      //const key = 
+      //return prev
+      //return {name: val}
+      return { [name]:val}
+    })
   }
   render(){
     
@@ -37,8 +51,8 @@ class Info extends React.Component{
         { this.state.channels.map((chan,i)=>{
           return (
             <div>
-              <h4 className="h_nocaps"> {chan.channel}</h4>
-              <div className={ this.state[chan.channel]? '': 'hidden'}>
+              <h4 className="h_nocaps" onClick={()=>this.toggleHandler(chan.channel) }> {chan.channel}</h4><span>click to open</span>
+              <div className={ this.state[chan.channel] ? '': 'hidden'}>
               { chan.empty_videos.map((infoObj,i)=>{
                   const href = "https://youtu.be/" + infoObj.id
                   return <a key={i} href={href} target="_blank">{infoObj.title} {infoObj.ok_count}/{infoObj.ok_count + infoObj.empty_count}</a>
