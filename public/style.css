@@ -154,6 +154,9 @@ li:last-child{
   padding-right: 40px;*/
   border-radius: 4px;
 }
+.channel_results:first-of-type{
+   margin-top: 0;
+}
 .channel_results:last-of-type{
   /*padding-bottom: 120px;*/
 }
@@ -180,13 +183,14 @@ img.channel_thumb{
   outline: none;
 }
 #searchTermHeader{
+  font-family: 'Orbitron', sans-serif;
   width: 80%;
   margin: auto;
   margin-top: 1.2em;
   margin-bottom: 1.2em;
   text-align: center;
   font-size: 2.6em;
-  color: white;
+  color: black;
   /*background-color: white;*/
   border-radius: 4px;
 }
