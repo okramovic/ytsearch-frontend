@@ -41,7 +41,7 @@ class Info extends React.Component{
           Only english language of captions is supported.
         </p>
         <p>Please tweet <span className="underscore_gray" >@okram_ovic</span> in case something is not as it should be. Guys, I'm sorry for the design...</p>
-        <p>Out of supported channels, following videos unfortunately don't contain enough captions. Numbers behind each video title show: words present out of words total.</p>
+        <p>Out of supported channels, following videos unfortunately don't contain enough captions. Numbers behind each video title show: words present / words total.</p>
         { this.state.channels.map((chan,i)=>{
           if (!chan.empty_videos.length) return null;
           return (
@@ -50,10 +50,22 @@ class Info extends React.Component{
                 <h4 className="h_nocaps"> {chan.channel} ({chan.empty_videos.length})</h4>
                 <span className="pad_lr_15 noselect collapse_button">{ this.state[chan.channel]?'hide':'expand'}</span>
               </div>
-              <div className={ this.state[chan.channel] ? '': 'hidden'}>
-              { chan.empty_videos.map((infoObj,i)=>{
+              <div className={ this.state[chan.channel] ? 'flex col': 'hidden'}>
+              { chan.empty_videos.sort((a,b)=>{
+                  if (/^ ?live stream #(\d+)/i.test(a.title) && /^ ?live stream #(\d+)/i.test(b.title)){
+                    let numA = a.title.match(/^ ?live stream #(\d+)/i),
+                        numB = a.title.match(/^ ?live stream #(\d+)/i)
+                        numA = numA[1]
+                        numB = numB[1]
+                    
+                    return numA-numB
+                  }
+                  const x = b.title.toLowerCase() >= a.title.toLowerCase()
+                  return x ? -1 : 1
+                })
+                .map((infoObj,i)=>{
                   const href = "https://youtu.be/" + infoObj.id
-                  return <a key={i} href={href} target="_blank">{infoObj.title} {infoObj.ok_count}/{infoObj.ok_count + infoObj.empty_count}</a>
+                  return <a key={i} href={href} target="_blank">{infoObj.title} ({infoObj.ok_count}/{infoObj.ok_count + infoObj.empty_count})</a>
                 })
               }
               </div>
