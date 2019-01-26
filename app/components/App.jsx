@@ -145,7 +145,7 @@ class HelloWorld extends React.Component {
 
 
         <div id='mycredit' style={{ position: initial ? 'static':'fixed' }}>
-          <p>made by me</p>
+          <p>made in Vienna by <a href='https://twitter.com/okram_ovic' target='_blank'>me</a></p>
         </div>
 
       </div>

@@ -281,6 +281,9 @@ img.channel_thumb{
 #mycredit p{
   margin: 8px;
 }
+#mycredit a:visited{
+  color: black;
+}
 
 .underscore_gray{
   /*text-decoration: underline #ccc;*/
