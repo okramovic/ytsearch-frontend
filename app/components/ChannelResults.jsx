@@ -68,7 +68,7 @@ function getIconURL(channel){
     let iconUrl = ''
 
     if ( channel == 'Coding train') iconUrl = CT
-    else if (channel.match(/fastai/))  iconUrl = Jeremy
+    else if (channel.match(/^jeremy howard/i))  iconUrl = Jeremy
     else if (channel.match(/siraj raval/i))  iconUrl = Siraj
     else if (channel.match(/two minute papers/i))  iconUrl = Twominute
     else if (channel.match(/Statistics of DOOM/i))  iconUrl = StatOfDOOM
