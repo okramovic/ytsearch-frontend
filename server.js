@@ -355,7 +355,8 @@ async function getEmptyVideosFromLists(){
   return new Promise((resolve)=>{
   
     fs.readdir('empty_lists',async (er, files)=>{
-      files = files.map(name=>{
+      files = files.filter(name=>!name.match(/^(\.DS_store|25 jan 2019|Jeremy Howard_2019_1_27.json)$/i))
+      .map(name=>{
         return new Promise((resolve)=>{
           const channel = name.replace(/_\d+_\d+_\d+\.json$/, '')
           fs.readFile('empty_lists/' + name, (er, data)=>resolve({
