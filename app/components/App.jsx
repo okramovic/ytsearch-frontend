@@ -75,12 +75,15 @@ class HelloWorld extends React.Component {
     const query = this.state.input
     const chans = '?channels=' + this.state.suppChannels.filter(chan=>chan.active).map(chan=>chan.name)
     console.log('submitted', typeof query, query, chans)
-    if (!query || query.trim()=='' || 
-         query.trim().length == 1 || 
-        /^\d+$/.test(query) || chans== '?channels=') {
+    
+    if (!query || query.trim()=='' || query.trim().length == 1 || /^\d+$/.test(query) ) {
       
       this.setState({loadText: 'Input must be longer than 1 character. Only numbers not allowed.'})
       return console.log('not valid search');
+      
+    } else if (chans== '?channels='){
+      this.setState({loadText: 'Select at least one channel to search in.'})
+      return console.log('not valid search, no channels');
     }
 
     document.querySelector('form input').blur()
@@ -161,8 +164,8 @@ class HelloWorld extends React.Component {
                className={ 'col ' + (this.state.showChannelChoice? ' flex ':' hidden ') }>
               <h5>less channels equals less waiting time</h5>
               {this.state.suppChannels.map((chan, i)=>{
-                 return (<div onClick={()=>this.checkboxHandler(chan.name)}>
-                     <input type="checkbox" value={chan.name} checked={chan.active}/>
+                 return (<div onClick={()=>this.checkboxHandler(chan.name)} className="flex">
+                     <input type="checkbox" value={chan.name} checked={chan.active} style={{display: 'none'}}/>
                      <div className="checkboxy" style={{backgroundColor: chan.active? 'palevioletred':'white'}}></div>
                      <span key={i}>{chan.name}</span>
                   </div>
