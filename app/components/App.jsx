@@ -112,7 +112,9 @@ class HelloWorld extends React.Component {
           })*/
       }
     }
-    setTimeout(()=>xhr.send( JSON.stringify( {query} ) ), 3000);
+    //setTimeout(()=>
+               xhr.send( JSON.stringify( {query} ) )
+    //, 3000);
 
     if (self.mytimer) clearInterval(self.mytimer)
     
