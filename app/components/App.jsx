@@ -74,7 +74,7 @@ class HelloWorld extends React.Component {
     
     const query = this.state.input
     const chans = '?channels=' + this.state.suppChannels.filter(chan=>chan.active).map(chan=>chan.name)
-    console.log('submitted', typeof query, query, chans)
+    console.log('submitted', query, chans)
     
     if (!query || query.trim()=='' || query.trim().length == 1 || /^\d+$/.test(query) ) {
       
@@ -83,9 +83,10 @@ class HelloWorld extends React.Component {
       
     } else if (chans== '?channels='){
       this.setState({loadText: 'Select at least one channel to search in.'})
-      return console.log('not valid search, no channels');
+      return console.log('no channels');
     }
 
+    this.setState({loadText:'loading'})
     document.querySelector('form input').blur()
     
     
@@ -127,7 +128,7 @@ class HelloWorld extends React.Component {
       if (!self.state.loading) clearInterval(self.mytimer)
         
       self.setState(prev=>({loadText: prev.loadText.length<12? prev.loadText+='.': 'loading.'}))
-      console.log(self.state.loadText)
+      //console.log(self.state.loadText)
     }, 1000)
 
 }
@@ -166,7 +167,10 @@ class HelloWorld extends React.Component {
               {this.state.suppChannels.map((chan, i)=>{
                  return (<div onClick={()=>this.checkboxHandler(chan.name)} className="flex">
                      <input type="checkbox" value={chan.name} checked={chan.active} style={{display: 'none'}}/>
-                     <div className="checkboxy" style={{backgroundColor: chan.active? 'palevioletred':'white'}}></div>
+                     <div className="checkboxy" style={{
+                         //backgroundColor: chan.active? 'palevioletred':'white',
+                         boxShadow: chan.active? '0 0 0 6px palevioletred inset' : 'none'
+                      }}></div>
                      <span key={i}>{chan.name}</span>
                   </div>
                 )
@@ -215,7 +219,7 @@ module.exports = HelloWorld;
 
 function getHeaderDisplayValue(text, loading, initial){
   
-    if (text.match(/input must be/i)) return 'flex'
+    if (text.match(/(input must be|select at least one channel)/i)) return 'flex'
 
     return loading ? 'flex': (initial? 'none':'flex')
 }

@@ -123,6 +123,9 @@ form p{
   border-radius: 3px;
   margin-right: 0.3em;
 }
+.checkboxy:after{
+  /*background-color:blue;*/
+}
 
 h3{
   margin-top: 1.5em;
