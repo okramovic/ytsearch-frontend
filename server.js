@@ -355,18 +355,31 @@ async function getEmptyVideosFromLists(){
   return new Promise((resolve)=>{
   
     fs.readdir('empty_lists',async (er, files)=>{
-      files = files.filter(name=>!name.match(/^(\.DS_store|25 jan 2019|Jeremy Howard_2019_1_27.json)$/i))
+      files = files
+      .filter(name=>!name.match(/^(\.DS_store|25 jan 2019|Jeremy Howard_2019_1_27.json)$/i))
       .map(name=>{
         return new Promise((resolve)=>{
           const channel = name.replace(/_\d+_\d+_\d+\.json$/, '')
-          fs.readFile('empty_lists/' + name, (er, data)=>resolve({
-              channel,
-              empty_videos: JSON.parse(data)
+          fs.readFile('empty_lists/' + name, (er, data)=>{
+            data = JSON.parse(data)
+            // get unique video info, no duplicates
+            const uniq = [] // files contain duplicities (at least in Coding train), idk why currently
+            data.map(oldvid=>{ 
+              if (!uniq.find(video=> video.title === oldvid.title) ) uniq.push(oldvid)
             })
-          )
+
+            resolve({
+              channel,
+              empty_videos: uniq //Array.from(new Set(data))
+            })
+          })
         })
       })
-      resolve( await Promise.all(files))
+      files = await Promise.all(files)
+      const uniqFiles = Array.from(new Set(files))
+      console.log('files -> uniq',files.length, uniqFiles.length)
+
+      resolve( uniqFiles)
     })
   })
 }
