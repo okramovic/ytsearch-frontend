@@ -161,9 +161,9 @@ class HelloWorld extends React.Component {
                className={ 'col ' + (this.state.showChannelChoice? ' flex ':' hidden ') }>
               <h5>less channels equals less waiting time</h5>
               {this.state.suppChannels.map((chan, i)=>{
-                 return (<div>
-                     <input type="checkbox" value={chan.name} checked={chan.active}
-                         onClick={()=>this.checkboxHandler(chan.name)}/>
+                 return (<div onClick={()=>this.checkboxHandler(chan.name)}>
+                     <input type="checkbox" value={chan.name} checked={chan.active}/>
+                     <div className="checkboxy" style={{backgroundColor: chan.active? 'palevioletred':'white'}}></div>
                      <span key={i}>{chan.name}</span>
                   </div>
                 )

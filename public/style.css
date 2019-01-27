@@ -116,6 +116,13 @@ form p{
 #channelChoice h5{
   margin-top: 0;
 }
+.checkboxy{
+  width: 14px;
+  height:14px;
+  border: 1px solid gray;
+  border-radius: 3px;
+}
+
 h3{
   margin-top: 1.5em;
   font-size: 1.5em;
