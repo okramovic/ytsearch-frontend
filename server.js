@@ -10,8 +10,8 @@ app.use(express.static('public'));
 
 
 app.get("/", (req, res)=>{
-  res.send('locked')
-  //res.sendFile(__dirname + '/app/index.html');
+  //res.send('locked')
+  res.sendFile(__dirname + '/app/index.html');
 });
 
 app.get('/dirs', async (req, res)=> {
@@ -356,7 +356,7 @@ async function getEmptyVideosFromLists(){
   
     fs.readdir('empty_lists',async (er, files)=>{
       files = files
-      .filter(name=>!name.match(/^(\.DS_store|25 jan 2019|Jeremy Howard_2019_1_27.json)$/i))
+      .filter(name=>!name.match(/^(\.DS_store|Jeremy Howard_2019_1_27.json)$/i))
       .map(name=>{
         return new Promise((resolve)=>{
           const channel = name.replace(/_\d+_\d+_\d+\.json$/, '')
