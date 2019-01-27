@@ -59,14 +59,13 @@ class HelloWorld extends React.Component {
     this.setState((prev)=>({showChannelChoice: !prev.showChannelChoice}))
   }
   checkboxHandler(ev,name){
-    console.log(ev, name)
+    
     this.setState((prev)=>{
       const sel = prev.suppChannels.find(chan=>chan.name===name)
       sel.active= !sel.active
       return {suppChannels: prev.suppChannels}
-    }) //, ()=> console.log('updated',this.state.suppChannels))
-    ev.preventDefault()
-    return false
+    })
+    //ev.preventDefault(); return false
   }
   inputChangeHandler(ev){
       this.setState({input: ev.target.value })
