@@ -10,8 +10,8 @@ app.use(express.static('public'));
 
 
 app.get("/", (req, res)=>{
-  res.send('locked')
-  //res.sendFile(__dirname + '/app/index.html');
+  //res.send('locked')
+  res.sendFile(__dirname + '/app/index.html');
 });
 
 app.get('/dirs', async (req, res)=> {
@@ -82,16 +82,17 @@ app.post('/searchtext', async (req,res)=>{
 
 app.post('/nowords', async (req,res)=>{
   const empty = await getEmptyVideosFromLists()
-  console.log('no words', empty)
+  console.log('no words', empty.length)
   res.send(empty)
 })
 
 //app.listen(6707, ()=>console.log('server on 6707'))
-const listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
+const listener = app.listen(3005, ()=>{
+  console.log('on port ' + 3005);
 });
 
-//let timer = setInterval(saveLogs, 180000)
+
+let timer = setInterval(saveLogs, 59000) // glitch sleeps in 5 min
 
 
 function saveLogs(){
@@ -297,36 +298,6 @@ function searchFilesinDir(channel, string){
 }
 
 
-function writeCapsFile(data, path){
-  return new Promise((resolve, reject)=>{
-    
-    // convert every time info to seconds since thats used in YT url with time info
-    timeInfoToSeconds(data)
-    //console.log(data.times.length, data.cc.length)
-
-    // give every word its timecode in seconds
-    const words = []
-    data.cc.map((piece,i)=>{
-        const pieceWords = piece.split(/ /g)
-        const seconds = data.times[i]
-
-        const mapped = pieceWords.map(w=>[w, seconds])
-        words.push(...mapped)
-    })
-
-    //data.text_merged = data.cc.join(' ')
-    const newData = {title: data.title, fromid: data.fromid, words}
-    
-    
-    fs.writeFile(path, JSON.stringify(newData), er =>{ 
-        if (er) console.log(er, 'err writing file')
-        else console.log('file saved', data.fromid)
-
-        resolve(200)
-    })
-  })
-}
-
 // i only send floored seconds from extension = no decimals
 function timeInfoToSeconds(data){
   
@@ -432,4 +403,34 @@ async function scanFilesOld(){
   dirResults = await Promise.all(dirResults)
   
   console.log('dir results', dirResults)
+}
+
+function writeCapsFile(data, path){
+  return new Promise((resolve, reject)=>{
+    
+    // convert every time info to seconds since thats used in YT url with time info
+    timeInfoToSeconds(data)
+    //console.log(data.times.length, data.cc.length)
+
+    // give every word its timecode in seconds
+    const words = []
+    data.cc.map((piece,i)=>{
+        const pieceWords = piece.split(/ /g)
+        const seconds = data.times[i]
+
+        const mapped = pieceWords.map(w=>[w, seconds])
+        words.push(...mapped)
+    })
+
+    //data.text_merged = data.cc.join(' ')
+    const newData = {title: data.title, fromid: data.fromid, words}
+    
+    
+    fs.writeFile(path, JSON.stringify(newData), er =>{ 
+        if (er) console.log(er, 'err writing file')
+        else console.log('file saved', data.fromid)
+
+        resolve(200)
+    })
+  })
 }

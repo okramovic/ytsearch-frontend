@@ -2,13 +2,13 @@
   "//1": "describes your app and its dependencies",
   "//2": "https://docs.npmjs.com/files/package.json",
   "//3": "updating this file will download and update your packages",
-  "name": "starter-react",
-  "version": "0.0.1",
-  "description": "A small scaffold to get you started using React with Webpack",
+  "name": "yt-search",
+  "version": "0.2.0",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack && node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.16.3",
@@ -22,9 +22,10 @@
     "node": "8.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/starter-react"
+    "url": ""
   },
   "license": "MIT",
+  "author": "marko bogdanovic",
   "keywords": [
     "node",
     "glitch",
