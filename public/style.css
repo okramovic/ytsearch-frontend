@@ -414,6 +414,8 @@ img.channel_thumb{
   border-radius: 4px;
   box-shadow: 0px 0px 2px 2px gray;
 }
+#terms_inner{
+}
 #terms p{
   text-align: center;
   /*line-break: normal;
