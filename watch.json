@@ -8,9 +8,7 @@
   "restart": {
     "exclude": [
       "^public/",
-      "^dist/",
-      "^empty_lists/",
-      "^channel_data/"
+      "^dist/"
     ],
     "include": [
       "\\.js$",
