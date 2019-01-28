@@ -397,6 +397,7 @@ img.channel_thumb{
   min-width: 500px;
   margin: 50px;*/
   padding: 15px;
+  overflow-y: scroll;
   
   -webkit-box-orient:vertical;
   
