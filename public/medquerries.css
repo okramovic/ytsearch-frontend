@@ -43,11 +43,13 @@
   #mycredit p{
     margin: .25em;
   }
+  #mycredit button{
+    left: 0em;
+  }
   
   #terms{
     margin:0;
     max-width: 100vw;
-    /*min-width: 100%;*/
     border-radius: 0px;
   }
 }
