@@ -474,6 +474,9 @@ img.channel_thumb{
   margin-top: 1em;
 }
 
+.text_align_center{
+  text-align: center;
+}
 .pad_lr_15{
   padding-left: 15px;
   padding-right:15px;
