@@ -159,7 +159,7 @@ class HelloWorld extends React.Component {
           </form>
           <div className="full_width flex onsides pad_bot_em bck_white">
               <div className="pad_lr_15"></div>
-              <p className="no_margin">fulltext search in your favourite channels</p>
+              <p className="no_margin">Fulltext search in your favourite Youtube channels</p>
               <button className="no_border no_bck pad_lr_15" 
                       onClick={this.channelChoiceHandler}>{this.state.showChannelChoice ? '▲':'▼' }</button>
           </div>
@@ -194,7 +194,7 @@ class HelloWorld extends React.Component {
 
         <div id='mycredit' style={{ position: this.state.loading? 'fixed':(initial ? 'static':'fixed') }}>
           <div className="pad_lr_15"></div>
-          <p>made in Vienna by <a href='https://twitter.com/okram_ovic' target='_blank'>me</a></p>
+          <p>Made with ♡ in Vienna by <a href='https://twitter.com/okram_ovic' target='_blank'>me</a></p>
           <button onClick={this.termsHandler}>Terms</button>
         </div>
         
