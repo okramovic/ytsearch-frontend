@@ -58,12 +58,14 @@ class HelloWorld extends React.Component {
   channelChoiceHandler(ev){
     this.setState((prev)=>({showChannelChoice: !prev.showChannelChoice}))
   }
-  checkboxHandler(name){
+  checkboxHandler(ev,name){
+    
     this.setState((prev)=>{
       const sel = prev.suppChannels.find(chan=>chan.name===name)
       sel.active= !sel.active
       return {suppChannels: prev.suppChannels}
-    }) //, ()=> console.log('updated',this.state.suppChannels))
+    })
+    //ev.preventDefault(); return false
   }
   inputChangeHandler(ev){
       this.setState({input: ev.target.value })
@@ -165,12 +167,13 @@ class HelloWorld extends React.Component {
                className={ 'col ' + (this.state.showChannelChoice? ' flex ':' hidden ') }>
               <h5>less channels equals less waiting time</h5>
               {this.state.suppChannels.map((chan, i)=>{
-                 return (<div onClick={()=>this.checkboxHandler(chan.name)} className="flex">
+                 return (<div onClick={(ev)=>this.checkboxHandler(ev, chan.name)} className="flex">
                      <input type="checkbox" value={chan.name} checked={chan.active} style={{display: 'none'}}/>
                      <div className="checkboxy" style={{
                          //backgroundColor: chan.active? 'palevioletred':'white',
-                         boxShadow: chan.active? '0 0 0 6px palevioletred inset' : 'none'
-                      }}></div>
+                         boxShadow: chan.active? '0 0 0 5px palevioletred inset' : 'none',
+                         border: chan.active? '1px solid palevioletred' : '1px solid gray'
+                     }}></div>
                      <span key={i}>{chan.name}</span>
                   </div>
                 )
