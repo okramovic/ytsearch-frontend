@@ -143,7 +143,7 @@ class HelloWorld extends React.Component {
     
     return (
       <div className={this.state.loading? 'centered':(initial ? "initial" : 'with_results')}
-          style={{height: initial? '100vh': 'auto'}}>
+          style={{height: initial? 'available': 'auto'}}>
 
         <button id="Q" onClick={this.infoClickHandler}>?</button>
         <Info visible={this.state.showInfo}/>

@@ -24,7 +24,7 @@ form input[type="text"]{
 }
 
 .initial{
-  height: 100vh;
+  height: -webkit-fill-available;/* 100vh;*/
   display: flex;
   flex-direction: column;
   align-items: center;

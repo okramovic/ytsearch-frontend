@@ -28,7 +28,9 @@
   }
   ul{
     padding-left: 15px;
-    margin-inline-end: 15px;
+    -webkit-margin-end: 15px;
+       -moz-margin-end: 15px;
+            margin-inline-end: 15px;
     width: 100%;
   }
   .channel_header{
