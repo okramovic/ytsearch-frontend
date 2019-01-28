@@ -8,7 +8,7 @@ const HeaderResults = require('./HeaderResults');
 class HelloWorld extends React.Component {
   constructor(props){
     super(props)
-    
+    console.log('CONSTR')
     this.submitHandler = this.submitHandler.bind(this)
     this.inputChangeHandler = this.inputChangeHandler.bind(this)
     this.infoClickHandler = this.infoClickHandler.bind(this)

@@ -9,10 +9,49 @@ let logInfo = []
 app.use(express.static('public'));
 
 
-app.get("/", (req, res)=>{
-  //res.send('locked')
-  res.sendFile(__dirname + '/app/index.html');
+
+/*const allowCrossDomain = function(req, res, next) {
+  //https://cloud-sublime.glitch.me/
+  res.header('Access-Control-Allow-Origin', 'https://cloud-sublime.glitch.me');
+  res.header('Access-Control-Allow-Methods', 'GET'); //,PUT,POST,OPTIONS
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+  // intercept OPTIONS method
+  //if ('OPTIONS' == req.method) res.sendStatus(200);
+  //if (req.query.key == 'masterplan')
+  //else next();
+  next()
+};*/
+
+//app.use(allowCrossDomain);
+
+
+app.get('/', (req, res)=>{
+    //res.send('locked')
+    res.sendFile(__dirname + '/app/index.html');
 });
+
+app.get('/logs', (req,res,next)=>{
+
+  //console.log(req, Object.keys(req))
+  
+  if (req.query.key!=='somethingbig') res.sendStatus(404)
+  else next()
+
+}, (req,res)=>{
+  console.log('req.origin', req.origin)
+  fs.readFile(process.cwd() + '/logs.json', 'utf8', (er, data)=>{
+    if (er) {
+      console.error(er)
+      res.send('notok')
+      res.end()
+    } else{
+      console.log('data', typeof data, data)
+      res.send(data)
+      res.end()
+    }
+  })
+})
 
 app.get('/dirs', async (req, res)=> {
     const dirs = await getAllDirs()
@@ -55,7 +94,6 @@ app.post('/searchtext', async (req,res)=>{
           const keysWResults = Object.keys(results).map((id,ri)=>{
             
             if (results[id].excerpts.length) {
-              //if (!ri) console.log('exc 0', results[id].excerpts[0])
               return id
             }
           }).filter(x=>x)
@@ -67,12 +105,9 @@ app.post('/searchtext', async (req,res)=>{
           })
 
           allResults.push({channel: dir, expt:finals})
-          //return finals
-          //console.log(results, 'result !!!!! ')
-          // allResults.push(...results)
         })
         await Promise.all(readPromises)
-        console.log('\n\n')
+        
 
         res.end(JSON.stringify(allResults))
 
@@ -82,16 +117,16 @@ app.post('/searchtext', async (req,res)=>{
 
 app.post('/nowords', async (req,res)=>{
   const empty = await getEmptyVideosFromLists()
-  console.log('no words', empty)
   res.send(empty)
 })
 
 //app.listen(6707, ()=>console.log('server on 6707'))
-const listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
+const listener = app.listen(process.env.PORT, ()=>{
+  console.log('on port ' + process.env.PORT);
 });
 
-//let timer = setInterval(saveLogs, 180000)
+
+//let timer = setInterval(saveLogs, 59000) // glitch sleeps in 5 min
 
 
 function saveLogs(){
@@ -111,9 +146,8 @@ function saveLogs(){
 
 function getAllDirs(){
     const path = process.cwd() + '/channel_data/' // + (channel || 'Coding train')
-    const dirs = fs.readdirSync(path) //, (er, dirs)=>{
+    const dirs = fs.readdirSync(path)
 
-    console.log('dirs',dirs,'\n')
     if (!dirs.length) {
       console.log('no dirs')
       //res.sendStatus(404)
@@ -130,7 +164,7 @@ function searchFilesinDir(channel, string){
         //console.log('files',files)
 
         files = files.filter(name=> !name.match(/^(_nocaps|_nocontrib|_err|_empty|\.DS_Store)$/i) ) // these are folders keeping wrong results
-        console.log(channel, 'files filtered', files.length)
+        //console.log(channel, 'files filtered', files.length)
 
         if (!files.length) {
           //console.log('no files')
@@ -297,60 +331,6 @@ function searchFilesinDir(channel, string){
 }
 
 
-function writeCapsFile(data, path){
-  return new Promise((resolve, reject)=>{
-    
-    // convert every time info to seconds since thats used in YT url with time info
-    timeInfoToSeconds(data)
-    //console.log(data.times.length, data.cc.length)
-
-    // give every word its timecode in seconds
-    const words = []
-    data.cc.map((piece,i)=>{
-        const pieceWords = piece.split(/ /g)
-        const seconds = data.times[i]
-
-        const mapped = pieceWords.map(w=>[w, seconds])
-        words.push(...mapped)
-    })
-
-    //data.text_merged = data.cc.join(' ')
-    const newData = {title: data.title, fromid: data.fromid, words}
-    
-    
-    fs.writeFile(path, JSON.stringify(newData), er =>{ 
-        if (er) console.log(er, 'err writing file')
-        else console.log('file saved', data.fromid)
-
-        resolve(200)
-    })
-  })
-}
-
-// i only send floored seconds from extension = no decimals
-function timeInfoToSeconds(data){
-  
-  if (!data.times || !data.times.length) {
-    console.log(' - - - - - -    no data.times    - - - - - - !!!')
-    return data;
-  }
-
-  data.times = data.times.map((string, i)=>{
-      const nums = string.split(/:/g).reverse().map(str=>parseInt(str))
-
-      //if (i==3 || i == 60 ) console.log(nums)
-      if (nums[2]) nums[2] = nums[2]*60 // make it minutes already
-
-      const secondsTotal = nums
-      .filter((n,i)=>!!i) // convert only minutes and hours to seconds
-      .reduce((tot, curr)=> tot+curr*60,nums[0])
-
-      return secondsTotal
-  })
-}
-
-
-
 async function getEmptyVideosFromLists(){
   return new Promise((resolve)=>{
   
@@ -377,59 +357,9 @@ async function getEmptyVideosFromLists(){
       })
       files = await Promise.all(files)
       const uniqFiles = Array.from(new Set(files))
-      console.log('files -> uniq',files.length, uniqFiles.length)
+      //console.log('files -> uniq',files.length, uniqFiles.length)
 
       resolve( uniqFiles)
     })
   })
-}
-
-async function scanFilesOld(){
-  const path = process.cwd() + '/channel_data/'
-        
-  const dirs = await getAllDirs()
-    
-  let dirResults = dirs.map((dir)=>{
-    return new Promise((resolve, reject)=>{
-    
-        const path = process.cwd() + '/channel_data/' + dir
-
-        fs.readdir(path, async (er, files)=>{
-          if (er) return console.log(er)
-
-          const emptyFiles = []
-          const emptyIds = []
-          
-          files = files
-          .filter(name=>!name.match(/^(\.DS_Store|_empty|_err|_nocaps|_nocontrib)$/i)) // filter out foldernames
-          .filter(name=>name.match(/\.json$/))
-
-          const fileProms = files.map((file,i)=>{
-              return new Promise((resolve, reject)=>{
-                fs.readFile(path + '/' + file, 'utf8', (er, data)=>{
-                    data = JSON.parse(data)
-
-                    if (! data.words.length || !data.words.every(word=>word[0])) {
-                      //console.log('      title', data.title)
-                      emptyFiles.push(data.title)
-                      emptyIds.push(data.fromid)
-                    }
-                    resolve()
-                })
-              })
-          })
-
-          await Promise.all(fileProms)
-
-          resolve({
-             channel: dir,
-             names: emptyFiles,
-             ids: emptyIds
-          })
-      })
-    })
-  })
-  dirResults = await Promise.all(dirResults)
-  
-  console.log('dir results', dirResults)
 }
