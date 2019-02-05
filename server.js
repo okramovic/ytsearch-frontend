@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
 const fs = require('fs')
-//comment check
+
 const maxRead = 150
 let logInfo = []
 
-//console.log('hoy')
+
 app.use(express.static('public'));
 
 

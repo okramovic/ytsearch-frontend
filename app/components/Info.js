@@ -73,7 +73,7 @@ class Info extends React.Component{
                   return(<div>
                       <a key={i} href={href} target="_blank"
                       >{infoObj.title} ({infoObj.ok_count}/{infoObj.ok_count + infoObj.empty_count})</a>
-                      <span className="link_date">Published {uploadedDateToHuman(infoObj.uploaded)}</span>
+                      <span className="link_date">Uploaded {uploadedDateToHuman(infoObj.uploaded)}</span>
                       </div>
                   )
                 })

@@ -5,7 +5,9 @@ const UnorderedList = function({ channels, query }) {
   //console.log('UL props',this.props, query)
   return (
     <ul>
-      {channels.sort((a,b)=>{
+      {channels
+        .filter(channel=>channel.expt.length)
+        .sort((a,b)=>{
             // sort channels alphabetically
             const x = b.channel.toLowerCase() >= a.channel.toLowerCase()
             return x ? -1 : 1

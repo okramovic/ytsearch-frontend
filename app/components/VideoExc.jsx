@@ -5,21 +5,15 @@ class VideoList extends React.Component{
     super(props)
     
     this.clickHandler = this.clickHandler.bind(this)
-    //this.inputChangeHandler = this.inputChangeHandler.bind(this)
     
     this.state = {
-      //show: this.props.channelIndex === 0 ? true : false,
-      show: false,
+      show: (this.props.channelIndex === 0 && this.props.videoIndex === 0) ? true : false,
+      //show: false,
       span_color: 'black'
     }
-    console.log(this.state, this.props)
   }
   clickHandler(ev){
-    this.setState((prev)=>//{
-        //return 
-                  ({show: !prev.show })
-       // }
-    )
+    this.setState((prev)=>({show: !prev.show }))
     const self = this
     setTimeout(()=>{ 
         self.setState((prev)=>{  
@@ -42,7 +36,7 @@ class VideoList extends React.Component{
                 }}>click on time to watch excerpt</span>
                 <span className="videoresult_date" 
                       style={{display: this.state.show? 'block':'none'}}
-                  >Published {uploadedDateToHuman(this.props.uploaded)}</span>
+                  >Uploaded {uploadedDateToHuman(this.props.uploaded)}</span>
                 {this.props.videos.map((e,i)=>{
                   
                   if (!this.state.show) return null;
@@ -86,6 +80,10 @@ function getHighlightedText(text, higlight) {
 }
 
 function secondsToHumanTime(num){
+    if (!num) {
+      console.error('no excerpt num', num)
+      num = 0
+    }
     const sec = num % 60
     const mins = ((num - sec)/60)%60
     const hrs = Math.floor((num-sec)/3600)

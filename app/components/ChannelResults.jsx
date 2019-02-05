@@ -42,14 +42,17 @@ class ChannelRes extends React.Component{
         <div className="channel_outer">
           <div className="channel_inner">
             <img src={iconUrl} className="channel_thumb"></img>
-            <h3 >{item.channel} {this.props.channelIndex}</h3>
+            <h3 >{item.channel}</h3>
           </div>
           <button className="collapse_button" onClick={this.clickHandler}>{this.state.shown? 'hide':'open'}</button>
         </div>
         <div className={this.state.shown ? '':'hidden'} chan={item.channel}>
           {item.expt.map((video,i)=>{
             
-            return <VideoExc key={i} vid={video.id} channelIndex={this.props.channelIndex} videos={video.excerpts} title={video.title} uploaded={video.uploaded} query={this.props.query}/>      
+            return <VideoExc key={i} vid={video.id} 
+                     channelIndex={this.props.channelIndex} 
+                     videoIndex={i}
+                     videos={video.excerpts} title={video.title} uploaded={video.uploaded} query={this.props.query}/>      
           })}
         </div>
       </li>

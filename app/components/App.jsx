@@ -8,7 +8,7 @@ const HeaderResults = require('./HeaderResults');
 class HelloWorld extends React.Component {
   constructor(props){
     super(props)
-    console.log('CONSTR')
+    
     this.submitHandler = this.submitHandler.bind(this)
     this.inputChangeHandler = this.inputChangeHandler.bind(this)
     this.infoClickHandler = this.infoClickHandler.bind(this)
@@ -30,7 +30,6 @@ class HelloWorld extends React.Component {
       channels:[],
       vidCount: 0,
       excCount: -1,
-      
     }
   }
   componentDidMount(){
@@ -40,10 +39,9 @@ class HelloWorld extends React.Component {
         this.setState({suppChannels: obj})
       })
       if (innerWidth>500) {
-        //console.log('over 500',this.textInput.current );
         this.textInput.current.focus();
         this.textInput.current.placeholder = ''
-      } //else console.log('not 500')
+      }
   }
   infoClickHandler(ev){
     this.setState((prev)=>({showInfo: !prev.showInfo, showTerms: false}))
@@ -139,8 +137,6 @@ class HelloWorld extends React.Component {
     const self = this
     let text = 'loading'
     
-    
-    
     return (
       <div className={this.state.loading? 'centered':(initial ? "initial" : 'with_results')}
           style={{height: initial? 'available': 'auto'}}>
@@ -151,7 +147,7 @@ class HelloWorld extends React.Component {
         <div style={{ display: initial ? 'block':'none' }}></div>
 
         <div id="form_container" className={ "flex col bck_white " + ( initial ? 'corn_round': 'corn_sharp') }
-          style={{ width:  getFormContanierWidth(initial, this.state.loading)   }}
+          style={{ width:  getFormContanierWidth(initial, this.state.loading)  }}
           >
           <form onSubmit={this.submitHandler}>
             <input id="main" type="text" placeholder="search" ref={this.textInput}
@@ -214,7 +210,6 @@ class HelloWorld extends React.Component {
     );
   } // fulltext search in your favorite YT channels
 }
-// <p>made with love in Vienna by me</p>
 
 
 
