@@ -42,7 +42,8 @@ class Info extends React.Component{
           In case of speech recognition it is likely that technical terms or other uncommon words will be misunderstood for others.
           Only english language of captions is supported.</p>
         <p>Please tweet <span className="underscore_gray" >@okram_ovic</span> in case something is not as it should be. Guys, I'm sorry for the design. I am currently not able to come up with anything better.</p>
-        <p>Out of supported channels, following videos unfortunately don't contain any or enough captions. Numbers behind each video title show: words available / total words estimated.</p>
+        <p>Out of supported channels, following videos unfortunately don't contain any or enough captions. Numbers behind each video title show: words available / total words estimated.<br/>
+           Videos are ordered from the newest to the oldest one.</p>
         { this.state.channels.map((chan,i)=>{
           if (!chan.empty_videos.length) return null;
           return (
@@ -53,7 +54,7 @@ class Info extends React.Component{
               </div>
               <div className={ this.state[chan.channel] ? 'flex col': 'hidden'}>
               { chan.empty_videos.sort((a,b)=>{
-                  console.log(a)
+                  // this was ordering them by title alphabetically
                   /*if (/^ ?live stream #(\d+)/i.test(a.title) && /^ ?live stream #(\d+)/i.test(b.title)){
                     let numA = a.title.match(/^ ?live stream #(\d+)/i),
                         numB = b.title.match(/^ ?live stream #(\d+)/i)
@@ -64,11 +65,12 @@ class Info extends React.Component{
                   }
                   const x = b.title.toLowerCase() >= a.title.toLowerCase()
                   return x ? -1 : 1*/
-                  
+                  // most recent videos first
+                  return b.uploaded - a.uploaded 
                 })
                 .map((infoObj,i)=>{
                   const href = "https://youtu.be/" + infoObj.id
-                  return <a key={i} href={href} target="_blank">{infoObj.title} ({infoObj.ok_count}/{infoObj.ok_count + infoObj.empty_count})</a>
+                  return <a key={i} href={href} target="_blank">{infoObj.title} ({infoObj.ok_count}/{infoObj.ok_count + infoObj.empty_count}) <span>{uploadedDateToHuman(infoObj.uploaded)}</span></a>
                 })
               }
               </div>
@@ -98,4 +100,12 @@ function getEmptyVideos(){
     }
     xhr.send( JSON.stringify( {} ) );
   })
+}
+
+function uploadedDateToHuman(string){
+  const year  = parseInt(string.substring(0,4))
+  const month = parseInt(string.substring(4,6))
+  const day   = parseInt(string.substring(7))
+  
+  return `(${day}-${month}-${year})`
 }
