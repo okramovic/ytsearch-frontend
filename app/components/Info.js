@@ -53,7 +53,8 @@ class Info extends React.Component{
               </div>
               <div className={ this.state[chan.channel] ? 'flex col': 'hidden'}>
               { chan.empty_videos.sort((a,b)=>{
-                  if (/^ ?live stream #(\d+)/i.test(a.title) && /^ ?live stream #(\d+)/i.test(b.title)){
+                  console.log(a)
+                  /*if (/^ ?live stream #(\d+)/i.test(a.title) && /^ ?live stream #(\d+)/i.test(b.title)){
                     let numA = a.title.match(/^ ?live stream #(\d+)/i),
                         numB = b.title.match(/^ ?live stream #(\d+)/i)
                         numA = numA[1]
@@ -62,7 +63,8 @@ class Info extends React.Component{
                     return numA-numB
                   }
                   const x = b.title.toLowerCase() >= a.title.toLowerCase()
-                  return x ? -1 : 1
+                  return x ? -1 : 1*/
+                  
                 })
                 .map((infoObj,i)=>{
                   const href = "https://youtu.be/" + infoObj.id

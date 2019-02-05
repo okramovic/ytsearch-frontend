@@ -27,8 +27,8 @@ app.use(express.static('public'));
 
 
 app.get('/', (req, res)=>{
-    res.send('locked')
-    //res.sendFile(__dirname + '/app/index.html');
+    //res.send('locked')
+    res.sendFile(__dirname + '/app/index.html');
 });
 
 app.get('/logs', (req,res,next)=>{
