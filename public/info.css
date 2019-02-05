@@ -51,3 +51,8 @@
 #info a:visited{
   color: black;
 }
+
+.link_date{
+  color: gray;
+  margin-left: .7em;
+}

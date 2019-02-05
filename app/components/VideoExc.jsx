@@ -39,6 +39,7 @@ class VideoList extends React.Component{
                     fontSize: '12px'
                 }}>click on time to watch excerpt</span>
                 {this.props.videos.map((e,i)=>{
+                  if (!i) console.log('e',e)
                   if (!this.state.show) return null;
                   
                   return (<div className="singleExcerpt">

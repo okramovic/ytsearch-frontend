@@ -70,7 +70,12 @@ class Info extends React.Component{
                 })
                 .map((infoObj,i)=>{
                   const href = "https://youtu.be/" + infoObj.id
-                  return <a key={i} href={href} target="_blank">{infoObj.title} ({infoObj.ok_count}/{infoObj.ok_count + infoObj.empty_count}) <span>{uploadedDateToHuman(infoObj.uploaded)}</span></a>
+                  return(<div>
+                      <a key={i} href={href} target="_blank"
+                      >{infoObj.title} ({infoObj.ok_count}/{infoObj.ok_count + infoObj.empty_count})</a>
+                      <span className="link_date">Published {uploadedDateToHuman(infoObj.uploaded)}</span>
+                      </div>
+                  )
                 })
               }
               </div>
@@ -107,5 +112,5 @@ function uploadedDateToHuman(string){
   const month = parseInt(string.substring(4,6))
   const day   = parseInt(string.substring(7))
   
-  return `(${day}-${month}-${year})`
+  return `${day}-${month}-${year}`
 }
