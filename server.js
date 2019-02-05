@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
 const fs = require('fs')
-
+//comment check
 const maxRead = 150
 let logInfo = []
 
-
+console.log('hoy')
 app.use(express.static('public'));
 
 
@@ -27,8 +27,8 @@ app.use(express.static('public'));
 
 
 app.get('/', (req, res)=>{
-    //res.send('locked')
-    res.sendFile(__dirname + '/app/index.html');
+    res.send('locked')
+    //res.sendFile(__dirname + '/app/index.html');
 });
 
 app.get('/logs', (req,res,next)=>{
@@ -284,7 +284,8 @@ function searchFilesinDir(channel, string){
 
                       let time = fullTextIndices[fromI] || fullTextIndices[fromI+1] ||
                                  fullTextIndices[fromI+2] || fullTextIndices[fromI+3] ||
-                                 fullTextIndices[fromI+4] // prevent undefined times
+                                 fullTextIndices[fromI+4] //|| 0 // prevent undefined times
+                                                               // 0 as backup, since all options dont cover begginings of videos for some reason
                       //console.log('    time', time, '\n\n')
 
 
@@ -363,3 +364,4 @@ async function getEmptyVideosFromLists(){
     })
   })
 }
+
