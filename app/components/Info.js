@@ -110,7 +110,7 @@ function getEmptyVideos(){
 function uploadedDateToHuman(string){
   const year  = parseInt(string.substring(0,4))
   const month = parseInt(string.substring(4,6))
-  const day   = parseInt(string.substring(7))
+  const day   = parseInt(string.substring(6))
   
   return `${day}-${month}-${year}`
 }

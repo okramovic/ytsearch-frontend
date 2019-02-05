@@ -28,10 +28,12 @@ class ChannelRes extends React.Component{
     //  |- video - exc
     
     // sort them alphabetically
-    item.expt = item.expt.sort((a,b)=>{
+    /*item.expt = item.expt.sort((a,b)=>{
         const x = b.title.toLowerCase() > a.title.toLowerCase()
         return x ? -1 : 1
-    })
+    })*/
+    // sort them by upload date from most recent to oldest
+    item.expt = item.expt.sort((a,b)=>b.uploaded - a.uploaded)
     
     
     return (

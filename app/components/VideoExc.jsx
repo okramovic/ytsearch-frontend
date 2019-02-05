@@ -38,10 +38,11 @@ class VideoList extends React.Component{
                     display: this.state.show? 'block':'none',
                     fontSize: '12px'
                 }}>click on time to watch excerpt</span>
-                <span style={{display: this.state.show? 'block':'none'}}
+                <span className="videoresult_date" 
+                      style={{display: this.state.show? 'block':'none'}}
                   >Published {uploadedDateToHuman(this.props.uploaded)}</span>
                 {this.props.videos.map((e,i)=>{
-                  //if (!i) console.log('e',e)
+                  
                   if (!this.state.show) return null;
                   
                   return (<div className="singleExcerpt">

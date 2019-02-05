@@ -325,6 +325,12 @@ img.channel_thumb{
 .channel_header:first-of-type .title_collapsed{
   /*margin-top: .5em;*/
 }
+.videoresult_date{
+  width: 100%;
+  text-align: center;
+  color: gray;
+}
+
 .singleExcerpt:first-of-type{
   padding-top: 1em;
 }
