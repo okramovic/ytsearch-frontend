@@ -38,8 +38,10 @@ class VideoList extends React.Component{
                     display: this.state.show? 'block':'none',
                     fontSize: '12px'
                 }}>click on time to watch excerpt</span>
+                <span style={{display: this.state.show? 'block':'none'}}
+                  >Published {uploadedDateToHuman(this.props.uploaded)}</span>
                 {this.props.videos.map((e,i)=>{
-                  if (!i) console.log('e',e)
+                  //if (!i) console.log('e',e)
                   if (!this.state.show) return null;
                   
                   return (<div className="singleExcerpt">
@@ -91,4 +93,12 @@ function secondsToHumanTime(num){
     minStr = mins<10? '0' + mins : mins,
     hrsStr = hrs<10? '0' + hrs : hrs
     return (hrsStr=='00'?'': hrsStr + ':') + minStr + ':' + secStr
+}
+
+function uploadedDateToHuman(string){
+  const year  = parseInt(string.substring(0,4))
+  const month = parseInt(string.substring(4,6))
+  const day   = parseInt(string.substring(6))
+  
+  return `${day}-${month}-${year}`
 }

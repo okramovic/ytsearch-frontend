@@ -321,7 +321,7 @@ function searchFilesinDir(channel, string){
                 //console.log('    ', matchesExcerpts.length,'->', uniqueMatches.length)
 
                 // exrpts from one video
-                results[videoid] = { excerpts: uniqueMatches, title: dataRaw.title }
+                results[videoid] = { excerpts: uniqueMatches, title: dataRaw.title, uploaded: dataRaw.uploaded }
 
                 if (filesRead==0) resolve(results)
             })
