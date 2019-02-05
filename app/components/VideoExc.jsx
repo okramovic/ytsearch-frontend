@@ -8,9 +8,10 @@ class VideoList extends React.Component{
     //this.inputChangeHandler = this.inputChangeHandler.bind(this)
     
     this.state = {
-      show: false,
+      show: this.props.channelIndex === 1? true : false,
       span_color: 'black'
     }
+    console.log(this.state, this.props)
   }
   clickHandler(ev){
     this.setState((prev)=>//{

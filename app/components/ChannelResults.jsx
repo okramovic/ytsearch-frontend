@@ -49,7 +49,7 @@ class ChannelRes extends React.Component{
         <div className={this.state.shown ? '':'hidden'} chan={item.channel}>
           {item.expt.map((video,i)=>{
             
-            return <VideoExc key={i} vid={video.id} videos={video.excerpts} title={video.title} uploaded={video.uploaded} query={this.props.query}/>      
+            return <VideoExc key={i} vid={video.id} channelIndex={this.props.channelIndex} videos={video.excerpts} title={video.title} uploaded={video.uploaded} query={this.props.query}/>      
           })}
         </div>
       </li>
