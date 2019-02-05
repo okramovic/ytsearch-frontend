@@ -5,7 +5,7 @@ const fs = require('fs')
 const maxRead = 150
 let logInfo = []
 
-console.log('hoy')
+//console.log('hoy')
 app.use(express.static('public'));
 
 
@@ -27,8 +27,8 @@ app.use(express.static('public'));
 
 
 app.get('/', (req, res)=>{
-    res.send('locked')
-    //res.sendFile(__dirname + '/app/index.html');
+    //res.send('locked')
+    res.sendFile(__dirname + '/app/index.html');
 });
 
 app.get('/logs', (req,res,next)=>{

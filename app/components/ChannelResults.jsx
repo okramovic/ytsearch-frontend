@@ -42,7 +42,7 @@ class ChannelRes extends React.Component{
         <div className="channel_outer">
           <div className="channel_inner">
             <img src={iconUrl} className="channel_thumb"></img>
-            <h3 >{item.channel}</h3>
+            <h3 >{item.channel} {this.props.channelIndex}</h3>
           </div>
           <button className="collapse_button" onClick={this.clickHandler}>{this.state.shown? 'hide':'open'}</button>
         </div>

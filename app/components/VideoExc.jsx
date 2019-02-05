@@ -8,7 +8,8 @@ class VideoList extends React.Component{
     //this.inputChangeHandler = this.inputChangeHandler.bind(this)
     
     this.state = {
-      show: this.props.channelIndex === 1? true : false,
+      //show: this.props.channelIndex === 0 ? true : false,
+      show: false,
       span_color: 'black'
     }
     console.log(this.state, this.props)
@@ -58,10 +59,8 @@ class VideoList extends React.Component{
                           //console.log(rr)
                           if (this.props.query.match(rr)) 
                             return <span className="highlighted">{w}</span>
-                          
                           return w + ' '
                         })*/ //this returs [object object]: .join(' ')
-                        
                     }</p>
                   </div>)
                  })
