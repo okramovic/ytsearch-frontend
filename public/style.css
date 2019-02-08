@@ -118,7 +118,8 @@ form input[type="text"]{
   border: 5px;
   border-radius: 4px;
   background-color: white;
-  box-shadow: 0px 0px 1px 1px #ccc;
+  -webkit-box-shadow: 0px 0px 1px 1px #ccc;
+          box-shadow: 0px 0px 1px 1px #ccc;
 }
 input:-internal-autofill-previewed, input:-internal-autofill-selected{
   background-color: aliceblue;
@@ -134,12 +135,12 @@ form input[type="text"]::-webkit-input-placeholder{
   color: #aaa;
   /*font-style: italic;*/
 }
-form input[type="text"]::-moz-placeholder{
+form input[type="text"]:-ms-input-placeholder{
   font-weight: 200;
   color: #aaa;
   /*font-style: italic;*/
 }
-form input[type="text"]:-ms-input-placeholder{
+form input[type="text"]::-ms-input-placeholder{
   font-weight: 200;
   color: #aaa;
   /*font-style: italic;*/
@@ -151,7 +152,8 @@ form input[type="text"]::placeholder{
 }
 form input[type="text"]:active, form input[type="text"]:focus{
   outline: none;
-  box-shadow: 0px 0px 1px 1px #ccc;
+  -webkit-box-shadow: 0px 0px 1px 1px #ccc;
+          box-shadow: 0px 0px 1px 1px #ccc;
 }
 form p{
   margin-bottom: 0;
@@ -214,10 +216,8 @@ ul{
   max-width: 950px;
   width: 100%;*/
   -webkit-margin-end: 40px;
-     -moz-margin-end: 40px;
           margin-inline-end: 40px;
   -webkit-padding-start: 40px;
-     -moz-padding-start: 40px;
           padding-inline-start: 40px;
   
 }
@@ -380,7 +380,8 @@ img.channel_thumb{
           justify-content: space-between;
 
   background-color: #f2f2f2;
-  box-shadow: 0px 0px 1px 0px grey;
+  -webkit-box-shadow: 0px 0px 1px 0px grey;
+          box-shadow: 0px 0px 1px 0px grey;
 }
 #mycredit p{
   margin: 8px;
@@ -418,7 +419,8 @@ img.channel_thumb{
   z-index: 3;
   background-color: white;
   border-radius: 4px;
-  box-shadow: 0px 0px 2px 2px gray;
+  -webkit-box-shadow: 0px 0px 2px 2px gray;
+          box-shadow: 0px 0px 2px 2px gray;
 }
 #terms_inner{
 }
@@ -504,5 +506,6 @@ img.channel_thumb{
 .white{
   color: white;
   -webkit-transition: color .2s;
+  -o-transition: color .2s;
   transition: color .2s;
 }
